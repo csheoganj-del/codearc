@@ -1,270 +1,126 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles, Code2, Globe, Shield, Star, MousePointerClick } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, MessageSquare, Calculator } from 'lucide-react';
 
 // Components
 import Navbar from './components/Navbar';
-import LogoStrip from './components/LogoStrip';
-import ServicesSection from './components/ServiceCard';
-import BentoGrid from './components/BentoGrid';
-import ProjectShowcase from './components/ProjectShowcase';
-import ProcessTimeline from './components/ProcessTimeline';
-import Testimonials from './components/Testimonials';
-import CTASection from './components/CTASection';
+import Services from './components/Services';
+import PromiseSection from './components/Promise';
+import Process from './components/Process';
+import Estimator from './components/Estimator';
+import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
-import InteractiveDashboard from './components/InteractiveDashboard';
 
 export default function App() {
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [prefilledText, setPrefilledText] = useState('');
 
-  // Pre-loader Splash Percentage Tick
-  useEffect(() => {
-    if (loadingProgress < 100) {
-      const duration = Math.random() * 80 + 20; // Variable speed
-      const timer = setTimeout(() => {
-        setLoadingProgress((prev) => Math.min(prev + Math.floor(Math.random() * 8 + 3), 100));
-      }, duration);
-      return () => clearTimeout(timer);
-    } else {
-      const doneTimer = setTimeout(() => {
-        setIsLoaded(true);
-      }, 550);
-      return () => clearTimeout(doneTimer);
-    }
-  }, [loadingProgress]);
-
-  // Animation variants for loading split curtains
-  const leftCurtain = {
-    hidden: { x: 0 },
-    exit: { 
-      x: '-100%', 
-      transition: { duration: 1.1, ease: [0.76, 0, 0.24, 1] as any } 
-    }
-  };
-
-  const rightCurtain = {
-    hidden: { x: 0 },
-    exit: { 
-      x: '100%', 
-      transition: { duration: 1.1, ease: [0.76, 0, 0.24, 1] as any } 
-    }
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as any } 
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
+  const handleSelectEstimate = (estimateText: string) => {
+    setPrefilledText(estimateText);
+    
+    // Smooth scroll directly to the contact form
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <>
-      {/* 1. ELITE SPLASH PRE-LOADER */}
-      <AnimatePresence>
-        {!isLoaded && (
-          <motion.div 
-            className="fixed inset-0 z-[100] flex overflow-hidden select-none pointer-events-none"
-            exit={{ opacity: 0, transition: { delay: 0.8 } }}
+    <div className="min-h-screen bg-[#FAFAF9] text-[#1C1917] selection:bg-[#E7E5E4] selection:text-[#1C1917] overflow-x-hidden font-sans relative">
+      
+      {/* Sticky Navigation Header */}
+      <Navbar />
+
+      {/* Hero Section */}
+      <header className="relative pt-36 md:pt-48 pb-20 md:pb-32 flex flex-col items-center justify-center text-center z-10 overflow-hidden">
+        
+        {/* Soft, warm background gradients */}
+        <div className="absolute top-[-10%] left-[-20%] w-[60%] aspect-square bg-[radial-gradient(circle,_rgba(231,229,228,0.3)_0%,_transparent_70%)] pointer-events-none rounded-full" />
+        <div className="absolute bottom-[0%] right-[-10%] w-[50%] aspect-square bg-[radial-gradient(circle,_rgba(231,229,228,0.25)_0%,_transparent_75%)] pointer-events-none rounded-full" />
+
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
+          
+          {/* Fresh badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E7E5E4] text-[#78716C] text-xs font-bold uppercase tracking-wider mb-8 shadow-sm"
           >
-            {/* Left Curtain Pane */}
-            <motion.div 
-              variants={leftCurtain}
-              initial="hidden"
-              exit="exit"
-              className="w-1/2 h-full bg-[#030307] border-r border-white/5 flex items-center justify-end pr-8 relative"
-            >
-              <div className="absolute inset-0 bg-grid-field opacity-10" />
-            </motion.div>
-
-            {/* Right Curtain Pane */}
-            <motion.div 
-              variants={rightCurtain}
-              initial="hidden"
-              exit="exit"
-              className="w-1/2 h-full bg-[#030307] flex items-center justify-start pl-8 relative"
-            >
-              <div className="absolute inset-0 bg-grid-field opacity-10" />
-            </motion.div>
-
-            {/* Central Animated Counters */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-[110] pointer-events-auto">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, y: -20, transition: { duration: 0.4 } }}
-                className="text-center space-y-6"
-              >
-                <div className="flex items-center space-x-2.5 justify-center">
-                  <span className="text-xl font-bold tracking-widest text-gradient-electric">CODEARC</span>
-                </div>
-                <div className="text-7xl md:text-9xl font-black font-mono tracking-tighter text-glow-electric text-white">
-                  {loadingProgress}%
-                </div>
-                <div className="text-[10px] uppercase font-bold tracking-widest text-gray-500 flex items-center gap-1.5 justify-center">
-                  <span className="w-1.5 h-1.5 bg-brand-indigo rounded-full animate-ping" />
-                  <span>Synthesizing Design Systems</span>
-                </div>
-              </motion.div>
-            </div>
+            <span className="w-1.5 h-1.5 rounded-full bg-stone-500 animate-pulse" />
+            Simple software for your business
           </motion.div>
-        )}
-      </AnimatePresence>
+          
+          {/* Main Headline */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-[#1C1917] mb-8"
+          >
+            We build websites and mobile apps. <br className="hidden md:block"/>
+            <span className="text-[#78716C]">Simply.</span>
+          </motion.h1>
 
-      {/* 2. MAIN AGENCY REDESIGN EXPERIENCE */}
-      {isLoaded && (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="min-h-screen relative bg-brand-space text-brand-darkText overflow-x-hidden"
-        >
-          {/* Base Backdrop Grids & Glow Meshes */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            {/* Micro grid overlay */}
-            <div className="absolute inset-0 bg-grid-field opacity-75" />
+          {/* Subtext */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg md:text-2xl text-[#78716C] max-w-3xl mx-auto mb-12 leading-relaxed font-semibold"
+          >
+            We are CodeArc. We design clean, easy-to-understand websites, custom web systems, and Android apps for growing brands. No jargon. Just tools that help you grow.
+          </motion.p>
 
-            {/* Blending Abstract Arc graphic in background */}
-            <div className="absolute top-0 right-0 w-[60%] h-[900px] overflow-hidden opacity-25 select-none">
-              <img 
-                src="/assets/abstract_arc.png" 
-                alt="CodeArc Abstract Arc Logo"
-                className="w-full h-full object-cover blur-sm mix-blend-screen"
-              />
-            </div>
+          {/* Call to Actions */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+          >
+            <a
+              href="#estimator"
+              className="w-full sm:w-auto px-8 py-4.5 rounded-2xl bg-[#1C1917] text-white font-bold text-base hover:bg-stone-800 transition-colors duration-300 shadow-sm active:scale-[0.99] flex items-center justify-center gap-2"
+            >
+              <Calculator className="w-4 h-4" />
+              Calculate Cost
+            </a>
+            
+            <a
+              href="#contact"
+              className="w-full sm:w-auto px-8 py-4.5 rounded-2xl bg-white border border-[#E7E5E4] text-[#1C1917] font-bold text-base hover:border-stone-400 hover:bg-stone-50/50 transition-colors duration-300 flex items-center justify-center gap-2 group"
+            >
+              <MessageSquare className="w-4 h-4" />
+              Talk to us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
 
-            {/* Glowing gas meshes (Stripe/Linear look) */}
-            <div className="absolute top-[100px] left-[5%] w-[450px] h-[450px] bg-brand-indigo rounded-full blur-mesh" />
-            <div className="absolute top-[250px] right-[10%] w-[500px] h-[500px] bg-brand-cyan rounded-full blur-mesh" />
-            <div className="absolute top-[500px] left-[35%] w-[380px] h-[380px] bg-brand-magenta rounded-full blur-mesh" />
-          </div>
+        </div>
+      </header>
 
-          {/* Sticky Navbar */}
-          <Navbar isDark={true} toggleDark={() => {}} />
+      {/* Main layout blocks */}
+      <main className="relative z-20">
+        
+        {/* Pillar Services */}
+        <Services />
 
-          {/* HERO HEADER */}
-          <header className="relative pt-44 md:pt-56 pb-24 md:pb-36 overflow-hidden z-10">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
-                
-                {/* Editorial Headline Column */}
-                <motion.div 
-                  variants={staggerContainer}
-                  initial="hidden"
-                  animate="visible"
-                  className="lg:col-span-7 text-left space-y-8"
-                >
-                  <motion.div variants={fadeInUp}>
-                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] font-extrabold bg-brand-indigo/10 border border-brand-indigo/25 text-brand-cyanLight tracking-widest uppercase">
-                      <Sparkles className="w-3.5 h-3.5 text-brand-cyan" /> Interactive Studio Design
-                    </span>
-                  </motion.div>
+        {/* Side-by-Side Values Comparison */}
+        <PromiseSection />
 
-                  <motion.h1 
-                    variants={fadeInUp}
-                    className="text-5.5xl md:text-8.5xl font-black tracking-tight leading-[0.98] text-white"
-                  >
-                    We Engineer <span className="text-gradient-electric text-glow-electric">Digital</span> Masterpieces.
-                  </motion.h1>
+        {/* Co-operative 3-Step Process */}
+        <Process />
 
-                  <motion.p 
-                    variants={fadeInUp}
-                    className="text-sm md:text-base leading-relaxed text-gray-400 font-medium max-w-xl"
-                  >
-                    CodeArc is a premium digital solutions company. We specialize in breathtaking web design, highly interactive web applications, and native Android app engineering built with absolute precision.
-                  </motion.p>
+        {/* Interactive Plain-English Cost Estimator */}
+        <Estimator onSelectEstimate={handleSelectEstimate} />
 
-                  {/* Magnetic interactive CTA Row */}
-                  <motion.div 
-                    variants={fadeInUp}
-                    className="flex flex-col sm:flex-row items-center gap-4 pt-4"
-                  >
-                    <a
-                      href="#contact"
-                      className="w-full sm:w-auto px-9 py-4.5 rounded-2xl bg-gradient-to-r from-brand-indigo via-brand-blue to-brand-cyan hover:scale-[1.03] active:scale-[0.98] text-white font-bold text-center shadow-2xl transition-all duration-300 inline-flex items-center justify-center gap-2 group cursor-pointer"
-                    >
-                      Book Design Strategy <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-                    </a>
-                    <a
-                      href="#projects"
-                      className="w-full sm:w-auto px-9 py-4.5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/15 text-white font-bold text-center transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      View Live Sandboxes
-                    </a>
-                  </motion.div>
+        {/* Simple Contact Form */}
+        <ContactForm prefilledText={prefilledText} />
 
-                  {/* Micro Specs Indicators */}
-                  <motion.div 
-                    variants={fadeInUp}
-                    className="pt-10 border-t border-white/5 grid grid-cols-3 gap-6 text-[10px] font-extrabold text-gray-500 uppercase tracking-widest"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-lg bg-brand-indigo inline-block" />
-                      <span>Elite UI/UX Architecture</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-lg bg-brand-cyan inline-block" />
-                      <span>Next.js & Native Android</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-lg bg-brand-magenta inline-block" />
-                      <span>Tactile Physics Engine</span>
-                    </div>
-                  </motion.div>
-                </motion.div>
+      </main>
 
-                {/* Perspective 3D Tilt Dashboard Column */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50, scale: 0.95 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="lg:col-span-5 flex items-center justify-center z-10"
-                >
-                  <InteractiveDashboard isDark={true} />
-                </motion.div>
+      {/* Sober Minimalist Footer */}
+      <Footer />
 
-              </div>
-            </div>
-          </header>
-
-          {/* Infinite trust marquee strip */}
-          <LogoStrip isDark={true} />
-
-          {/* Redesigned Services section (Creative Web/Android focused) */}
-          <ServicesSection isDark={true} />
-
-          {/* Redesigned Bento Grid why us (3D Parallax Tilt) */}
-          <BentoGrid isDark={true} />
-
-          {/* Fan Card Showcase case studies */}
-          <ProjectShowcase isDark={true} />
-
-          {/* Vertical scroll linked timeline process */}
-          <ProcessTimeline isDark={true} />
-
-          {/* Founder Testimonials */}
-          <Testimonials isDark={true} />
-
-          {/* Particle based glowing CTA */}
-          <CTASection isDark={true} />
-
-          {/* Minimalist Footer */}
-          <Footer isDark={true} />
-
-        </motion.div>
-      )}
-    </>
+    </div>
   );
 }

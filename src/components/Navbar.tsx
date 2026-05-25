@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Activity } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface NavbarProps {
-  isDark: boolean;
-  toggleDark: () => void;
-}
-
-export default function Navbar({}: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,11 +15,10 @@ export default function Navbar({}: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Case Studies', href: '#projects' },
-    { name: 'Process', href: '#process' },
-    { name: 'Partnerships', href: '#testimonials' },
+    { name: 'What We Do', href: '#services' },
+    { name: 'Our Promise', href: '#why-us' },
+    { name: 'How It Works', href: '#process' },
+    { name: 'Cost Estimator', href: '#estimator' },
   ];
 
   return (
@@ -32,32 +26,31 @@ export default function Navbar({}: NavbarProps) {
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'glass-card-dark py-4 shadow-glass-dark border-b border-white/5 backdrop-blur-lg'
-            : 'bg-transparent py-7'
+            ? 'bg-[#FAFAF9]/80 backdrop-blur-xl border-b border-[#E7E5E4] py-4 shadow-sm'
+            : 'bg-transparent py-6 md:py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
-          {/* Elite Animated Logo */}
-          <a href="#" className="flex items-center space-x-2.5 group select-none">
-            <div className="relative w-8 h-8 rounded-xl overflow-hidden shadow-lg shadow-brand-indigo/15 transition-transform duration-300 group-hover:scale-105">
+          {/* Logo Brand Mark */}
+          <a href="#" className="flex items-center space-x-3 group select-none">
+            <div className="relative w-8 h-8 rounded-xl overflow-hidden bg-[#1C1917] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <img src="/assets/codearc_logo.png" alt="CodeArc Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white">
-              Code<span className="bg-gradient-to-r from-brand-indigo to-brand-cyan bg-clip-text text-transparent">Arc</span>
+            <span className="text-xl font-extrabold tracking-tight text-[#1C1917]">
+              CodeArc
             </span>
           </a>
 
-          {/* Center Navigation Links */}
+          {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs uppercase font-extrabold tracking-widest text-gray-400 hover:text-white transition-colors duration-200 relative py-1.5 group"
+                className="text-sm font-bold text-[#78716C] hover:text-[#1C1917] transition-colors duration-200"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-brand-indigo to-brand-cyan transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
@@ -66,11 +59,9 @@ export default function Navbar({}: NavbarProps) {
           <div className="hidden md:flex items-center space-x-6">
             <a
               href="#contact"
-              className="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-extrabold uppercase tracking-widest rounded-xl text-white bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] group overflow-hidden"
+              className="px-5 py-2.5 text-sm font-bold rounded-full text-white bg-[#1C1917] hover:bg-stone-800 transition-all duration-300"
             >
-              <span className="relative z-10 flex items-center gap-1.5">
-                Book a Call <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform text-brand-cyan" />
-              </span>
+              Get in Touch
             </a>
           </div>
 
@@ -78,15 +69,16 @@ export default function Navbar({}: NavbarProps) {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-300 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+              className="p-2 rounded-xl text-[#1C1917] hover:bg-[#E7E5E4]/50 transition-colors"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Drawer Navigation (using AnimatePresence) */}
+      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -94,7 +86,7 @@ export default function Navbar({}: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-0 top-[72px] z-40 md:hidden p-6 shadow-2xl border-b bg-brand-space/95 backdrop-blur-xl border-white/5 text-white"
+            className="fixed inset-x-0 top-[72px] z-40 md:hidden p-6 bg-[#FAFAF9] border-b border-[#E7E5E4] shadow-xl"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
@@ -102,7 +94,7 @@ export default function Navbar({}: NavbarProps) {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-xs uppercase font-extrabold tracking-widest py-2.5 border-b border-white/5 hover:text-brand-cyan transition-colors duration-200"
+                  className="text-lg font-bold text-[#1C1917] py-3 border-b border-stone-200"
                 >
                   {link.name}
                 </a>
@@ -110,9 +102,9 @@ export default function Navbar({}: NavbarProps) {
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-indigo to-brand-cyan text-white font-extrabold text-xs uppercase tracking-widest text-center shadow-lg flex items-center justify-center gap-1.5"
+                className="mt-4 w-full py-4 rounded-2xl bg-[#1C1917] text-white font-bold text-center block"
               >
-                Book a Call <ArrowRight className="w-4 h-4 text-white" />
+                Get in Touch
               </a>
             </div>
           </motion.div>

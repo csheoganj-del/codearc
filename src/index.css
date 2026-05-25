@@ -1,117 +1,43 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-space: #030307;
-  --color-brand-card: #090915;
-  --color-brand-indigo: #6366F1;
-  --color-brand-magenta: #D946EF;
-  --color-brand-cyan: #06B6D4;
-  --color-brand-cyanLight: #22D3EE;
-  --color-brand-slate: #475569;
-  --color-brand-offwhite: #FCFCFD;
-  --color-brand-darkText: #F3F4F6;
-
-  --font-sans: "Plus Jakarta Sans", "Inter", "ui-sans-serif", "system-ui", "sans-serif";
-
-  --animate-pulse-slow: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-float-slow: float 8s ease-in-out infinite;
-  --animate-float-medium: float 6s ease-in-out infinite;
-  --animate-float-fast: float 4s ease-in-out infinite;
-  --animate-spin-slow: spin 16s linear infinite;
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-  }
+  --font-sans: "Plus Jakarta Sans", "Inter", "system-ui", "sans-serif";
 }
 
 /* Custom Base Overrides */
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
-  background-color: #030307;
+  background-color: #FAFAF9;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: #030307;
-  color: #F3F4F6;
+  background-color: #FAFAF9;
+  color: #1C1917;
+  font-family: var(--font-sans);
 }
 
-/* Custom Premium Scrollbar in standard CSS */
+/* Selection Highlight */
+::selection {
+  background-color: #E7E5E4; /* stone-200 */
+  color: #1C1917;
+}
+
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.15);
+  background: #E7E5E4;
   border-radius: 9999px;
-  transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.35);
-}
-
-/* Elite Wireframe Grid overlay */
-.bg-grid-field {
-  background-size: 50px 50px;
-  background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.02) 1px, transparent 1px);
-}
-
-.blur-mesh {
-  position: absolute;
-  filter: blur(140px);
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.35;
-}
-
-/* Glassmorphism Styles */
-.glass-panel {
-  background: rgba(9, 9, 21, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.035);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
-}
-
-.glass-panel:hover {
-  border-color: rgba(99, 102, 241, 0.15);
-  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.05);
-}
-
-.text-gradient-electric {
-  background: linear-gradient(to right, #6366F1 0%, #D946EF 50%, #06B6D4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.text-glow-electric {
-  text-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
-}
-
-.perspective-1200 {
-  perspective: 1200px;
-}
-
-/* Glowing Connecting Arc Trails */
-.arc-trail {
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-  animation: strokeArc 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-}
-
-@keyframes strokeArc {
-  to {
-    stroke-dashoffset: 0;
-  }
+  background: #D6D3D1;
 }
