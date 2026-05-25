@@ -15,22 +15,22 @@ export default function Estimator({ onSelectEstimate }: EstimatorProps) {
   const [speed, setSpeed] = useState<'standard' | 'rush'>('standard');
   const [applied, setApplied] = useState<boolean>(false);
 
-  // Pricing constants (indicated in simple, honest starter ranges)
+  // Pricing constants in INR (indicated in simple, honest starter ranges)
   const basePrices: Record<PlatformType, number> = {
-    website: 1500,
-    webapp: 3500,
-    android: 4000,
-    bundle: 5000,
+    website: 15000,
+    webapp: 45000,
+    android: 60000,
+    bundle: 85000,
   };
 
   const calculateEstimate = () => {
     let price = basePrices[platform];
-    if (needLogin) price += 1000;
-    if (needPayments) price += 1200;
+    if (needLogin) price += 15000;
+    if (needPayments) price += 15000;
     if (speed === 'rush') price *= 1.25;
 
-    const lower = Math.round((price * 0.9) / 100) * 100;
-    const upper = Math.round((price * 1.1) / 100) * 100;
+    const lower = Math.round((price * 0.9) / 1000) * 1000;
+    const upper = Math.round((price * 1.1) / 1000) * 1000;
     return { lower, upper };
   };
 
@@ -44,7 +44,7 @@ export default function Estimator({ onSelectEstimate }: EstimatorProps) {
       bundle: 'Website + Android App Bundle',
     };
 
-    const detailsText = `I used your estimator and got an estimate of $${lower} - $${upper}. 
+    const detailsText = `I used your estimator and got an estimate of ₹${lower.toLocaleString('en-IN')} - ₹${upper.toLocaleString('en-IN')}. 
 - Product: ${platformLabel[platform]}
 - Requires Customer Login: ${needLogin ? 'Yes' : 'No'}
 - Requires Payments/Store: ${needPayments ? 'Yes' : 'No'}
@@ -212,10 +212,10 @@ I would like to discuss my project!`;
               
               <div className="pt-4 pb-6 border-b border-stone-800">
                 <span className="text-4xl md:text-5xl font-black tracking-tight block">
-                  ${lower.toLocaleString()} – ${upper.toLocaleString()}
+                  ₹{lower.toLocaleString('en-IN')} – ₹{upper.toLocaleString('en-IN')}
                 </span>
                 <span className="text-xs text-stone-400 mt-2 block font-medium">
-                  Indicative starter price range (USD)
+                  Indicative starter price range (INR)
                 </span>
               </div>
 

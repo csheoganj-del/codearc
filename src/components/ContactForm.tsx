@@ -9,7 +9,7 @@ interface ContactFormProps {
 export default function ContactForm({ prefilledText }: ContactFormProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [budget, setBudget] = useState('2000-5000');
+  const [budget, setBudget] = useState('25000-75000');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -29,7 +29,7 @@ export default function ContactForm({ prefilledText }: ContactFormProps) {
     setTimeout(() => {
       setName('');
       setEmail('');
-      setBudget('2000-5000');
+      setBudget('25000-75000');
       setMessage('');
       setSubmitted(false);
     }, 8000);
@@ -123,10 +123,10 @@ export default function ContactForm({ prefilledText }: ContactFormProps) {
                     onChange={(e) => setBudget(e.target.value)}
                     className="w-full px-5 py-4 rounded-2xl bg-white border border-[#E7E5E4] text-[#1C1917] text-base focus:outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-500 transition-all font-medium appearance-none cursor-pointer"
                   >
-                    <option value="under-2000">Under $2,000 (Small projects/simple sites)</option>
-                    <option value="2000-5000">$2,000 – $5,000 (Custom systems/apps)</option>
-                    <option value="5000-10000">$5,000 – $10,000 (Complete bundles/larger tools)</option>
-                    <option value="10000+">Over $10,000 (Enterprise solutions)</option>
+                    <option value="under-25000">Under ₹25,000 (Simple storefronts/blogs)</option>
+                    <option value="25000-75000">₹25,000 – ₹75,000 (Custom websites & apps)</option>
+                    <option value="75000-150000">₹75,000 – ₹1,50,000 (Complete bundles/larger tools)</option>
+                    <option value="150000+">Over ₹1,50,000 (Enterprise solutions)</option>
                   </select>
                   <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-stone-400 font-bold">
                     ▼
