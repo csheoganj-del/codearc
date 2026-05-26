@@ -18,6 +18,7 @@ export default function Navbar() {
     { name: 'What We Do', href: '#services' },
     { name: 'Our Promise', href: '#why-us' },
     { name: 'How It Works', href: '#process' },
+    { name: 'Our Work', href: '#work' },
     { name: 'Cost Estimator', href: '#estimator' },
   ];
 

@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Services from './components/Services';
 import PromiseSection from './components/Promise';
 import Process from './components/Process';
+import Showcase from './components/Showcase';
 import Estimator from './components/Estimator';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
@@ -109,6 +110,9 @@ export default function App() {
 
         {/* Co-operative 3-Step Process */}
         <Process />
+
+        {/* Dynamic Project Showcase Slideshow */}
+        <Showcase />
 
         {/* Interactive Plain-English Cost Estimator */}
         <Estimator onSelectEstimate={handleSelectEstimate} />
