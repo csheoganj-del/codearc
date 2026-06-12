@@ -56,7 +56,7 @@ const projects: Project[] = [
     title: 'CodeArc RestroSuite',
     subtitle: 'All-in-One Restaurant POS & Operations Platform',
     description: 'A unified restaurant management suite built for cafes, dhabas, and food chains. Combines billing, kitchen order display, inventory tracking, customer loyalty, and WhatsApp receipts into one seamless, reliable platform.',
-    url: 'https://codearc-restrosuite.vercel.app/',
+    url: 'https://restrosuite.codearc.co.in/',
     creator: 'codearc',
     tags: ['Vanilla JS', 'Restaurant POS', 'Real-time KDS', 'WhatsApp Integration'],
     accentColor: '#e8a23d',
