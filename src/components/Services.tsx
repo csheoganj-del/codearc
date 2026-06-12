@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, AppWindow, Smartphone, ArrowRight } from 'lucide-react';
+import { Monitor, AppWindow, Smartphone, Check } from 'lucide-react';
+import { TiltCard, Reveal } from './Motion';
 
 interface ServiceItem {
   title: string;
@@ -9,6 +10,8 @@ interface ServiceItem {
   purpose: string;
   features: string[];
   icon: React.ElementType;
+  accent: string;       // hex accent
+  accentSoft: string;   // soft tint bg
 }
 
 export default function Services() {
@@ -17,110 +20,134 @@ export default function Services() {
       title: 'Websites',
       badge: 'Your Online Front Door',
       description: 'A beautiful, easy-to-read website that tells people who you are, what you do, and how to reach you.',
-      purpose: 'Best for: Local shops, family businesses, service providers, and getting found on Google.',
+      purpose: 'Best for: local shops, family businesses, service providers, and getting found on Google.',
       features: [
         'Works perfectly on phones & tablets',
         'Fast-loading and easy to read',
         'Includes contact info & maps',
-        'Simple to update yourself'
+        'Simple to update yourself',
       ],
       icon: Monitor,
+      accent: '#4F46E5',
+      accentSoft: '#EEF2FF',
     },
     {
       title: 'Web Applications',
       badge: 'Your Custom Business Tools',
-      description: 'A private tool or portal that runs directly in your internet browser, built to help you run your business.',
-      purpose: 'Best for: Booking calendars, customer records, staff portals, and custom order tracking.',
+      description: 'A private tool or portal that runs in the browser, built to help you run your business day to day.',
+      purpose: 'Best for: booking calendars, customer records, staff portals, and custom order tracking.',
       features: [
         'Secure logins for you & your clients',
         'Calculates & organizes data automatically',
         'Replaces messy Excel sheets',
-        'Accessible from anywhere'
+        'Accessible from anywhere',
       ],
       icon: AppWindow,
+      accent: '#7C3AED',
+      accentSoft: '#F5F3FF',
     },
     {
       title: 'Android Apps',
       badge: 'Your App in Pockets',
       description: 'A dedicated, high-quality mobile app designed specifically for Android phones and tablets.',
-      purpose: 'Best for: Customer loyalty programs, mobile ordering, field worker tools, and offline utility.',
+      purpose: 'Best for: loyalty programs, mobile ordering, field worker tools, and offline utility.',
       features: [
         'Smooth and fast to swipe through',
         'Sends notifications directly to phones',
         'Can work even without internet',
-        'Designed specifically for touchscreens'
+        'Designed specifically for touchscreens',
       ],
       icon: Smartphone,
+      accent: '#06B6D4',
+      accentSoft: '#ECFEFF',
     },
   ];
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-white">
+    <section id="services" className="py-20 md:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        
+
         {/* Header */}
-        <div className="max-w-3xl mb-16 md:mb-24">
-          <span className="text-xs uppercase tracking-widest text-[#78716C] font-semibold block mb-3">
+        <Reveal className="max-w-3xl mb-14 md:mb-20">
+          <span className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#EEF2FF] text-[#4F46E5] text-xs uppercase tracking-widest font-bold mb-5">
             Our Services
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1C1917] leading-tight">
-            We build what your business needs to grow. Simply.
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0F172A] leading-tight">
+            Everything your business needs to grow. <span className="font-accent text-gradient">Simply.</span>
           </h2>
-          <p className="text-lg md:text-xl text-[#78716C] mt-6 leading-relaxed">
-            We don’t confuse you with technical details. Tell us what you want to achieve, and we’ll build the perfect tool for the job.
+          <p className="text-lg md:text-xl text-[#475569] mt-6 leading-relaxed">
+            No technical details to decode. Tell us what you want to achieve, and we'll build the perfect tool for the job.
           </p>
-        </div>
+        </Reveal>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col bg-[#FAFAF9] rounded-[32px] p-8 md:p-10 border border-[#E7E5E4] hover:shadow-md transition-shadow duration-300"
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
               >
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center border border-[#E7E5E4] mb-8">
-                  <Icon className="w-6 h-6 text-[#1C1917]" />
-                </div>
+                <TiltCard
+                  max={4}
+                  className="card-lift group relative flex h-full flex-col bg-white rounded-3xl p-8 md:p-9 border border-[#E2E8F0] overflow-hidden"
+                >
+                  {/* Top accent line */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-1 opacity-80"
+                    style={{ background: `linear-gradient(90deg, ${service.accent}, transparent)` }}
+                  />
 
-                {/* Badge & Title */}
-                <span className="text-xs font-bold uppercase tracking-wider text-[#78716C] mb-2">
-                  {service.badge}
-                </span>
-                <h3 className="text-2xl font-bold tracking-tight text-[#1C1917] mb-4">
-                  {service.title}
-                </h3>
+                  {/* Icon */}
+                  <div
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center mb-7 transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundColor: service.accentSoft }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: service.accent }} />
+                  </div>
 
-                {/* Description */}
-                <p className="text-base text-[#78716C] leading-relaxed mb-6">
-                  {service.description}
-                </p>
+                  {/* Badge & Title */}
+                  <span className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: service.accent }}>
+                    {service.badge}
+                  </span>
+                  <h3 className="text-2xl font-extrabold tracking-tight text-[#0F172A] mb-4">
+                    {service.title}
+                  </h3>
 
-                {/* Purpose */}
-                <p className="text-sm font-semibold text-[#1C1917] bg-[#E7E5E4]/30 px-4 py-2.5 rounded-xl mb-8 leading-relaxed">
-                  {service.purpose}
-                </p>
+                  {/* Description */}
+                  <p className="text-base text-[#475569] leading-relaxed mb-6">
+                    {service.description}
+                  </p>
 
-                {/* Divider */}
-                <div className="h-px bg-[#E7E5E4] w-full mb-8" />
+                  {/* Purpose */}
+                  <p
+                    className="text-sm font-semibold text-[#0F172A] px-4 py-3 rounded-xl mb-7 leading-relaxed"
+                    style={{ backgroundColor: service.accentSoft }}
+                  >
+                    {service.purpose}
+                  </p>
 
-                {/* Features */}
-                <div className="space-y-3.5 mt-auto">
-                  {service.features.map((feat) => (
-                    <div key={feat} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#1C1917] mt-2 shrink-0" />
-                      <span className="text-sm text-[#78716C] font-medium leading-tight">
-                        {feat}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                  {/* Features */}
+                  <div className="space-y-3 mt-auto pt-6 border-t border-[#E2E8F0]">
+                    {service.features.map((feat) => (
+                      <div key={feat} className="flex items-start gap-3">
+                        <span
+                          className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                          style={{ backgroundColor: service.accentSoft }}
+                        >
+                          <Check className="w-3 h-3" style={{ color: service.accent }} />
+                        </span>
+                        <span className="text-sm text-[#475569] font-medium leading-snug">
+                          {feat}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </TiltCard>
               </motion.div>
             );
           })}

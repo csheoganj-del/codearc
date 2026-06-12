@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
+import { ArrowLeft, ArrowRight, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { Reveal, Magnetic } from './Motion';
 
 interface Project {
   id: string;
@@ -10,11 +11,8 @@ interface Project {
   url: string;
   creator: string;
   tags: string[];
-  themeColor: string; // Tailwind color or hex
   accentColor: string;
-  glowColor: string;
   features: string[];
-  mockupType: 'bar' | 'cafe';
   image: string;
 }
 
@@ -27,59 +25,64 @@ const projects: Project[] = [
     url: 'https://deora.vercel.app/',
     creator: 'pixncraftstudio',
     tags: ['Next.js', 'Real-time WebSockets', 'TailwindCSS', 'Framer Motion'],
-    themeColor: 'from-[#052e16] to-[#022c22]',
-    accentColor: '#10b981', // emerald-500
-    glowColor: 'rgba(16, 185, 129, 0.15)',
+    accentColor: '#10b981',
     features: [
       'Cinematic ambient particle effects',
       'Real-time automated order dispatch',
       'Optimized touch-friendly UI for servers',
-      'Responsive multi-device layout'
+      'Responsive multi-device layout',
     ],
-    mockupType: 'cafe',
-    image: '/assets/bloomcafe_preview.jpg'
+    image: '/assets/bloomcafe_preview.jpg',
   },
   {
     id: 'bros-bar',
     title: "Bro's Bar",
     subtitle: 'Premium Bar Operations Portal & System Access',
-    description: 'An elegant bar operations gateway designed for Bro\'s Bar. Features a custom dark-mode interface with glowing amber text animations, high-end hover effects, and secure staff access doors.',
+    description: "An elegant bar operations gateway designed for Bro's Bar. Features a custom dark-mode interface with glowing amber text animations, high-end hover effects, and secure staff access doors.",
     url: 'https://brosbar.vercel.app/',
     creator: 'pixncraftstudio',
     tags: ['React', 'CSS Fluidics', 'Interactive Gates', 'Responsive Design'],
-    themeColor: 'from-[#1c1917] to-[#0c0a09]',
-    accentColor: '#f59e0b', // amber-500
-    glowColor: 'rgba(245, 158, 11, 0.15)',
+    accentColor: '#f59e0b',
     features: [
       'Glowing amber liquid letter animations',
       'Fluid custom-designed UI buttons',
       'Secure, roles-based team sign-in',
-      'Ultra-clean dark layout aesthetics'
+      'Ultra-clean dark layout aesthetics',
     ],
-    mockupType: 'bar',
-    image: '/assets/brosbar_preview.jpg'
-  }
+    image: '/assets/brosbar_preview.jpg',
+  },
 ];
 
 export default function Showcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
 
+  // Subtle scroll parallax for the browser mockup
+  const stageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: stageRef,
+    offset: ['start end', 'end start'],
+  });
+  const mockupY = useSpring(useTransform(scrollYProgress, [0, 1], [36, -36]), {
+    stiffness: 60,
+    damping: 20,
+  });
+
   const slideVariants = {
     enter: (dir: number) => ({
       x: dir > 0 ? 100 : -100,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (dir: number) => ({
       zIndex: 0,
       x: dir < 0 ? 100 : -100,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   const handleNext = () => {
@@ -95,48 +98,52 @@ export default function Showcase() {
   const activeProject = projects[currentIndex];
 
   return (
-    <section id="work" className="py-20 md:py-32 bg-[#F5F5F4] relative overflow-hidden">
-      {/* Decorative Blur Spheres */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 rounded-full bg-stone-300/30 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 rounded-full bg-stone-400/20 blur-3xl pointer-events-none" />
+    <section id="work" className="py-20 md:py-28 bg-[#F8FAFC] relative overflow-hidden">
+      {/* Decorative gradient blobs */}
+      <div className="absolute top-1/4 left-[-5%] w-96 h-96 rounded-full bg-[#4F46E5]/8 blur-3xl pointer-events-none animate-drift-a" />
+      <div className="absolute bottom-1/4 right-[-5%] w-96 h-96 rounded-full bg-[#06B6D4]/8 blur-3xl pointer-events-none animate-drift-b" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-20">
-          <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#78716C] font-semibold block mb-3">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 md:mb-16">
+          <Reveal className="max-w-3xl">
+            <span className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#EEF2FF] text-[#4F46E5] text-xs uppercase tracking-widest font-bold mb-5">
               Live Showcase
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1C1917] leading-tight">
-              Real systems built for real results.
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#0F172A] leading-tight">
+              Real systems, <span className="font-accent text-gradient">real results.</span>
             </h2>
-            <p className="text-lg text-[#78716C] mt-4 leading-relaxed">
+            <p className="text-lg text-[#475569] mt-4 leading-relaxed">
               Explore some of our active systems built to automate and elevate local business operations.
             </p>
-          </div>
+          </Reveal>
 
           {/* Navigation Controls */}
           <div className="flex items-center gap-3 mt-8 md:mt-0">
-            <button
-              onClick={handlePrev}
-              className="p-4 rounded-2xl bg-white border border-[#E7E5E4] hover:bg-stone-50 active:scale-95 transition-all text-[#1C1917]"
-              aria-label="Previous project"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="p-4 rounded-2xl bg-white border border-[#E7E5E4] hover:bg-stone-50 active:scale-95 transition-all text-[#1C1917]"
-              aria-label="Next project"
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
+            <Magnetic strength={0.4}>
+              <button
+                onClick={handlePrev}
+                className="p-4 rounded-2xl bg-white border border-[#E2E8F0] hover:border-[#4F46E5]/40 hover:bg-[#EEF2FF]/50 active:scale-95 transition-all text-[#0F172A]"
+                aria-label="Previous project"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+            </Magnetic>
+            <Magnetic strength={0.4}>
+              <button
+                onClick={handleNext}
+                className="p-4 rounded-2xl bg-white border border-[#E2E8F0] hover:border-[#4F46E5]/40 hover:bg-[#EEF2FF]/50 active:scale-95 transition-all text-[#0F172A]"
+                aria-label="Next project"
+              >
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </Magnetic>
           </div>
         </div>
 
         {/* Dynamic Showcase Stage */}
-        <div className="relative min-h-[580px] lg:min-h-[520px]">
+        <div ref={stageRef} className="relative min-h-[580px] lg:min-h-[520px]">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={activeProject.id}
@@ -151,17 +158,17 @@ export default function Showcase() {
               {/* Info Column */}
               <div className="lg:col-span-5 flex flex-col justify-center">
                 {/* Project Title */}
-                <h3 className="text-3xl md:text-4xl font-extrabold text-[#1C1917] tracking-tight mb-2">
+                <h3 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-2">
                   {activeProject.title}
                 </h3>
-                
+
                 {/* Subtitle */}
-                <h4 className="text-md font-bold uppercase tracking-wider mb-6" style={{ color: activeProject.accentColor }}>
+                <h4 className="text-sm font-bold uppercase tracking-wider mb-6" style={{ color: activeProject.accentColor }}>
                   {activeProject.subtitle}
                 </h4>
 
                 {/* Description */}
-                <p className="text-base text-[#78716C] leading-relaxed mb-8">
+                <p className="text-base text-[#475569] leading-relaxed mb-8">
                   {activeProject.description}
                 </p>
 
@@ -170,7 +177,7 @@ export default function Showcase() {
                   {activeProject.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: activeProject.accentColor }} />
-                      <span className="text-sm font-medium text-[#44403C]">{feature}</span>
+                      <span className="text-sm font-medium text-[#334155]">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -180,7 +187,7 @@ export default function Showcase() {
                   {activeProject.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-lg bg-stone-200/50 text-[#57534E] text-xs font-semibold"
+                      className="px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] text-[#475569] text-xs font-semibold"
                     >
                       {tag}
                     </span>
@@ -189,54 +196,66 @@ export default function Showcase() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-4">
-                  <a
-                    href={activeProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#1C1917] text-white font-bold text-sm hover:bg-stone-850 transition-colors shadow-sm active:scale-98"
-                  >
-                    Open Live Portal
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                  <Magnetic>
+                    <a
+                      href={activeProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white font-bold text-sm hover:shadow-[0_12px_32px_-10px_rgba(79,70,229,0.55)] transition-all active:scale-[0.98]"
+                    >
+                      Open Live Portal
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </Magnetic>
                 </div>
               </div>
 
               {/* Visual Interactive Mockup Column */}
-              <div className="lg:col-span-7 relative">
+              <motion.div style={{ y: mockupY }} className="lg:col-span-7 relative">
                 {/* Ambient glow backing */}
                 <div
-                  className="absolute -inset-4 rounded-[40px] opacity-30 blur-2xl transition-all duration-700 pointer-events-none"
+                  className="absolute -inset-4 rounded-[40px] opacity-25 blur-2xl transition-all duration-700 pointer-events-none"
                   style={{ backgroundColor: activeProject.accentColor }}
                 />
 
                 {/* Browser Mockup Container */}
-                <div className="relative rounded-[28px] border border-[#E7E5E4] bg-white shadow-2xl overflow-hidden aspect-[16/10] flex flex-col">
+                <div className="relative rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl overflow-hidden aspect-[16/10] flex flex-col">
                   {/* Browser Header Bar */}
-                  <div className="h-10 bg-stone-100 border-b border-[#E7E5E4] px-5 flex items-center shrink-0">
+                  <div className="h-10 bg-[#F8FAFC] border-b border-[#E2E8F0] px-5 flex items-center gap-4 shrink-0">
                     <div className="flex items-center gap-1.5">
                       <div className="w-3 h-3 rounded-full bg-red-400/80" />
                       <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
                       <div className="w-3 h-3 rounded-full bg-green-400/80" />
                     </div>
-                  </div>
-
-                  {/* Browser Content Area */}
-                  <div className="flex-1 relative overflow-hidden bg-stone-950 select-none">
-                    <img 
-                      src={activeProject.image} 
-                      alt={`${activeProject.title} Preview`}
-                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
-                    />
-                    
-                    {/* Interactive Frame Overlay Hover effect */}
-                    <div className="absolute inset-0 bg-stone-950/0 hover:bg-stone-950/20 transition-colors flex items-center justify-center group/screen cursor-pointer">
-                      <span className="opacity-0 group-hover/screen:opacity-100 transition-opacity bg-[#1C1917]/90 text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-xl border border-stone-850">
-                        Visit Site <ExternalLink className="w-3.5 h-3.5" />
+                    <div className="flex-1 max-w-xs h-5 rounded-md bg-white border border-[#E2E8F0] px-2.5 flex items-center">
+                      <span className="text-[10px] text-[#94A3B8] font-medium truncate">
+                        {activeProject.url.replace('https://', '')}
                       </span>
                     </div>
                   </div>
+
+                  {/* Browser Content Area */}
+                  <a
+                    href={activeProject.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 relative overflow-hidden bg-slate-950 select-none block"
+                  >
+                    <img
+                      src={activeProject.image}
+                      alt={`${activeProject.title} Preview`}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
+                    />
+
+                    {/* Interactive Frame Overlay Hover effect */}
+                    <div className="absolute inset-0 bg-slate-950/0 hover:bg-slate-950/20 transition-colors flex items-center justify-center group/screen cursor-pointer">
+                      <span className="opacity-0 group-hover/screen:opacity-100 transition-opacity bg-[#0F172A]/90 text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-xl">
+                        Visit Site <ExternalLink className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                  </a>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -251,7 +270,9 @@ export default function Showcase() {
                 setCurrentIndex(idx);
               }}
               className={`h-2.5 rounded-full transition-all duration-300 ${
-                idx === currentIndex ? 'w-10 bg-[#1C1917]' : 'w-2.5 bg-stone-300 hover:bg-stone-400'
+                idx === currentIndex
+                  ? 'w-10 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED]'
+                  : 'w-2.5 bg-slate-300 hover:bg-slate-400'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

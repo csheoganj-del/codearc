@@ -1,29 +1,44 @@
 @import "tailwindcss";
+/* CodeArc design system — light, airy, elegant */
 
 @theme {
   --font-sans: "Plus Jakarta Sans", "Inter", "system-ui", "sans-serif";
+  --font-serif: "Instrument Serif", "Georgia", "serif";
+  --font-mono: "JetBrains Mono", "monospace";
+
+  /* CodeArc Light & Vibrant palette */
+  --color-ink: #0F172A;
+  --color-body: #475569;
+  --color-muted: #64748B;
+  --color-line: #E2E8F0;
+  --color-surface: #F8FAFC;
+  --color-accent: #4F46E5;
+  --color-accent-deep: #4338CA;
+  --color-accent-soft: #EEF2FF;
+  --color-violet-pop: #7C3AED;
+  --color-cyan-pop: #06B6D4;
 }
 
 /* Custom Base Overrides */
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
-  background-color: #FAFAF9;
+  background-color: #FCFCFD;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: #FAFAF9;
-  color: #1C1917;
+  background-color: #FCFCFD;
+  color: #0F172A;
   font-family: var(--font-sans);
 }
 
 /* Selection Highlight */
 ::selection {
-  background-color: #E7E5E4; /* stone-200 */
-  color: #1C1917;
+  background-color: rgba(79, 70, 229, 0.12);
+  color: #4F46E5;
 }
 
 /* Minimalist Scrollbar */
@@ -35,9 +50,108 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E7E5E4;
+  background: #E2E8F0;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D6D3D1;
+  background: #CBD5E1;
+}
+
+/* ——— Reusable design utilities ——— */
+
+/* Gradient headline text */
+.text-gradient {
+  background: linear-gradient(120deg, #4F46E5 0%, #7C3AED 50%, #06B6D4 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Serif italic accent — the editorial flourish */
+.font-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Subtle blueprint grid backdrop */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Soft fade mask for the grid */
+.mask-fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+/* Edge fade for marquee */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+/* Card hover lift */
+.card-lift {
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 24px 48px -20px rgba(79, 70, 229, 0.18),
+    0 4px 12px -4px rgba(15, 23, 42, 0.06);
+  border-color: rgba(79, 70, 229, 0.35);
+}
+
+/* Endless marquee strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 36s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Slow ambient drift for gradient orbs */
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(3%, -4%) scale(1.06); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-4%, 3%) scale(0.95); }
+}
+.animate-drift-a { animation: drift-a 16s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 20s ease-in-out infinite; }
+
+/* Gentle float for hero ornaments */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+.animate-float-soft { animation: float-soft 7s ease-in-out infinite; }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-float-soft {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
