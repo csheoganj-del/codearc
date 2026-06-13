@@ -273,6 +273,7 @@ export default function Showcase() {
                     <img
                       src={activeProject.image}
                       alt={`${activeProject.title} Preview`}
+                      loading="lazy"
                       className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
                     />
 
