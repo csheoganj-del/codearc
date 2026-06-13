@@ -12,6 +12,16 @@ export default function Footer() {
     { name: 'Blog', href: '/blog' },
   ];
 
+  const services = [
+    { name: 'Website Design', href: '/website-design' },
+    { name: 'Web Development', href: '/web-development' },
+    { name: 'React Development', href: '/react-development' },
+    { name: 'Next.js Development', href: '/nextjs-development' },
+    { name: 'Ecommerce Development', href: '/ecommerce-development' },
+    { name: 'Landing Page Design', href: '/landing-page-design' },
+    { name: 'Website Redesign', href: '/website-redesign' },
+  ];
+
   return (
     <footer className="py-16 border-t border-[#E2E8F0] bg-white z-10 relative overflow-hidden">
       {/* Subtle top gradient line */}
@@ -21,14 +31,14 @@ export default function Footer() {
 
         {/* Brand Column */}
         <div className="text-center md:text-left space-y-4 max-w-sm">
-          <a href="/" className="flex items-center justify-center md:justify-start space-x-2.5 group select-none">
+          <Link href="/" className="flex items-center justify-center md:justify-start space-x-2.5 group select-none">
             <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <img src="/assets/codearc_logo.png" alt="CodeArc Logo" className="w-full h-full object-cover mix-blend-luminosity" />
             </div>
             <span className="text-xl font-extrabold tracking-tight text-[#0F172A]">
               Code<span className="text-[#4F46E5]">Arc</span>
             </span>
-          </a>
+          </Link>
           <p className="text-sm leading-relaxed text-[#64748B] font-medium">
             We build websites and mobile apps. Simply. We talk in everyday English and design software that anyone can use instantly.
           </p>
@@ -41,13 +51,31 @@ export default function Footer() {
           </h4>
           <div className="flex flex-col items-center md:items-start space-y-3">
             {links.map((lnk) => (
-              <a
+              <Link
                 key={lnk.name}
                 href={lnk.href}
                 className="text-sm font-semibold text-[#64748B] hover:text-[#4F46E5] transition-colors"
               >
                 {lnk.name}
-              </a>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Services Column */}
+        <div className="flex flex-col items-center md:items-start space-y-4">
+          <h4 className="text-xs font-extrabold tracking-widest uppercase text-[#0F172A]">
+            Our Services
+          </h4>
+          <div className="flex flex-col items-center md:items-start space-y-3">
+            {services.map((svc) => (
+              <Link
+                key={svc.name}
+                href={svc.href}
+                className="text-sm font-semibold text-[#64748B] hover:text-[#4F46E5] transition-colors"
+              >
+                {svc.name}
+              </Link>
             ))}
           </div>
         </div>

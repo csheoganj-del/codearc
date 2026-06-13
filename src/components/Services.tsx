@@ -128,9 +128,34 @@ export default function Services() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-base text-[#475569] leading-relaxed mb-6">
+                  <p className="text-base text-[#475569] leading-relaxed mb-5">
                     {service.description}
                   </p>
+
+                  {/* Sub-services links */}
+                  {service.title === 'Websites' && (
+                    <div className="flex flex-wrap gap-x-2 gap-y-1 mb-5 text-xs font-extrabold text-[#64748B]">
+                      <span>Includes:</span>
+                      <Link href="/website-design" className="text-[#4F46E5] hover:underline">Design</Link>
+                      <span className="text-[#94A3B8] font-normal">•</span>
+                      <Link href="/ecommerce-development" className="text-[#4F46E5] hover:underline">Ecommerce</Link>
+                      <span className="text-[#94A3B8] font-normal">•</span>
+                      <Link href="/landing-page-design" className="text-[#4F46E5] hover:underline">Landings</Link>
+                      <span className="text-[#94A3B8] font-normal">•</span>
+                      <Link href="/website-redesign" className="text-[#4F46E5] hover:underline">Redesigns</Link>
+                    </div>
+                  )}
+
+                  {service.title === 'Web Applications' && (
+                    <div className="flex flex-wrap gap-x-2 gap-y-1 mb-5 text-xs font-extrabold text-[#64748B]">
+                      <span>Includes:</span>
+                      <Link href="/web-development" className="text-[#7C3AED] hover:underline">Web Apps</Link>
+                      <span className="text-[#94A3B8] font-normal">•</span>
+                      <Link href="/react-development" className="text-[#7C3AED] hover:underline">React</Link>
+                      <span className="text-[#94A3B8] font-normal">•</span>
+                      <Link href="/nextjs-development" className="text-[#7C3AED] hover:underline">Next.js</Link>
+                    </div>
+                  )}
 
                   {/* Purpose */}
                   <p
