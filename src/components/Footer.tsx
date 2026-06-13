@@ -1,13 +1,15 @@
 import { Mail, MessageSquare, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const links = [
-    { name: 'What We Do', href: '#services' },
-    { name: 'Our Promise', href: '#why-us' },
-    { name: 'How It Works', href: '#process' },
-    { name: 'Our Work', href: '#work' },
+    { name: 'What We Do', href: '/#services' },
+    { name: 'Our Promise', href: '/#why-us' },
+    { name: 'How It Works', href: '/#process' },
+    { name: 'Our Work', href: '/#work' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   return (
@@ -19,7 +21,7 @@ export default function Footer() {
 
         {/* Brand Column */}
         <div className="text-center md:text-left space-y-4 max-w-sm">
-          <a href="#" className="flex items-center justify-center md:justify-start space-x-2.5 group select-none">
+          <a href="/" className="flex items-center justify-center md:justify-start space-x-2.5 group select-none">
             <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <img src="/assets/codearc_logo.png" alt="CodeArc Logo" className="w-full h-full object-cover mix-blend-luminosity" />
             </div>
@@ -97,8 +99,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16 pt-8 border-t border-[#E2E8F0] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-medium text-[#64748B]">
         <span>&copy; {currentYear} CodeArc. Built simply for growing businesses.</span>
         <div className="flex gap-6">
-          <a href="/privacy.html" className="hover:text-[#4F46E5] transition-colors">Privacy Policy</a>
-          <a href="/terms.html" className="hover:text-[#4F46E5] transition-colors">Terms of Service</a>
+          <Link href="/privacy" className="hover:text-[#4F46E5] transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-[#4F46E5] transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>

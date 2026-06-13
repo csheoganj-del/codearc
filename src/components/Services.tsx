@@ -1,7 +1,10 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Monitor, AppWindow, Smartphone, Check } from 'lucide-react';
 import { TiltCard, Reveal } from './Motion';
+import Link from 'next/link';
 
 interface ServiceItem {
   title: string;
@@ -115,7 +118,13 @@ export default function Services() {
                     {service.badge}
                   </span>
                   <h3 className="text-2xl font-extrabold tracking-tight text-[#0F172A] mb-4">
-                    {service.title}
+                    {service.title === 'Websites' ? (
+                      <Link href="/website-design" className="hover:text-[#4F46E5] hover:underline transition-colors">{service.title}</Link>
+                    ) : service.title === 'Web Applications' ? (
+                      <Link href="/web-development" className="hover:text-[#4F46E5] hover:underline transition-colors">{service.title}</Link>
+                    ) : (
+                      service.title
+                    )}
                   </h3>
 
                   {/* Description */}

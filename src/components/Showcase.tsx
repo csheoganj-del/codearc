@@ -1,7 +1,10 @@
+"use client";
+
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { Reveal, Magnetic } from './Motion';
+import Link from 'next/link';
 
 interface Project {
   id: string;
@@ -212,7 +215,7 @@ export default function Showcase() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   <Magnetic>
                     <a
                       href={activeProject.url}
@@ -223,6 +226,15 @@ export default function Showcase() {
                       Open Live Portal
                       <ExternalLink className="w-4 h-4" />
                     </a>
+                  </Magnetic>
+
+                  <Magnetic>
+                    <Link
+                      href={`/case-studies/${activeProject.id}`}
+                      className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white border border-[#E2E8F0] text-[#0F172A] font-bold text-sm hover:border-[#4F46E5]/40 hover:bg-[#EEF2FF]/50 transition-colors active:scale-[0.98]"
+                    >
+                      Read Case Study
+                    </Link>
                   </Magnetic>
                 </div>
               </div>

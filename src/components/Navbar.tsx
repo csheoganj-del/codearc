@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
@@ -19,11 +21,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'What We Do', href: '#services' },
-    { name: 'Our Promise', href: '#why-us' },
-    { name: 'How It Works', href: '#process' },
-    { name: 'Our Work', href: '#work' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'What We Do', href: '/#services' },
+    { name: 'Our Promise', href: '/#why-us' },
+    { name: 'How It Works', href: '/#process' },
+    { name: 'Our Work', href: '/#work' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -48,7 +51,7 @@ export default function Navbar() {
             }`}
           >
             {/* Logo Brand Mark */}
-            <a href="#" className="flex items-center space-x-2.5 group select-none">
+            <a href="/" className="flex items-center space-x-2.5 group select-none">
               <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-[0_4px_14px_-4px_rgba(79,70,229,0.5)]">
                 <img src="/assets/codearc_logo.png" alt="CodeArc Logo" className="w-full h-full object-cover mix-blend-luminosity" />
               </div>

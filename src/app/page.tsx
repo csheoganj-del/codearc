@@ -1,16 +1,18 @@
+'use client';
+
 import { useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowDown, MessageSquare, Sparkles } from 'lucide-react';
 
 // Components
-import Navbar from './components/Navbar';
-import Services from './components/Services';
-import PromiseSection from './components/Promise';
-import Process from './components/Process';
-import Showcase from './components/Showcase';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
-import { Magnetic } from './components/Motion';
+import Navbar from '../components/Navbar';
+import Services from '../components/Services';
+import PromiseSection from '../components/Promise';
+import Process from '../components/Process';
+import Showcase from '../components/Showcase';
+import ContactForm from '../components/ContactForm';
+import Footer from '../components/Footer';
+import { Magnetic } from '../components/Motion';
 
 const marqueeItems = [
   'Websites',
@@ -23,7 +25,7 @@ const marqueeItems = [
   'Business Tools',
 ];
 
-export default function App() {
+export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
 
   // Cursor-follow parallax for the hero orbs (springy, very gentle)
