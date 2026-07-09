@@ -87,7 +87,7 @@ export const caseStudiesData: CaseStudy[] = [
       'Inventory tracking with low-stock alerts',
       'Customer loyalty program & WhatsApp receipts',
     ],
-    image: '/assets/restrosuite_preview.jpg',
+    image: '/assets/restrosuite_preview_real.jpg',
     challenge: 'Local food outlets and chains struggle with expensive, over-engineered POS software. They needed a lightweight system that runs offline, manages kitchen orders, and sends paperless receipts.',
     research: 'We audited 15 restaurant owners, finding that paper thermal rolls cost over ₹3,000 monthly per station, and system crashes during internet outages caused massive billing backlogs.',
     designProcess: 'We built a compact, dual-column billing interface. We structured a high-speed search index so cashiers can search and add menu items in under 3 keystrokes.',

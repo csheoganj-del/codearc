@@ -69,7 +69,7 @@ const projects: Project[] = [
       'Inventory tracking with low-stock alerts',
       'Customer loyalty program & WhatsApp receipts',
     ],
-    image: '/assets/restrosuite_preview.jpg',
+    image: '/assets/restrosuite_preview_real.jpg',
   },
 ];
 
