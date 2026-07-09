@@ -13,14 +13,21 @@ export default function ContactForm() {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  const buildMessageText = () =>
+    `Hi CodeArc! I'm ${name}.\n\n${message}\n\nYou can also reach me at: ${email}`;
+
+  const mailtoHref = () =>
+    `mailto:hello@codearc.dev?subject=${encodeURIComponent(`Project inquiry from ${name || 'website visitor'}`)}&body=${encodeURIComponent(buildMessageText())}`;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !message.trim()) return;
 
-    // Send the message straight to our WhatsApp — no backend required.
-    const text = encodeURIComponent(
-      `Hi CodeArc! I'm ${name}.\n\n${message}\n\nYou can also reach me at: ${email}`
-    );
+    // Hand off to WhatsApp — this only reaches us once the visitor presses
+    // Send inside WhatsApp itself, so we don't claim delivery before that
+    // happens. An email fallback is offered right below in case WhatsApp
+    // doesn't open (blocked popup, no WhatsApp account, etc).
+    const text = encodeURIComponent(buildMessageText());
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer');
 
     setSubmitted(true);
@@ -29,7 +36,7 @@ export default function ContactForm() {
       setEmail('');
       setMessage('');
       setSubmitted(false);
-    }, 8000);
+    }, 10000);
   };
 
   const inputClasses =
@@ -71,10 +78,18 @@ export default function ContactForm() {
                 <Check className="w-8 h-8" />
               </div>
               <div className="space-y-3 max-w-lg">
-                <h3 className="text-2xl font-extrabold text-[#0F172A]">Almost there, {name}!</h3>
+                <h3 className="text-2xl font-extrabold text-[#0F172A]">One more step, {name}!</h3>
                 <p className="text-base text-[#475569] leading-relaxed">
-                  We've opened WhatsApp with your message ready to go — just press
-                  send. We'll get back to you shortly.
+                  We've opened WhatsApp with your message ready to go — press
+                  <span className="font-semibold text-[#0F172A]"> Send</span> there
+                  to actually reach us. We'll reply shortly after.
+                </p>
+                <p className="text-sm text-[#475569] leading-relaxed">
+                  Didn't get a WhatsApp window, or would rather use email?{' '}
+                  <a href={mailtoHref()} className="text-[#4F46E5] font-semibold hover:underline">
+                    Send us the same message by email
+                  </a>{' '}
+                  instead.
                 </p>
                 <p className="text-sm text-[#4F46E5] font-semibold pt-4">
                   No technical jargon. Just plain English.

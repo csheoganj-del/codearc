@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Terms of Service | CodeArc',
+  title: 'Terms of Service',
   description: 'The terms for using the CodeArc website — written simply.',
   alternates: {
     canonical: 'https://codearc.co.in/terms',
@@ -33,14 +33,14 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">Using this website</h2>
             <p className="text-base">
-              You\'re welcome to browse this site, read about our work, and contact us. Please don\'t misuse the site — for example, by attempting to disrupt it or copying it to pass off as your own.
+              You're welcome to browse this site, read about our work, and contact us. Please don't misuse the site — for example, by attempting to disrupt it or copying it to pass off as your own.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">Our content</h2>
             <p className="text-base">
-              The text, design, and branding on this site belong to CodeArc. The client projects shown in our showcase belong to those clients and appear with their permission. Don\'t reuse either without asking us first.
+              The text, design, and branding on this site belong to CodeArc. The client and partner projects shown in our showcase belong to those clients/partners and appear with their permission. Don't reuse either without asking us first.
             </p>
           </section>
 
@@ -54,14 +54,14 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">No guarantees about the site</h2>
             <p className="text-base">
-              We keep this site accurate and online to the best of our ability, but it\'s provided "as is" — we can\'t promise it will always be available or error-free, and we\'re not liable for losses arising from your use of the site itself.
+              We keep this site accurate and online to the best of our ability, but it's provided "as is" — we can't promise it will always be available or error-free, and we're not liable for losses arising from your use of the site itself.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">Links to other sites</h2>
             <p className="text-base">
-              Our showcase links to live client systems and other external sites. Those sites have their own rules and policies, which we don\'t control.
+              Our showcase links to live client systems and other external sites. Those sites have their own rules and policies, which we don't control.
             </p>
           </section>
 

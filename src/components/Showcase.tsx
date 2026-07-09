@@ -183,9 +183,16 @@ export default function Showcase() {
                 </h3>
 
                 {/* Subtitle */}
-                <h4 className="text-sm font-bold uppercase tracking-wider mb-6" style={{ color: activeProject.accentColor }}>
+                <h4 className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: activeProject.accentColor }}>
                   {activeProject.subtitle}
                 </h4>
+
+                {/* Attribution */}
+                <p className="text-xs font-semibold text-[#94A3B8] mb-6">
+                  {activeProject.creator === 'codearc'
+                    ? 'Built in-house by CodeArc'
+                    : `Built in partnership with ${activeProject.creator}`}
+                </p>
 
                 {/* Description */}
                 <p className="text-base text-[#475569] leading-relaxed mb-8">

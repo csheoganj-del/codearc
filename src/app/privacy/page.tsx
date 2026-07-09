@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Privacy Policy | CodeArc',
+  title: 'Privacy Policy',
   description: 'How CodeArc handles your information — explained in plain English.',
   alternates: {
     canonical: 'https://codearc.co.in/privacy',
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
         </p>
 
         <div className="bg-[#EEF2FF] border border-[#C7D2FE] rounded-2xl p-6 text-sm font-semibold text-[#0F172A] mb-8">
-          The short version: we only ever see information you choose to send us, we never sell it, and we don\'t track you around the internet.
+          The short version: we only ever see information you choose to send us, we never sell it, and we don't track you around the internet.
         </div>
 
         <div className="space-y-8 text-[#475569]">
@@ -37,28 +37,28 @@ export default function PrivacyPage() {
               <a href="mailto:hello@codearc.dev" className="text-[#4F46E5] font-semibold hover:underline">
                 hello@codearc.dev
               </a>
-              ). We receive only what you write: typically your name, email address, and a description of your project. We do not collect anything you haven\'t deliberately typed and sent.
+              ). We receive only what you write: typically your name, email address, and a description of your project. We do not collect anything you haven't deliberately typed and sent.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">What we don\'t collect</h2>
+            <h2 className="text-xl font-extrabold text-[#0F172A]">What we don't collect</h2>
             <p className="text-base">
-              This website does not use advertising trackers, does not sell or share visitor data with third parties for marketing, and does not require an account or login. We don\'t ask for payment details on this site.
+              This website does not use advertising trackers, does not sell or share visitor data with third parties for marketing, and does not require an account or login. We don't ask for payment details on this site.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">How we use your information</h2>
             <p className="text-base">
-              We use your contact details for one purpose: replying to you and discussing your project. If we work together, we\'ll keep your correspondence so we can support you over time.
+              We use your contact details for one purpose: replying to you and discussing your project. If we work together, we'll keep your correspondence so we can support you over time.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">Hosting</h2>
             <p className="text-base">
-              This site is hosted on Vercel, which may log basic technical data (such as IP addresses) to serve pages and keep things secure, as is standard for any web host. You can read Vercel\'s own privacy policy at{' '}
+              This site is hosted on Vercel, which may log basic technical data (such as IP addresses) to serve pages and keep things secure, as is standard for any web host. You can read Vercel's own privacy policy at{' '}
               <a
                 href="https://vercel.com/legal/privacy-policy"
                 rel="noopener noreferrer"
@@ -78,14 +78,14 @@ export default function PrivacyPage() {
               <a href="mailto:hello@codearc.dev" className="text-[#4F46E5] font-semibold hover:underline">
                 hello@codearc.dev
               </a>{' '}
-              and we\'ll take care of it promptly.
+              and we'll take care of it promptly.
             </p>
           </section>
 
           <section className="space-y-3">
             <h2 className="text-xl font-extrabold text-[#0F172A]">Changes</h2>
             <p className="text-base">
-              If this policy changes, we\'ll update this page and the date at the top. No legal tricks, no fine print.
+              If this policy changes, we'll update this page and the date at the top. No legal tricks, no fine print.
             </p>
           </section>
         </div>

@@ -15,6 +15,58 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'how-to-spot-a-template-agency-case-study',
+    title: 'How to Spot a Template Agency: A Case Study',
+    excerpt: 'Most business owners cannot tell a custom website from a template. Learn the 5 key tells to spot a template agency before signing.',
+    date: 'July 09, 2026',
+    author: 'CodeArc Team',
+    readTime: '5 min read',
+    category: 'Business & Design',
+    metaTitle: 'How to Spot a Template Agency: A Case Study | CodeArc',
+    metaDescription: 'Spot cookie-cutter template websites being sold as custom. Learn the 5 tells—from misaligned testimonials to stale copyright footers.',
+    keywords: ['Template Agency', 'Custom Web Design', 'Template Website Tells', 'Web Design Agency Audit'],
+    sections: [
+      {
+        title: 'Introduction',
+        content: "Most business owners can't tell a custom-built website from a templated one. The agency talks the same, the proposal looks the same, the demo call feels the same. But there are always tells — and once you know what to look for, you'll see them everywhere.\n\nHere's a real, publicly visible example of what to watch out for."
+      },
+      {
+        title: 'Tell #1: Testimonials that don\'t match their own headings',
+        content: "A section titled \"AMA Salon Business\" carries a quote signed by the owner of an Italian restaurant. Another headed \"Marcus's Restaurant Success\" is signed by the CEO of a tech company. A third, promising \"Best Website Design\" with an AR preview feature, is credited to a generic-sounding \"founder\" with no findable business behind the name.\n\nThis isn't a one-off typo. It's what happens when an agency builds a demo template full of placeholder testimonials, sells that template to dozens of clients, and never goes back to swap the placeholder content for anything real. If the names, the businesses, and the headings don't line up on their own homepage — the page meant to be their best foot forward — ask yourself what corners got cut on yours."
+      },
+      {
+        title: 'Tell #2: Stale badges and dead awards',
+        content: "Look for trust badges — TripAdvisor certificates, \"as seen in\" logos, review widgets — and check the year. A \"Certificate of Excellence 2015\" badge on a live 2026 site tells you the agency set it up once and never touched it again. If they're not maintaining their own trust signals, they're almost certainly not maintaining yours either."
+      },
+      {
+        title: 'Tell #3: Mixed content and broken asset paths',
+        content: "Open the page source. Images and tracking pixels loading over plain http:// on an https:// site will trigger browser security warnings. Malformed asset paths — an image URL that has another domain's path awkwardly nested inside it — are signs of copy-paste template work that was never properly reconfigured for the client."
+      },
+      {
+        title: 'Tell #4: Copyright dates frozen in time',
+        content: "A footer that still reads \"2013–2014\" on a site being actively marketed today is one of the simplest, most visible signs of neglect. It costs nothing to fix and agencies still don't."
+      },
+      {
+        title: 'Tell #5: Selling reviews while displaying reviews',
+        content: "If an agency's own site links out to a sister service selling app or Google reviews, while simultaneously showcasing its own \"4.8 stars, 672 reviews\" badge — that's worth sitting with for a second. It doesn't prove their reviews are fake. But it does mean they're comfortable being in the business of manufacturing social proof, which should raise your bar for verifying anything they show you."
+      },
+      {
+        title: 'The Takeaway',
+        content: "None of these individually is fatal. Every agency has an off day, a missed update, a stale asset. But when you find four or five of these stacked on one homepage — especially the agency's own homepage — you're not looking at bad luck. You're looking at a template shop that optimizes for closing deals, not for maintaining what they sell.\n\nBefore you sign with any web agency, spend ten minutes doing exactly what we did here: read their testimonials for internal consistency, check their badges' dates, view their page source, and check their footer. If their own site can't pass that test, ask yourself why yours would."
+      }
+    ],
+    faqs: [
+      {
+        question: 'How can I tell if a website is a template or custom-built?',
+        answer: 'You can check for mismatched testimonials, outdated copyright footers, expired badges, and mixed HTTP/HTTPS assets in the source code.'
+      },
+      {
+        question: 'Is it bad if a web design agency uses templates?',
+        answer: 'It is only bad if they sell them as premium, custom-built sites and charge custom prices while neglecting basic quality control.'
+      }
+    ]
+  },
+  {
     slug: 'cost-of-website-development-in-india-2026',
     title: 'Cost of Website Development in India 2026: The Complete Guide',
     excerpt: 'How much does it cost to build a website in India in 2026? We break down prices for single-pages, custom business systems, ecommerce stores, and ongoing maintenance.',

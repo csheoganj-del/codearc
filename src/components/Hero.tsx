@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowDown, MessageSquare, Sparkles } from 'lucide-react';
 import { Magnetic } from './Motion';
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Cursor-follow parallax for the hero orbs (springy, very gentle)
   const mx = useSpring(0, { stiffness: 40, damping: 20 });
@@ -60,9 +61,9 @@ export default function Hero() {
       >
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E2E8F0] text-[#4F46E5] text-xs font-bold uppercase tracking-wider mb-10 shadow-[0_4px_16px_-6px_rgba(79,70,229,0.25)]"
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -74,9 +75,9 @@ export default function Hero() {
           <span className="block overflow-hidden pb-1">
             <motion.span
               className="block"
-              initial={{ y: '110%' }}
+              initial={shouldReduceMotion ? false : { y: '110%' }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
             >
               Software that feels
             </motion.span>
@@ -84,9 +85,9 @@ export default function Hero() {
           <span className="block overflow-hidden pb-3">
             <motion.span
               className="block font-accent text-gradient"
-              initial={{ y: '110%' }}
+              initial={shouldReduceMotion ? false : { y: '110%' }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               effortless.
             </motion.span>
@@ -95,9 +96,9 @@ export default function Hero() {
 
         {/* Subtext */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-xl text-[#475569] max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
         >
           We are CodeArc. We craft clean websites, custom web systems, and Android
@@ -107,9 +108,9 @@ export default function Hero() {
 
         {/* CTAs — magnetic */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Magnetic className="w-full sm:w-auto">
@@ -138,9 +139,9 @@ export default function Hero() {
       <motion.a
         href="#services"
         aria-label="Scroll to services"
-        initial={{ opacity: 0 }}
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-float-soft text-[#94A3B8] hover:text-[#4F46E5] transition-colors"
       >
         <ArrowDown className="w-5 h-5" />

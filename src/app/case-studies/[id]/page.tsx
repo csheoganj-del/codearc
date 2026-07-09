@@ -82,9 +82,18 @@ export default async function CaseStudyPage(props: { params: Promise<{ id: strin
                 <Icons.ExternalLink className="w-4 h-4" />
               </a>
               <span className="text-sm text-[#64748B] font-medium">
-                Created by: <span className="font-bold text-[#334155]">{study.creator}</span>
+                {study.creator === 'codearc' ? (
+                  <>Built in-house by <span className="font-bold text-[#334155]">CodeArc</span></>
+                ) : (
+                  <>Built in partnership with <span className="font-bold text-[#334155]">{study.creator}</span></>
+                )}
               </span>
             </div>
+            {study.creator !== 'codearc' && (
+              <p className="text-sm text-[#64748B] mb-8 max-w-2xl">
+                This project was delivered in collaboration with our partner studio, {study.creator}. We're showing it here because we worked on it together — not as solely CodeArc's own build.
+              </p>
+            )}
 
             <div className="flex flex-wrap gap-2">
               {study.tags.map((tag) => (

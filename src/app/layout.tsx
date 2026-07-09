@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
+import ScrollToTop from '../components/ScrollToTop';
 import './globals.css';
 
 const sans = Plus_Jakarta_Sans({
@@ -137,6 +138,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[#FCFCFD] text-[#0F172A] font-sans antialiased overflow-x-hidden selection:bg-[#4F46E5]/10 selection:text-[#4F46E5] transition-colors duration-300">
+        <ScrollToTop />
         {children}
       </body>
     </html>

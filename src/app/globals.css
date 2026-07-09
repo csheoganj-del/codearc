@@ -22,6 +22,7 @@
 /* Custom Base Overrides */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* keeps anchor targets clear of the fixed navbar */
   -webkit-tap-highlight-color: transparent;
   background-color: #FCFCFD;
 }

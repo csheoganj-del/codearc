@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 
 /* ————————————————————————————————————————————————
    Shared motion primitives — the "physics" layer.
@@ -101,6 +101,14 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    // Skip straight to the settled state — no opacity/blur/slide animation
+    // for visitors who've asked the OS to reduce motion.
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}

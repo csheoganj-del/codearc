@@ -42,10 +42,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Blog article routes
+  // Blog article routes — use each post's real publish date, not "now",
+  // so the sitemap's freshness signal to search engines is meaningful.
   const blogRoutes = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(),
+    lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));

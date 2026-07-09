@@ -118,8 +118,8 @@ export default async function ServicePage(props: { params: Promise<{ slug: strin
                     <Icons.Check className="w-4 h-4" style={{ color: service.accentColor }} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#0F172A] mb-1">{feature}</h3>
-                    <p className="text-sm text-[#64748B]">Professional grade, built with care to ensure high performance and seamless client flows.</p>
+                    <h3 className="font-bold text-[#0F172A] mb-1">{feature.title}</h3>
+                    <p className="text-sm text-[#64748B]">{feature.detail}</p>
                   </div>
                 </div>
               ))}
