@@ -1,0 +1,231 @@
+.screen {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #f3f0e8;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(61, 155, 106, 0.08), transparent 28%),
+    radial-gradient(circle at 62% 38%, rgba(200, 58, 33, 0.07), transparent 24%),
+    #0b0c0b;
+}
+
+.loader {
+  width: 260px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-2vh);
+  animation: loaderIn 420ms ease-out both;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.markWrap {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.34));
+}
+
+.markWrap::before {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  z-index: -1;
+  border: 1px solid rgba(243, 240, 232, 0.055);
+  border-radius: 50%;
+  animation: haloIn 800ms 220ms ease-out both;
+}
+
+.mark {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.base {
+  fill: #f7f2ea;
+  transform-origin: center;
+  animation: baseIn 520ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.outerArch {
+  fill: none;
+  stroke: #171917;
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-dasharray: 230;
+  stroke-dashoffset: 230;
+  animation: drawArch 720ms 180ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+.innerArch {
+  fill: #171917;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: innerRise 520ms 430ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.keystone {
+  fill: #e85a2f;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    keystoneIn 420ms 760ms cubic-bezier(0.2, 0.9, 0.25, 1.25) both,
+    keystonePulse 1.8s 1.3s ease-in-out infinite;
+}
+
+.wordmark {
+  display: flex;
+  color: #f3f0e8;
+  font-size: 25px;
+  font-weight: 780;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px) scale(0.88);
+  animation: letterBounce 620ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+}
+
+.letter:nth-child(1) {
+  animation-delay: 700ms;
+}
+
+.letter:nth-child(2) {
+  animation-delay: 765ms;
+}
+
+.letter:nth-child(3) {
+  animation-delay: 830ms;
+}
+
+.letter:nth-child(4) {
+  animation-delay: 895ms;
+}
+
+.letter:nth-child(5) {
+  animation-delay: 1010ms;
+}
+
+.letter:nth-child(6) {
+  animation-delay: 1080ms;
+}
+
+.letter:nth-child(7) {
+  animation-delay: 1150ms;
+}
+
+.accentLetter {
+  color: #e85a2f;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes loaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-2vh + 8px));
+  }
+}
+
+@keyframes baseIn {
+  from {
+    opacity: 0;
+    transform: scale(0.82) rotate(-3deg);
+  }
+}
+
+@keyframes drawArch {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes innerRise {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+
+@keyframes keystoneIn {
+  from {
+    opacity: 0;
+    transform: translateY(-11px) scale(0.72);
+  }
+}
+
+@keyframes keystonePulse {
+  50% {
+    filter: drop-shadow(0 0 7px rgba(232, 90, 47, 0.6));
+    transform: scale(1.06);
+  }
+}
+
+@keyframes haloIn {
+  from {
+    opacity: 0;
+    transform: scale(0.78);
+  }
+}
+
+@keyframes letterBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.88);
+  }
+
+  58% {
+    opacity: 1;
+    transform: translateY(-7px) scale(1.06);
+  }
+
+  78% {
+    opacity: 1;
+    transform: translateY(3px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader,
+  .markWrap::before,
+  .base,
+  .outerArch,
+  .innerArch,
+  .keystone,
+  .letter {
+    animation: none;
+  }
+
+  .outerArch {
+    stroke-dashoffset: 0;
+  }
+
+  .letter {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,109 @@
+.preview {
+  --identity-accent: #ec5a34;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    #0e110f;
+  background-size: 28px 28px;
+}
+
+.stay {
+  --identity-accent: #d7b369;
+}
+
+.medi {
+  --identity-accent: #bd725c;
+}
+
+.glow {
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--identity-accent) 14%, transparent);
+  filter: blur(58px);
+  opacity: 0.75;
+}
+
+.lockup {
+  display: grid;
+  place-items: center;
+  gap: 11px;
+  transform: translateY(-2px);
+}
+
+.emblem {
+  position: relative;
+  width: 116px;
+  height: 116px;
+  display: grid;
+  place-items: center;
+}
+
+.tile {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--identity-accent) 42%, rgba(243, 240, 232, 0.08));
+  border-radius: 28px;
+  color: #f5f2ea;
+  background: #171a18;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 34px rgba(0, 0, 0, 0.42);
+}
+
+.markImage {
+  object-fit: cover;
+}
+
+.wordmark {
+  display: grid;
+  place-items: center;
+  gap: 3px;
+}
+
+.wordmark strong {
+  color: #f3f0e8;
+  font-size: 17px;
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.wordmark span {
+  color: color-mix(in srgb, var(--identity-accent) 76%, #f3f0e8);
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.family {
+  position: absolute;
+  right: 13px;
+  bottom: 11px;
+  color: rgba(243, 240, 232, 0.32);
+  font-size: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 720px) {
+  .emblem {
+    width: 112px;
+    height: 112px;
+  }
+}

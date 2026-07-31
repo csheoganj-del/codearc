@@ -1,10 +1,13 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import * as Icons from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, Clock } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import ContactForm from '../../../components/ContactForm';
 import { blogPosts } from '../../../data/blog';
-import Link from 'next/link';
+import { formatBlogDate } from '../../../lib/dates';
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -15,25 +18,26 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   const post = blogPosts.find((p) => p.slug === params.slug);
-  if (!post) {
-    return {};
-  }
+  if (!post) return {};
+
+  const title = post.metaTitle.replace(/\s*\|\s*CodeArc\s*$/i, '');
+
   return {
-    title: post.metaTitle,
+    title,
     description: post.metaDescription,
     keywords: post.keywords,
     alternates: {
       canonical: `https://codearc.co.in/blog/${params.slug}`,
     },
     openGraph: {
-      title: post.metaTitle,
+      title: post.metaTitle.includes('CodeArc') ? post.metaTitle : `${post.title} | CodeArc`,
       description: post.metaDescription,
       type: 'article',
       publishedTime: post.date,
       url: `https://codearc.co.in/blog/${params.slug}`,
       images: [
         {
-          url: '/assets/codearc_og.png',
+          url: '/brand/codearc-og.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -47,85 +51,55 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
   const params = await props.params;
   const post = blogPosts.find((p) => p.slug === params.slug);
 
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
-  // Find other posts for internal linking recommendations
   const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#FCFCFD] text-[#0F172A] font-sans relative">
+    <div className="v2-page">
       <Navbar />
-
-      <main className="pt-32 pb-16">
-        {/* Article Header */}
-        <section className="py-12 border-b border-[#E2E8F0] bg-[#F8FAFC]">
-          <div className="max-w-4xl mx-auto px-6">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4F46E5] hover:text-[#7C3AED] mb-8 group"
-            >
-              <Icons.ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-              Back to Blog
+      <main id="main-content">
+        <section className="v2-inner-mid v2-inner-hero">
+          <p className="v2-crumb">
+            <Link href="/blog">
+              <ArrowLeft size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Blog
             </Link>
-
-            <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 rounded-md bg-[#EEF2FF] text-xs font-bold text-[#4F46E5] uppercase tracking-wider">
-                {post.category}
-              </span>
-              <span className="text-xs text-[#64748B] font-semibold flex items-center gap-1">
-                <Icons.Calendar className="w-3.5 h-3.5" />
-                {post.date}
-              </span>
-              <span className="text-xs text-[#64748B] font-semibold flex items-center gap-1">
-                <Icons.Clock className="w-3.5 h-3.5" />
-                {post.readTime}
-              </span>
-            </div>
-
-            <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#0F172A] leading-tight mb-6">
-              {post.title}
-            </h1>
-
-            <div className="flex items-center gap-3 pt-4 border-t border-[#E2E8F0]">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center text-white font-bold text-sm">
-                CA
-              </div>
-              <div>
-                <div className="text-sm font-bold text-[#334155]">{post.author}</div>
-                <div className="text-xs text-[#94A3B8]">Software and SEO Strategy</div>
-              </div>
-            </div>
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 16, alignItems: 'center' }}>
+            <span className="v2-badge">{post.category}</span>
+            <span style={{ fontSize: 12, color: 'rgba(243,240,232,0.5)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Calendar size={13} /> {formatBlogDate(post.date)}
+            </span>
+            <span style={{ fontSize: 12, color: 'rgba(243,240,232,0.5)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Clock size={13} /> {post.readTime}
+            </span>
           </div>
+          <h1 style={{ maxWidth: '22ch' }}>{post.title}</h1>
+          <p className="v2-inner-lede">{post.excerpt}</p>
+          <p style={{ marginTop: 18, fontSize: 13, color: 'rgba(243,240,232,0.5)' }}>
+            By <strong style={{ color: '#f3f0e8' }}>{post.author}</strong>
+          </p>
         </section>
 
-        {/* Article Content */}
-        <article className="py-16 max-w-3xl mx-auto px-6">
-          <div className="prose prose-slate max-w-none space-y-10">
-            {post.sections.map((section, idx) => (
-              <div key={idx} className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0F172A] tracking-tight border-b border-[#E2E8F0] pb-2">
-                  {section.title}
-                </h2>
-                <p className="text-base md:text-lg text-[#475569] leading-relaxed whitespace-pre-line">
-                  {section.content}
-                </p>
-              </div>
-            ))}
-          </div>
+        <article className="v2-inner-mid v2-prose" style={{ paddingBottom: 48 }}>
+          {post.sections.map((section) => (
+            <div key={section.title}>
+              <h2>{section.title}</h2>
+              <p style={{ whiteSpace: 'pre-line' }}>{section.content}</p>
+            </div>
+          ))}
         </article>
 
-        {/* FAQs Section */}
         {post.faqs.length > 0 && (
-          <section className="py-16 bg-[#F8FAFC] border-y border-[#E2E8F0]">
-            <div className="max-w-3xl mx-auto px-6">
-              <h2 className="text-2xl font-bold text-[#0F172A] tracking-tight mb-8">Article FAQs</h2>
-              <div className="space-y-6">
-                {post.faqs.map((faq, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-2xl border border-[#E2E8F0] space-y-2">
-                    <h3 className="font-bold text-[#0F172A] text-base">{faq.question}</h3>
-                    <p className="text-sm text-[#64748B] leading-relaxed border-l-2 border-[#E2E8F0] pl-4">{faq.answer}</p>
+          <section className="v2-section" style={{ paddingTop: 0 }}>
+            <div className="v2-inner-mid">
+              <p className="v2-kicker">FAQs</p>
+              <h2 style={{ marginBottom: 24, fontSize: 28, fontWeight: 750 }}>From this article</h2>
+              <div className="v2-faq">
+                {post.faqs.map((faq) => (
+                  <div key={faq.question} className="v2-faq-item">
+                    <h3>{faq.question}</h3>
+                    <p>{faq.answer}</p>
                   </div>
                 ))}
               </div>
@@ -133,40 +107,29 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
           </section>
         )}
 
-        {/* Read More Internal Links */}
-        <section className="py-16 max-w-4xl mx-auto px-6">
-          <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#94A3B8] mb-8">Recommended Reading</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {otherPosts.map((other) => (
-              <div
-                key={other.slug}
-                className="bg-white p-6 rounded-2xl border border-[#E2E8F0] hover:border-[#4F46E5] transition-colors flex flex-col justify-between"
-              >
-                <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#4F46E5] bg-[#EEF2FF] px-2 py-0.5 rounded">
+        <section className="v2-section">
+          <div className="v2-inner">
+            <p className="v2-kicker">Keep reading</p>
+            <h2 style={{ marginBottom: 24, fontSize: 28, fontWeight: 750 }}>Recommended</h2>
+            <div className="v2-grid-3">
+              {otherPosts.map((other) => (
+                <Link key={other.slug} href={`/blog/${other.slug}`} className="v2-card v2-card-body">
+                  <span className="v2-badge" style={{ marginBottom: 12 }}>
                     {other.category}
                   </span>
-                  <Link href={`/blog/${other.slug}`} className="block group">
-                    <h4 className="font-bold text-[#0F172A] group-hover:text-[#4F46E5] transition-colors line-clamp-2">
-                      {other.title}
-                    </h4>
-                  </Link>
-                </div>
-                <Link
-                  href={`/blog/${other.slug}`}
-                  className="text-xs font-bold text-[#4F46E5] mt-4 flex items-center gap-1 hover:underline"
-                >
-                  Read Post <Icons.ArrowRight className="w-3 h-3" />
+                  <h3>{other.title}</h3>
+                  <p style={{ marginTop: 8 }}>{other.excerpt}</p>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 14, fontSize: 13, fontWeight: 700, color: '#3d9b6a' }}>
+                    Read <ArrowRight size={14} />
+                  </span>
                 </Link>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Lead Capture Form */}
         <ContactForm />
       </main>
-
       <Footer />
     </div>
   );

@@ -1,6 +1,9 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'How CodeArc handles your information — explained in plain English.',
   alternates: {
@@ -10,93 +13,110 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[#FCFCFD] text-[#0F172A] font-sans antialiased leading-relaxed">
-      <div className="max-w-[760px] mx-auto px-6 py-16 md:py-24">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-[#4F46E5] hover:underline mb-12">
-          &larr; Back to CodeArc
-        </Link>
-        <div className="text-xl font-extrabold tracking-tight mb-2">
-          Code<span className="text-[#4F46E5]">Arc</span>
-        </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-none mb-3">
-          Privacy, <em className="font-accent text-gradient not-italic">in plain English.</em>
-        </h1>
-        <p className="text-xs text-[#64748B] font-bold uppercase tracking-wider mb-12">
-          Last updated: June 12, 2026
-        </p>
+    <div className="v2-page">
+      <Navbar />
+      <main id="main-content">
+        <section className="v2-inner-narrow v2-inner-hero">
+          <p className="v2-crumb">
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <span>Privacy</span>
+          </p>
+          <p className="v2-kicker">Legal</p>
+          <h1>
+            Privacy <em>(plain English)</em>
+          </h1>
+          <p className="v2-inner-lede" style={{ fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 700 }}>
+            Last updated: July 31, 2026
+          </p>
+        </section>
 
-        <div className="bg-[#EEF2FF] border border-[#C7D2FE] rounded-2xl p-6 text-sm font-semibold text-[#0F172A] mb-8">
-          The short version: we only ever see information you choose to send us, we never sell it, and we don't track you around the internet.
-        </div>
+        <section className="v2-inner-narrow" style={{ paddingBottom: 80 }}>
+          <div className="v2-callout" style={{ marginBottom: 28 }}>
+            The short version: we collect only what is needed to answer enquiries, process payments,
+            operate the site securely, and meet our legal obligations. We do not sell personal data
+            or use advertising trackers.
+          </div>
 
-        <div className="space-y-8 text-[#475569]">
-          <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">What we collect</h2>
-            <p className="text-base">
-              When you contact us through this website, your message is sent through your own WhatsApp or email app directly to us (WhatsApp +91 99837 21179 or{' '}
-              <a href="mailto:hello@codearc.dev" className="text-[#4F46E5] font-semibold hover:underline">
-                hello@codearc.dev
-              </a>
-              ). We receive only what you write: typically your name, email address, and a description of your project. We do not collect anything you haven't deliberately typed and sent.
+          <div className="v2-prose">
+            <h2>What we collect</h2>
+            <p>
+              When you contact us, your message is sent through your own email or WhatsApp app
+              directly to us (WhatsApp +91 99837 21179 or{' '}
+              <a href="mailto:hello@codearc.co.in">hello@codearc.co.in</a>
+              ). We receive what you choose to send, typically your name, email address, phone
+              number, and a description of your project.
             </p>
-          </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">What we don't collect</h2>
-            <p className="text-base">
-              This website does not use advertising trackers, does not sell or share visitor data with third parties for marketing, and does not require an account or login. We don't ask for payment details on this site.
+            <h2>Payments</h2>
+            <p>
+              Online checkout is provided by Razorpay. Payment-card, bank, or UPI credentials are
+              entered into Razorpay&apos;s checkout and are not stored by CodeArc. We receive and
+              retain transaction information such as the selected plan, amount, currency, order
+              identifier, payment identifier, payment status, and receipt details so we can verify
+              payment, provide the purchased service, prevent fraud, and handle support or refunds.
             </p>
-          </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">How we use your information</h2>
-            <p className="text-base">
-              We use your contact details for one purpose: replying to you and discussing your project. If we work together, we'll keep your correspondence so we can support you over time.
+            <h2>How we use your information</h2>
+            <p>
+              We use contact information to reply to you and deliver or support requested work. We
+              use transaction information to reconcile payments, activate services, issue invoices
+              or refunds, and meet accounting and tax requirements. We do not sell personal data or
+              share it for third-party advertising.
             </p>
-          </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">Hosting</h2>
-            <p className="text-base">
-              This site is hosted on Vercel, which may log basic technical data (such as IP addresses) to serve pages and keep things secure, as is standard for any web host. You can read Vercel's own privacy policy at{' '}
+            <h2>Security and technical data</h2>
+            <p>
+              Our hosting and payment endpoints process limited technical information, including IP
+              address and request metadata, for abuse prevention, rate limiting, reliability, and
+              security logging. We do not use this information to build advertising profiles.
+            </p>
+
+            <h2>Hosting</h2>
+            <p>
+              This site is hosted on Vercel, which may log basic technical data (such as IP
+              addresses) to serve pages and keep things secure, as is standard for any web host. You
+              can read Vercel&apos;s own privacy policy at{' '}
               <a
                 href="https://vercel.com/legal/privacy-policy"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="text-[#4F46E5] hover:underline"
               >
                 vercel.com/legal/privacy-policy
               </a>
               .
             </p>
-          </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">Your choices</h2>
-            <p className="text-base">
+            <h2>How long we keep information</h2>
+            <p>
+              Enquiries are kept only while they are useful for the conversation or an ongoing
+              client relationship. Payment, invoice, and transaction records are kept for the
+              period required by applicable accounting, tax, fraud-prevention, and legal
+              obligations. Security logs are retained for a limited operational period.
+            </p>
+
+            <h2>Your choices</h2>
+            <p>
               Want us to delete an email you sent us, or anything we hold about you? Just write to{' '}
-              <a href="mailto:hello@codearc.dev" className="text-[#4F46E5] font-semibold hover:underline">
-                hello@codearc.dev
-              </a>{' '}
-              and we'll take care of it promptly.
+              <a href="mailto:hello@codearc.co.in">hello@codearc.co.in</a> and we&apos;ll take care
+              of it promptly.
             </p>
-          </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#0F172A]">Changes</h2>
-            <p className="text-base">
-              If this policy changes, we'll update this page and the date at the top. No legal tricks, no fine print.
+            <h2>Changes</h2>
+            <p>
+              If this policy changes, we&apos;ll update this page and the date at the top. No legal
+              tricks, no fine print.
             </p>
-          </section>
-        </div>
+          </div>
 
-        <footer className="border-t border-[#E2E8F0] mt-16 pt-6 text-xs text-[#64748B] flex items-center justify-between">
-          <span>&copy; 2026 CodeArc</span>
-          <Link href="/terms" className="hover:text-[#4F46E5] font-semibold">
-            Terms of Service
-          </Link>
-        </footer>
-      </div>
+          <p style={{ marginTop: 40, fontSize: 13, color: 'rgba(243,240,232,0.45)' }}>
+            <Link href="/terms" style={{ color: '#3d9b6a' }}>
+              Terms of Service
+            </Link>
+          </p>
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 }

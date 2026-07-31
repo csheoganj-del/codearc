@@ -1,3 +1,5 @@
+export type CaseStudyKind = 'client' | 'product';
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -6,9 +8,11 @@ export interface CaseStudy {
   metaDescription: string;
   description: string;
   url: string;
+  isExternal: boolean;
   creator: string;
+  kind: CaseStudyKind;
+  statusLabel: string;
   tags: string[];
-  accentColor: string;
   features: string[];
   image: string;
   challenge: string;
@@ -21,78 +25,142 @@ export interface CaseStudy {
 
 export const caseStudiesData: CaseStudy[] = [
   {
-    id: 'bloom-cafe',
-    title: 'Bloom Café & Restaurant',
-    subtitle: 'Comprehensive Cafe & Restaurant Management System',
-    metaTitle: 'Bloom Cafe Case Study | Custom Restaurant Operations Suite',
-    metaDescription: 'Case study on how CodeArc partners built a high-performance, real-time dining operations portal for Bloom Cafe, increasing servers speed by 35%.',
-    description: 'A cinematic, high-performance digital operations suite built for Bloom Café. Streamlines real-time order tracking, guest management, and system operations with smooth, modern transitions and ambient aesthetics.',
-    url: 'https://deora.vercel.app/',
-    creator: 'pixncraftstudio',
-    tags: ['Next.js', 'Real-time WebSockets', 'TailwindCSS', 'Framer Motion'],
-    accentColor: '#10b981',
+    id: 'restrosuite',
+    title: 'RestroSuite',
+    subtitle: 'Offline-first restaurant POS by CodeArc',
+    metaTitle: 'RestroSuite — live restaurant POS',
+    metaDescription:
+      'RestroSuite: CodeArc’s restaurant POS with billing, kitchen display, WhatsApp receipts and multi-outlet support.',
+    description:
+      'Our own product for restaurants — counter billing that still works when the network drops, kitchen display, WhatsApp receipts and QR ordering.',
+    url: 'https://restrosuite.codearc.co.in',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'product',
+    statusLabel: 'Live product',
+    tags: ['POS', 'Restaurants', 'Offline-friendly', 'WhatsApp'],
     features: [
-      'Cinematic ambient particle effects',
-      'Real-time automated order dispatch',
-      'Optimized touch-friendly UI for servers',
-      'Responsive multi-device layout',
+      'POS billing',
+      'Kitchen display',
+      'WhatsApp receipts',
+      'QR table ordering',
+      'Windows and Android apps',
     ],
-    image: '/assets/bloomcafe_preview.jpg',
-    challenge: 'Bloom Cafe needed to replace slow, paper-based order ticketing that caused delay bottlenecks between servers, cashiers, and the kitchen, especially during peak weekend hours.',
-    research: 'Our partner studio, pixncraftstudio, shadowed servers during peak hours, mapping order entry flows, and discovered that a server spent 15% of their shift walking to input tickets on legacy terminals.',
-    designProcess: 'The pixncraftstudio design team built a responsive, touch-optimised interface using dynamic particle backgrounds for ambient branding, oversizing buttons and selectors to prevent input errors on small tablet screens.',
-    techStackDetails: 'Built using Next.js for server-rendered page shells, styled with Tailwind CSS, and powered by real-time WebSocket messaging to instantly dispatch tickets to kitchen monitors.',
-    performanceImprovements: 'Image compression, lazy loaded layout components, and custom cache rules reduced page loading times under 1.2 seconds, with zero layout shift (CLS).',
-    results: 'Order processing speeds increased by 35%, walk-around server fatigue dropped, and order inaccuracies were completely eliminated in the first month of deployment.',
+    image: '/assets/restrosuite_preview.png',
+    challenge:
+      'Food outlets were stuck between paper bills and cloud POS that fails when Wi-Fi dies mid-service.',
+    research:
+      'We watched real shifts: add items, fire kitchen, settle bill, fix a wrong order — all under time pressure.',
+    designProcess:
+      'Screens stay dense where counters need speed. Restaurant UI lives as its own product, not a one-off client theme.',
+    techStackDetails:
+      'Web app plus desktop and Android options, with WhatsApp receipts and multi-outlet accounts for growing restaurants.',
+    performanceImprovements:
+      'Billing still works when the connection drops — so rush hour does not stop at the counter.',
+    results:
+      'Live product. Open the app or product page. Outlet-specific numbers stay private unless the owner agrees to share.',
+  },
+  {
+    id: 'wild-jawai-safari',
+    title: 'Wild Jawai Safari',
+    subtitle: 'Leopard safari & Jawai tourism site',
+    metaTitle: 'Wild Jawai Safari — tourism website',
+    metaDescription:
+      'Wild Jawai Safari: website for leopard safaris, dam trips and stays in Jawai, Rajasthan — built by CodeArc.',
+    description:
+      'A premium tourism site for Jawai leopard safaris, dam experiences, Rabari culture and guest enquiries.',
+    url: 'https://wild-jawai-safari.vercel.app',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'client',
+    statusLabel: 'Live site',
+    tags: ['Tourism', 'Website', 'Enquiry', 'Rajasthan'],
+    features: [
+      'Safari and experience pages',
+      'Enquiry flow',
+      'Photo-led Jawai storytelling',
+      'Mobile-friendly layout',
+    ],
+    image: '/assets/wild_jawai_live.webp',
+    challenge:
+      'Guests needed a clear path from “I want to see leopards” to a real enquiry, without a cluttered brochure site.',
+    research:
+      'Tour questions are practical: when, what is included, how to reach, and who to call or WhatsApp.',
+    designProcess:
+      'Strong hero media, short sections, obvious contact — built for phones first.',
+    techStackDetails:
+      'Fast marketing website with enquiry form and structured tour pages.',
+    performanceImprovements:
+      'Images and pages tuned so the site loads cleanly on mobile networks.',
+    results: 'Live and open to guests for safari enquiries.',
   },
   {
     id: 'bros-bar',
     title: "Bro's Bar",
-    subtitle: 'Premium Bar Operations Portal & System Access',
-    metaTitle: "Bro's Bar Case Study | Custom Operations Portal",
-    metaDescription: "Case study of Bro's Bar portal. We designed a dark mode access gateway with glowing animations, securing access and enhancing team onboarding.",
-    description: "An elegant bar operations gateway designed for Bro's Bar. Features a custom dark-mode interface with glowing amber text animations, high-end hover effects, and secure staff access doors.",
-    url: 'https://brosbar.vercel.app/',
-    creator: 'pixncraftstudio',
-    tags: ['React', 'CSS Fluidics', 'Interactive Gates', 'Responsive Design'],
-    accentColor: '#f59e0b',
-    features: [
-      'Glowing amber liquid letter animations',
-      'Fluid custom-designed UI buttons',
-      'Secure, roles-based team sign-in',
-      'Ultra-clean dark layout aesthetics',
-    ],
-    image: '/assets/brosbar_preview.jpg',
-    challenge: "Bro's Bar required a secure, brand-aligned portal for team check-ins, inventory updates, and shift schedule lookups that matched their premium, late-night identity.",
-    research: 'Our partner studio, pixncraftstudio, analyzed staff onboarding feedback, revealing that traditional administrative tools felt dry, leading to low usage rates among bar staff.',
-    designProcess: 'pixncraftstudio crafted an editorial, premium dark UI, developed a custom amber liquid shader animation for the headings to reflect the bar theme, and integrated springy hover micro-animations.',
-    techStackDetails: 'Developed with React frontend assets, styled with fluid CSS fluidics, and protected by secure JWT authentication handlers.',
-    performanceImprovements: 'The team minimized render loops, split chunk dependencies, and achieved a 99 Lighthouse performance score on desktop.',
-    results: 'Employee dashboard portal engagement increased by 60%, shift swap requests are completed 4x faster, and onboarding friction was removed.',
+    subtitle: 'Bar POS & operations',
+    metaTitle: "Bro's Bar POS",
+    metaDescription: "Bro's Bar POS — billing and bar operations software by CodeArc.",
+    description:
+      'POS-focused build for a bar environment — fast billing and floor flow for service hours.',
+    url: 'https://brosbar.vercel.app',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'client',
+    statusLabel: 'Live site',
+    tags: ['Bar', 'POS', 'Operations'],
+    features: ['Counter billing', 'Bar operations screens', 'Service-hour speed'],
+    image: '/assets/brosbar_live.webp',
+    challenge: 'Bars need faster item entry and settlement than a full restaurant stack.',
+    research: 'Watched peak-hour order and settle patterns on a bar counter.',
+    designProcess: 'Lean POS UI, fewer steps, readable under low light.',
+    techStackDetails: 'Bar billing interface built for speed at the counter.',
+    performanceImprovements: 'Short paths from item to bill.',
+    results: 'Live bar POS in use.',
   },
   {
-    id: 'restrosuite',
-    title: 'CodeArc RestroSuite',
-    subtitle: 'All-in-One Restaurant POS & Operations Platform',
-    metaTitle: 'RestroSuite Case Study | Restaurant Billing & Inventory POS',
-    metaDescription: 'Discover how CodeArc designed and launched RestroSuite, an all-in-one POS and inventory system featuring WhatsApp automated receipts.',
-    description: 'A unified restaurant management suite built for cafes, dhabas, and food chains. Combines billing, kitchen order display, inventory tracking, customer loyalty, and WhatsApp receipts into one seamless, reliable platform.',
-    url: 'https://restrosuite.codearc.co.in/',
+    id: 'theo-media',
+    title: 'Theo Media',
+    subtitle: 'Agency marketing site',
+    metaTitle: 'Theo Media',
+    metaDescription: 'Theo Media site built with CodeArc.',
+    description:
+      'Marketing site for Theo Media — design and engineering studio positioning, shipped live.',
+    url: 'https://theo-media-house.vercel.app',
+    isExternal: true,
     creator: 'codearc',
-    tags: ['Vanilla JS', 'Restaurant POS', 'Real-time KDS', 'WhatsApp Integration'],
-    accentColor: '#e8a23d',
-    features: [
-      'Unified POS billing with instant receipt generation',
-      'Live kitchen order display & ticket management',
-      'Inventory tracking with low-stock alerts',
-      'Customer loyalty program & WhatsApp receipts',
-    ],
-    image: '/assets/restrosuite_preview_real.jpg',
-    challenge: 'Local food outlets and chains struggle with expensive, over-engineered POS software. They needed a lightweight system that runs offline, manages kitchen orders, and sends paperless receipts.',
-    research: 'We audited 15 restaurant owners, finding that paper thermal rolls cost over ₹3,000 monthly per station, and system crashes during internet outages caused massive billing backlogs.',
-    designProcess: 'We built a compact, dual-column billing interface. We structured a high-speed search index so cashiers can search and add menu items in under 3 keystrokes.',
-    techStackDetails: 'Powered by highly optimized Vanilla JavaScript and IndexedDB for local-first offline resilience, styled with clean Tailwind layouts, and integrated with official WhatsApp Business APIs.',
-    performanceImprovements: 'By avoiding heavy frameworks, the entire POS application bundle is under 120KB, launching instantly even on older dual-core terminal computers.',
-    results: 'Thermal paper print costs were cut by 90% via WhatsApp digital billing, order entry speeds increased by 40%, and restaurants continue billing transactions offline during outages.',
+    kind: 'client',
+    statusLabel: 'Live site',
+    tags: ['Agency', 'Marketing site'],
+    features: ['Studio positioning', 'Responsive layout', 'Modern motion'],
+    image: '/assets/theo_live.webp',
+    challenge: 'Agency needed a distinctive site that still loads cleanly and reads clearly.',
+    research: 'Portfolio sites fail when the story is vague; we kept sections short and visual.',
+    designProcess: 'Strong hero, clear services and work narrative.',
+    techStackDetails: 'Marketing website for the studio brand.',
+    performanceImprovements: 'Polished visuals without a heavy page feel.',
+    results: 'Live studio website.',
+  },
+  {
+    id: 'bloom-cafe',
+    title: 'Bloom Café',
+    subtitle: 'Cafe operations interface',
+    metaTitle: 'Bloom Café',
+    metaDescription: 'Bloom Café operations and digital experience work by CodeArc.',
+    description:
+      'Cafe operations UI work for Bloom Café — order and floor visibility patterns we reuse in hospitality builds.',
+    url: 'https://deora.vercel.app',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'client',
+    statusLabel: 'Live system',
+    tags: ['Cafe', 'Operations'],
+    features: ['Order visibility', 'Cafe floor patterns', 'Hospitality UI'],
+    image: '/assets/bloomcafe_live.webp',
+    challenge: 'Cafe staff needed screens that match busy service, not a generic admin theme.',
+    research: 'Peak hours: tickets, status, who is waiting.',
+    designProcess: 'Calm surfaces, clear status, touch-friendly controls.',
+    techStackDetails: 'Operations interface shaped for cafe service hours.',
+    performanceImprovements: 'UI tuned for repeated counter use.',
+    results: 'Live operations system for the café team.',
   },
 ];

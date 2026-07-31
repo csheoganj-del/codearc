@@ -6,11 +6,14 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+next-*.log
+.codex-dev.log
 
 node_modules
 dist
 dist-ssr
 *.local
+tsconfig.tsbuildinfo
 
 # Editor directories and files
 .vscode/*
@@ -25,6 +28,30 @@ dist-ssr
 
 .vercel
 
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
 # Next.js
 .next/
 out/
+
+# Payment event log (local / server)
+.data/
+
+# Internal / not for deploy
+logo-options/
+*.docx
+
+# Local design captures / unused exploration assets
+public/assets/bloomcafe_preview.svg
+public/assets/brosbar_live.png
+public/assets/brosbar_preview.svg
+public/assets/deora_preview.png
+public/assets/doppio_cover.svg
+public/assets/doppio_preview.png
+public/assets/theo_cover.svg
+public/assets/theo_preview.png
+public/assets/wild_jawai_live.png
+public/assets/wild_jawai_preview.webp

@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 import { servicesData } from '../data/services';
-import { blogPosts } from '../data/blog';
+import { listedBlogPosts } from '../data/blog';
 import { caseStudiesData } from '../data/case-studies';
+import { productsData } from '../data/products';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://codearc.co.in';
 
-  // Base routes
   const routes = [
     {
       url: baseUrl,
@@ -15,26 +15,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/products`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/pay`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    },
+    {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-07-23'),
       changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-07-23'),
       changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
   ];
 
-  // Service routes
+  const productRoutes = productsData.map((product) => ({
+    url: `${baseUrl}/products/${product.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: product.status === 'live' ? 0.9 : 0.7,
+  }));
+
   const serviceRoutes = Object.keys(servicesData).map((slug) => ({
     url: `${baseUrl}/${slug}`,
     lastModified: new Date(),
@@ -42,16 +60,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Blog article routes — use each post's real publish date, not "now",
-  // so the sitemap's freshness signal to search engines is meaningful.
-  const blogRoutes = blogPosts.map((post) => ({
+  const blogRoutes = listedBlogPosts().map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
 
-  // Case study routes
   const caseStudyRoutes = caseStudiesData.map((study) => ({
     url: `${baseUrl}/case-studies/${study.id}`,
     lastModified: new Date(),
@@ -59,5 +74,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...routes, ...serviceRoutes, ...blogRoutes, ...caseStudyRoutes];
+  return [...routes, ...productRoutes, ...serviceRoutes, ...blogRoutes, ...caseStudyRoutes];
 }

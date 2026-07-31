@@ -11,6 +11,12 @@ export interface BlogPost {
   keywords: string[];
   sections: { title: string; content: string }[];
   faqs: { question: string; answer: string }[];
+  /** When false, hidden from blog index & sitemap (URL still works) */
+  listed?: boolean;
+}
+
+export function listedBlogPosts(): BlogPost[] {
+  return blogPosts.filter((post) => post.listed !== false);
 }
 
 export const blogPosts: BlogPost[] = [
@@ -18,7 +24,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'how-to-spot-a-template-agency-case-study',
     title: 'How to Spot a Template Agency: A Case Study',
     excerpt: 'Most business owners cannot tell a custom website from a template. Learn the 5 key tells to spot a template agency before signing.',
-    date: 'July 09, 2026',
+    date: '2026-07-09',
     author: 'CodeArc Team',
     readTime: '5 min read',
     category: 'Business & Design',
@@ -70,7 +76,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'cost-of-website-development-in-india-2026',
     title: 'Cost of Website Development in India 2026: The Complete Guide',
     excerpt: 'How much does it cost to build a website in India in 2026? We break down prices for single-pages, custom business systems, ecommerce stores, and ongoing maintenance.',
-    date: 'June 10, 2026',
+    date: '2026-06-10',
     author: 'CodeArc Team',
     readTime: '8 min read',
     category: 'Business',
@@ -110,10 +116,11 @@ export const blogPosts: BlogPost[] = [
     slug: 'react-vs-nextjs-seo-guide',
     title: 'React vs Next.js: Choosing the Right Stack for SEO in 2026',
     excerpt: 'Struggling to get your React app indexed? Learn the differences between React SPAs and Next.js server-side rendering, and why it makes a difference for search rankings.',
-    date: 'June 08, 2026',
+    date: '2026-06-08',
     author: 'CodeArc Engineers',
     readTime: '10 min read',
     category: 'Tech & SEO',
+    listed: false,
     metaTitle: 'React vs Next.js: Choosing the Right Stack for SEO',
     metaDescription: 'Understand the SEO difference between React and Next.js. Learn how Server-Side Rendering (SSR) and Static Site Generation (SSG) help search engine indexing.',
     keywords: ['React vs Next.js', 'React Development Services', 'Next.js Development Services', 'SEO React Stack'],
@@ -142,7 +149,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'why-small-businesses-need-professional-websites',
     title: 'Why Small Businesses Need a Professional Website to Survive in 2026',
     excerpt: 'Is a social media page enough for your local business? Discover why a dedicated, SEO-optimized website is crucial for building trust and capturing leads.',
-    date: 'June 05, 2026',
+    date: '2026-06-05',
     author: 'CodeArc Design',
     readTime: '6 min read',
     category: 'Marketing',
@@ -170,7 +177,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'best-hosting-options-for-indian-businesses',
     title: 'Best Hosting Options for Indian Businesses (Vercel, AWS, Hostinger)',
     excerpt: 'Looking for fast load speeds in India? We compare top hosting providers like Vercel, Cloudflare, AWS, and Hostinger based on cost, speed, and CDN locations.',
-    date: 'June 03, 2026',
+    date: '2026-06-03',
     author: 'CodeArc Devops',
     readTime: '7 min read',
     category: 'Devops',
@@ -198,10 +205,11 @@ export const blogPosts: BlogPost[] = [
     slug: 'vercel-vs-cloudflare-pages',
     title: 'Vercel vs Cloudflare Pages: The Developer\'s Performance Guide',
     excerpt: 'Deploying a modern frontend? We stack Vercel against Cloudflare Pages on build speeds, edge functions, routing, and developer experience.',
-    date: 'June 01, 2026',
+    date: '2026-06-01',
     author: 'CodeArc Engineers',
     readTime: '9 min read',
     category: 'Tech & Dev',
+    listed: false,
     metaTitle: 'Vercel vs Cloudflare Pages: Frontend Hosting Comparison',
     metaDescription: 'A technical comparison of Vercel and Cloudflare Pages. Learn about edge networks, build speeds, pricing, and how they handle static react apps.',
     keywords: ['Vercel vs Cloudflare Pages', 'Frontend Hosting', 'Vercel Deployments', 'Static Site Hosting'],
@@ -226,7 +234,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'website-redesign-checklist-2026',
     title: 'Website Redesign Checklist: 10 Steps to Retain Your SEO Traffic',
     excerpt: 'Redesigning your website shouldn\'t kill your Google ranks. Follow our step-by-step migration guide to improve UI while protecting organic traffic.',
-    date: 'May 28, 2026',
+    date: '2026-05-28',
     author: 'CodeArc SEO Team',
     readTime: '8 min read',
     category: 'Tech & SEO',
@@ -254,7 +262,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'core-web-vitals-impact-on-conversion',
     title: 'How Fast Web Speeds Drive Sales: Core Web Vitals Explained',
     excerpt: 'Slow load speeds are costing you money. Learn how optimizing LCP, CLS, and INP metrics improves user experience and doubles lead inquiries.',
-    date: 'May 25, 2026',
+    date: '2026-05-25',
     author: 'CodeArc Devops',
     readTime: '7 min read',
     category: 'Performance',
@@ -282,7 +290,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'local-seo-guide-indian-businesses',
     title: 'The Ultimate Guide to Local SEO for Indian Businesses in 2026',
     excerpt: 'Want local customers to find your shop or agency on Google Maps? Learn how to optimize your Google Business Profile and local schema tags.',
-    date: 'May 22, 2026',
+    date: '2026-05-22',
     author: 'CodeArc SEO Team',
     readTime: '9 min read',
     category: 'Local SEO',
@@ -310,10 +318,11 @@ export const blogPosts: BlogPost[] = [
     slug: 'headless-cms-modern-web-architecture',
     title: 'What is Headless CMS? Modern Web Architecture Made Simple',
     excerpt: 'Tired of slow WordPress databases? Learn how decoupling your backend from frontend React styles improves speed, security, and developer freedom.',
-    date: 'May 18, 2026',
+    date: '2026-05-18',
     author: 'CodeArc Engineers',
     readTime: '8 min read',
     category: 'Tech & Dev',
+    listed: false,
     metaTitle: 'What is Headless CMS? Modern decoupled web apps explained',
     metaDescription: 'Learn about Headless CMS architecture. Compare decoupled systems with traditional WordPress setups, and see why Next.js is the perfect frontend choice.',
     keywords: ['Headless CMS', 'Decoupled Architecture', 'WordPress vs Headless', 'Nextjs Headless CMS'],
@@ -338,7 +347,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'generate-leads-custom-web-apps',
     title: 'How to Generate Leads from a Custom Web Application',
     excerpt: 'Is your website just sitting there? Learn how building interactive calculators, quote estimators, and client portals turns passive readers into active sales.',
-    date: 'May 15, 2026',
+    date: '2026-05-15',
     author: 'CodeArc Marketing',
     readTime: '7 min read',
     category: 'Lead Generation',
@@ -365,14 +374,9 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const additionalTopicsList = [
-  'Vite to NextJS migration guide for developer teams',
-  'Tailwind CSS v4: Upgrading your style configurations',
-  'Integrating Calendly schedules for high-converting service agencies',
-  'Best payment gateways for Indian startups in 2026',
-  'Understanding cumulative layout shifts on complex animations',
-  'The impact of SSL certificates on local SEO indexing',
-  'How WhatsApp integration reduces cart abandonment rates',
-  'How to build mobile responsive dashboards with Tailwind',
-  'SaaS backend setups: Node vs Serverless in 2026',
-  'Choosing between NextJS App Router and Pages Router',
+  'How WhatsApp booking links help small shops',
+  'Website checklist before you launch',
+  'What to ask a web agency before you sign',
+  'Simple payment options for Indian businesses',
+  'Keeping your Google Business Profile useful',
 ];

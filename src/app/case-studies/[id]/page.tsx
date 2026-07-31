@@ -1,8 +1,12 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import * as Icons from 'lucide-react';
+import { Check, ExternalLink, ArrowLeft } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import { caseStudiesData } from '../../../data/case-studies';
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return caseStudiesData.map((study) => ({
@@ -13,9 +17,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const study = caseStudiesData.find((s) => s.id === params.id);
-  if (!study) {
-    return {};
-  }
+  if (!study) return {};
   return {
     title: study.metaTitle,
     description: study.metaDescription,
@@ -26,12 +28,7 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
       title: study.metaTitle,
       description: study.metaDescription,
       url: `https://codearc.co.in/case-studies/${params.id}`,
-      images: [
-        {
-          url: study.image,
-          alt: study.title,
-        },
-      ],
+      images: [{ url: study.image, alt: study.title }],
     },
   };
 }
@@ -40,152 +37,145 @@ export default async function CaseStudyPage(props: { params: Promise<{ id: strin
   const params = await props.params;
   const study = caseStudiesData.find((s) => s.id === params.id);
 
-  if (!study) {
-    notFound();
-  }
+  if (!study) notFound();
+
+  const isProduct = study.kind === 'product';
 
   return (
-    <div className="min-h-screen bg-[#FCFCFD] text-[#0F172A] font-sans relative">
+    <div className="v2-page">
       <Navbar />
+      <main id="main-content">
+        <section className="v2-inner v2-inner-hero">
+          <p className="v2-crumb">
+            <Link href="/">
+              <ArrowLeft size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /> Home
+            </Link>
+            <span>/</span>
+            <Link href="/#work">Work</Link>
+            <span>/</span>
+            <span>{study.title}</span>
+          </p>
 
-      <main className="pt-32 pb-16">
-        {/* Case Study Hero */}
-        <section className="relative py-20 overflow-hidden border-b border-[#E2E8F0] bg-[#F8FAFC]">
-          <div className="absolute inset-0 bg-grid mask-fade-bottom pointer-events-none" />
-          <div
-            className="absolute top-[-10%] left-[-15%] w-[40%] aspect-square rounded-full opacity-10 blur-3xl pointer-events-none"
-            style={{ backgroundColor: study.accentColor }}
-          />
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
+            <span className="v2-badge">{study.statusLabel}</span>
+            {isProduct ? <span className="v2-badge v2-badge-accent">CodeArc product</span> : null}
+          </div>
 
-          <div className="max-w-5xl mx-auto px-6 relative z-10">
-            <span
-              className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs uppercase tracking-widest font-bold mb-5 bg-white border border-[#E2E8F0]"
-              style={{ color: study.accentColor }}
-            >
-              Case Study
-            </span>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#0F172A] mb-4">
-              {study.title}
-            </h1>
-            <p className="text-xl text-[#475569] leading-relaxed max-w-3xl mb-8">
-              {study.subtitle}
-            </p>
+          <h1>{study.title}</h1>
+          <p className="v2-inner-lede">{study.subtitle}</p>
+          <p className="v2-inner-lede" style={{ marginTop: 10 }}>
+            {study.description}
+          </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="v2-inline-actions">
+            {study.isExternal ? (
               <a
+                className="v2-btn v2-btn-primary"
                 href={study.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] text-white font-bold text-sm hover:shadow-[0_12px_32px_-10px_rgba(79,70,229,0.55)] transition-all"
               >
-                Visit Live Site
-                <Icons.ExternalLink className="w-4 h-4" />
+                Visit site <ExternalLink size={16} />
               </a>
-              <span className="text-sm text-[#64748B] font-medium">
-                {study.creator === 'codearc' ? (
-                  <>Built in-house by <span className="font-bold text-[#334155]">CodeArc</span></>
-                ) : (
-                  <>Built in partnership with <span className="font-bold text-[#334155]">{study.creator}</span></>
-                )}
-              </span>
-            </div>
-            {study.creator !== 'codearc' && (
-              <p className="text-sm text-[#64748B] mb-8 max-w-2xl">
-                This project was delivered in collaboration with our partner studio, {study.creator}. We're showing it here because we worked on it together — not as solely CodeArc's own build.
-              </p>
+            ) : (
+              <Link className="v2-btn v2-btn-primary" href={study.url}>
+                Talk to us
+              </Link>
             )}
+            {isProduct && (
+              <Link className="v2-btn v2-btn-ghost" href={`/products/${study.id}`}>
+                Product page
+              </Link>
+            )}
+            <span style={{ fontSize: 13, color: 'rgba(243,240,232,0.55)', alignSelf: 'center' }}>
+              Built by <strong style={{ color: '#f3f0e8' }}>CodeArc</strong>
+            </span>
+          </div>
 
-            <div className="flex flex-wrap gap-2">
-              {study.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3.5 py-1.5 rounded-lg bg-white border border-[#E2E8F0] text-xs font-semibold text-[#475569]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+          <div className="v2-tags">
+            {study.tags.map((tag) => (
+              <span key={tag} className="v2-tag">
+                {tag}
+              </span>
+            ))}
           </div>
         </section>
 
-        {/* Mockup Preview */}
-        <section className="py-12 max-w-5xl mx-auto px-6">
-          <div className="rounded-3xl border border-[#E2E8F0] bg-white shadow-2xl overflow-hidden aspect-[16/10] flex flex-col">
-            <div className="h-10 bg-[#F8FAFC] border-b border-[#E2E8F0] px-5 flex items-center gap-4 shrink-0">
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
-              </div>
-              <div className="flex-1 max-w-xs h-5 rounded-md bg-white border border-[#E2E8F0] px-2.5 flex items-center">
-                <span className="text-[10px] text-[#94A3B8] font-medium truncate">{study.url}</span>
-              </div>
-            </div>
-            <div className="flex-1 relative overflow-hidden bg-slate-950">
-              <img
-                src={study.image}
-                alt={`${study.title} Mockup`}
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
+        <section className="v2-inner" style={{ paddingBottom: 48 }}>
+          <div className="v2-media" style={{ aspectRatio: '16 / 10' }}>
+            <Image
+              src={study.image}
+              alt={`${study.title} preview`}
+              fill
+              sizes="(max-width: 900px) 100vw, 1180px"
+              className="object-cover object-top"
+              priority
+              unoptimized={study.image.endsWith('.svg')}
+            />
           </div>
         </section>
 
-        {/* Narrative breakdown */}
-        <section className="py-16 max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="md:col-span-2 space-y-12">
-              {/* Challenge */}
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-[#0F172A] border-b border-[#E2E8F0] pb-2">Client Challenge</h2>
-                <p className="text-base md:text-lg text-[#475569] leading-relaxed">{study.challenge}</p>
-              </div>
-
-              {/* Research */}
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-[#0F172A] border-b border-[#E2E8F0] pb-2">Research & Insights</h2>
-                <p className="text-base md:text-lg text-[#475569] leading-relaxed">{study.research}</p>
-              </div>
-
-              {/* Design Process */}
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-[#0F172A] border-b border-[#E2E8F0] pb-2">Design Process & UX</h2>
-                <p className="text-base md:text-lg text-[#475569] leading-relaxed">{study.designProcess}</p>
-              </div>
+        <section className="v2-section" style={{ paddingTop: 0 }}>
+          <div className="v2-split-layout">
+            <div className="v2-prose">
+              <h2 style={{ marginTop: 0 }}>Challenge</h2>
+              <p>{study.challenge}</p>
+              <h2>Approach</h2>
+              <p>{study.research}</p>
+              <h2>Build</h2>
+              <p>{study.designProcess}</p>
+              <h2>Status</h2>
+              <p>{study.results}</p>
             </div>
 
-            <div className="space-y-8 bg-[#F8FAFC] p-8 rounded-3xl border border-[#E2E8F0]">
-              <div>
-                <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#94A3B8] mb-3">Tech Stack Details</h3>
-                <p className="text-sm text-[#475569] leading-relaxed">{study.techStackDetails}</p>
+            <div>
+              <div className="v2-aside-panel">
+                <h3>How it was built</h3>
+                <p>{study.techStackDetails}</p>
               </div>
-
-              <div>
-                <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#94A3B8] mb-3">Performance Audit</h3>
-                <p className="text-sm text-[#475569] leading-relaxed">{study.performanceImprovements}</p>
+              <div className="v2-aside-panel">
+                <h3>What we focused on</h3>
+                <p>{study.performanceImprovements}</p>
               </div>
-
-              <div>
-                <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#94A3B8] mb-3">Project Deliverables</h3>
-                <ul className="space-y-2 text-sm text-[#475569] font-medium">
-                  {study.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <Icons.Check className="w-4 h-4 text-[#16A34A] shrink-0" />
-                      {feat}
+              <div className="v2-aside-panel">
+                <h3>Includes</h3>
+                <ul className="v2-list-check">
+                  {study.features.map((feat) => (
+                    <li key={feat}>
+                      <Check size={16} style={{ color: '#3d9b6a', flexShrink: 0, marginTop: 2 }} />
+                      <span>{feat}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="pt-4 border-t border-[#E2E8F0]">
-                <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#94A3B8] mb-2">Final Outcome</h3>
-                <div className="text-xl font-extrabold text-[#16A34A]">{study.results}</div>
-              </div>
+        <section className="v2-contact">
+          <div className="v2-contact-inner">
+            <div>
+              <p className="v2-kicker light">Next</p>
+              <h2>Need something in this direction?</h2>
+              <p>
+                Mail a few lines about your business. We&apos;ll say if it&apos;s custom work or
+                closer to RestroSuite, StaySuite or MediSuite.
+              </p>
+            </div>
+            <div className="v2-contact-actions">
+              <a
+                className="v2-btn v2-btn-primary"
+                href="mailto:hello@codearc.co.in?subject=Saw your work"
+              >
+                hello@codearc.co.in
+              </a>
+              <Link className="v2-btn v2-btn-ghost-light" href="/products">
+                Our products
+              </Link>
             </div>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
