@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CodeArc social card</title>
+  <desc id="desc">CodeArc Keystone Arc identity on a dark brand background.</desc>
+  <defs>
+    <radialGradient id="glow" cx="76%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#2A1712"/>
+      <stop offset=".56" stop-color="#0D110E"/>
+      <stop offset="1" stop-color="#090A09"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 505C280 425 476 570 724 487s330-69 476-20v163H0Z" fill="#111411"/>
+  <g transform="translate(78 78) scale(1.55)">
+    <rect width="128" height="128" rx="30" fill="#F7F2EA"/>
+    <path d="M32 102V65C32 35 48 20 64 20s32 15 32 45v37" fill="none" stroke="#171917" stroke-width="11" stroke-linecap="round"/>
+    <path d="M48 102V67c0-17 7-27 16-27s16 10 16 27v35" fill="#171917"/>
+    <rect x="55" y="13" width="18" height="13" rx="4" fill="#E85A2F"/>
+  </g>
+  <text x="315" y="190" fill="#F7F2EA" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="82" font-weight="750" letter-spacing="-3">Code</text>
+  <text x="508" y="190" fill="#E85A2F" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="82" font-weight="750" letter-spacing="-3">Arc</text>
+  <text x="82" y="370" fill="#F7F2EA" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="54" font-weight="720" letter-spacing="-1.8">Software people actually use.</text>
+  <text x="84" y="422" fill="#A4AAA4" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="23">Websites · Apps · RestroSuite · StaySuite · MediSuite</text>
+  <text x="84" y="552" fill="#79BF96" font-family="Manrope,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="2.5">RAJASTHAN · WORKING ACROSS INDIA</text>
+</svg>

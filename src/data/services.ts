@@ -1,3 +1,12 @@
+export type ServiceIconName =
+  | 'Monitor'
+  | 'AppWindow'
+  | 'Sparkles'
+  | 'Rocket'
+  | 'Smartphone'
+  | 'MessageSquare'
+  | 'Eye';
+
 export interface ServiceDetails {
   slug: string;
   title: string;
@@ -5,7 +14,7 @@ export interface ServiceDetails {
   metaTitle: string;
   metaDescription: string;
   description: string;
-  icon: string;
+  icon: ServiceIconName;
   accentColor: string;
   accentSoft: string;
   keywords: string[];
@@ -23,8 +32,8 @@ export const servicesData: Record<string, ServiceDetails> = {
     metaDescription: 'Looking for a premier website design company in India? We create bespoke, mobile-responsive, and high-converting websites tailored to grow your small business.',
     description: 'We craft beautiful, high-converting websites designed specifically to turn search traffic into loyal clients. Every pixel, layout, and line of copy is optimized to tell your story clearly and drive actions.',
     icon: 'Monitor',
-    accentColor: '#4F46E5',
-    accentSoft: '#EEF2FF',
+    accentColor: '#174C3C',
+    accentSoft: '#E7EFE9',
     keywords: ['Website Design Company India', 'Small Business Website Design', 'Responsive Web Design', 'Custom UI/UX Design'],
     features: [
       { title: 'Mobile-first responsive layouts', detail: 'Every page is designed and tested on phone screens first, then scaled up — since most Indian visitors will meet your site on mobile.' },
@@ -73,8 +82,8 @@ export const servicesData: Record<string, ServiceDetails> = {
     metaDescription: 'Searching for a trusted web development company in India? CodeArc builds robust, fast, and secure custom web applications, SaaS tools, and business backends.',
     description: 'We develop secure, responsive, and robust web portals and tools designed to run your business operations smoothly. We eliminate complex spreadsheet dependencies and replace them with intuitive databases.',
     icon: 'AppWindow',
-    accentColor: '#7C3AED',
-    accentSoft: '#F5F3FF',
+    accentColor: '#174C3C',
+    accentSoft: '#E7EFE9',
     keywords: ['Web Development Company India', 'Custom Web Applications', 'Business Portals', 'Full Stack Development'],
     features: [
       { title: 'Database integration and data modeling', detail: 'Your data — customers, orders, bookings, inventory — is structured properly from day one, so reports and search stay fast as you grow.' },
@@ -115,8 +124,8 @@ export const servicesData: Record<string, ServiceDetails> = {
     metaDescription: 'Boost your digital products with expert React development services. We build responsive, modular, and high-performance user interfaces and Single Page Apps.',
     description: 'We build interactive, component-driven user interfaces that feel native. Leverage React.js to build smooth client dashboards, CRM interfaces, and booking forms with fast responses.',
     icon: 'Sparkles',
-    accentColor: '#4F46E5',
-    accentSoft: '#EEF2FF',
+    accentColor: '#174C3C',
+    accentSoft: '#E7EFE9',
     keywords: ['React Development Services', 'React Developer India', 'Single Page Applications', 'Interactive Dashboards'],
     features: [
       { title: 'Reusable, well-structured components', detail: 'Buttons, forms, and cards are built once and reused everywhere, so your interface stays visually consistent as new screens get added.' },
@@ -165,7 +174,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     metaDescription: 'Optimize SEO and load speeds with our Next.js development services. We specialize in Next.js App Router, Static Site Generation (SSG), and API routes.',
     description: 'Combine React interactive styling with Server-Side Rendering (SSR) and Static Generation (SSG) for SEO. Next.js is the framework of choice for modern, search-rankable web apps.',
     icon: 'Rocket',
-    accentColor: '#0F172A',
+    accentColor: '#171714',
     accentSoft: '#F1F5F9',
     keywords: ['Next.js Development Services', 'Next.js Company India', 'SEO Friendly React Apps', 'Static Site Generation'],
     features: [
@@ -207,8 +216,8 @@ export const servicesData: Record<string, ServiceDetails> = {
     metaDescription: 'Scale your online sales with our ecommerce website development services in India. We design custom e-shops, Shopify templates, and custom carts.',
     description: 'We design custom web stores designed to turn casual browsers into paying customers. Secure checkouts, smooth product sorting, and WhatsApp invoices are built-in.',
     icon: 'Smartphone',
-    accentColor: '#06B6D4',
-    accentSoft: '#ECFEFF',
+    accentColor: '#F04E2F',
+    accentSoft: '#F8E4DE',
     keywords: ['Ecommerce Website Development', 'Custom Online Store India', 'Shopify Development', 'Payment Gateway Integration'],
     features: [
       { title: 'Advanced product listings & category filters', detail: 'Shoppers can filter by price, size, or category and find what they want in seconds, even in large catalogs.' },
