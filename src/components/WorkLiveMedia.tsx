@@ -16,11 +16,17 @@ export type WorkLiveMediaProps = {
   iframeSrc?: string;
 };
 
-/** Logo previews are designed for the card itself — fill 100%, don't desktop-scale. */
-function isLogoPreview(src?: string): boolean {
+/**
+ * Full-bleed card previews (no desktop scale-down).
+ * Logo loops + Deora entry animation are designed for the card frame.
+ */
+function isFillPreview(src?: string): boolean {
   if (!src) return false;
   return (
-    src.includes('/work-proxy/theomedia') || src.includes('/work-proxy/codearc')
+    src.includes('/work-proxy/theomedia') ||
+    src.includes('/work-proxy/codearc') ||
+    src.includes('/work-proxy/deora') ||
+    src.includes('/work-proxy/brosbar')
   );
 }
 
@@ -40,7 +46,7 @@ export default function WorkLiveMedia({
   const [reduceMotion, setReduceMotion] = useState(false);
   const [iframeScale, setIframeScale] = useState(0.3);
 
-  const logoMode = isLogoPreview(iframeSrc);
+  const fillMode = isFillPreview(iframeSrc);
 
   useEffect(() => {
     const el = shellRef.current;
@@ -62,7 +68,7 @@ export default function WorkLiveMedia({
   }, []);
 
   useEffect(() => {
-    if (liveMode !== 'iframe' || logoMode) return;
+    if (liveMode !== 'iframe' || fillMode) return;
     const el = shellRef.current;
     if (!el) return;
 
@@ -76,7 +82,7 @@ export default function WorkLiveMedia({
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [liveMode, logoMode]);
+  }, [liveMode, fillMode]);
 
   useEffect(() => {
     if (!inView) {
@@ -92,17 +98,29 @@ export default function WorkLiveMedia({
     <Link
       ref={shellRef}
       href={href}
-      className={`v2-work-media${isLive ? ' is-live' : ''}${logoMode ? ' is-logo' : ''}`}
+      className={`v2-work-media${isLive ? ' is-live' : ''}${fillMode ? ' is-logo' : ''}`}
       aria-label={`${title} — ${tag}`}
     >
-      <Image
-        src={image}
-        alt={`${title} — ${tag}`}
-        fill
-        sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 33vw"
-        className={`object-cover v2-work-live-poster${showIframe && ready ? ' is-covered' : ''}`}
-        priority={false}
-      />
+      {/* Dark poster for entry-style previews — never show building photo under Deora */}
+      {fillMode && iframeSrc?.includes('/work-proxy/deora') ? (
+        <div
+          className={`v2-work-live-poster v2-work-deora-poster${
+            showIframe && ready ? ' is-covered' : ''
+          }`}
+          aria-hidden
+        />
+      ) : (
+        <Image
+          src={image}
+          alt={`${title} — ${tag}`}
+          fill
+          sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 33vw"
+          className={`object-cover v2-work-live-poster${
+            showIframe && ready ? ' is-covered' : ''
+          }`}
+          priority={false}
+        />
+      )}
 
       {showIframe ? (
         <div className={`v2-work-iframe-wrap${ready ? ' is-ready' : ''}`} aria-hidden="true">
@@ -117,9 +135,8 @@ export default function WorkLiveMedia({
             onLoad={() => setReady(true)}
             onError={() => setFailed(true)}
             style={
-              logoMode
+              fillMode
                 ? {
-                    // Fill the card 1:1 so vmin-based logo art is large
                     width: '100%',
                     height: '100%',
                     transform: 'none',

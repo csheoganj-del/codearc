@@ -588,12 +588,26 @@ textarea {
   background: #0a0a0a;
 }
 
-/* Sister logo cards: iframe fills the media area (no desktop scale-down) */
+/* Sister logo / entry-screen cards: iframe fills the media area */
 .v2-work-media.is-logo .v2-work-iframe-wrap iframe {
   inset: 0;
   width: 100% !important;
   height: 100% !important;
   transform: none !important;
+}
+
+/* Deora poster — dark entry screen, never the building photo */
+.v2-work-deora-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(242, 185, 75, 0.08), transparent 55%),
+    #0a0806;
+}
+.v2-work-deora-poster.is-covered {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .v2-live-badge {

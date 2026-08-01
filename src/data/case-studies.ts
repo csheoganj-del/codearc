@@ -138,7 +138,8 @@ export const caseStudiesData: CaseStudy[] = [
       'Billing and floor ops',
       'Dark luxury entry screen',
     ],
-    image: '/assets/deora_live.jpg',
+    // Dark entry frame (animation lives in /work-proxy/deora — not the building photo)
+    image: '/assets/deora_preview.png',
     challenge:
       'A multi-unit hospitality venue needed one system for hotel and cafe ops — without a plain admin shell.',
     research:
