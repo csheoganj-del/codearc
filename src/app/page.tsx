@@ -28,9 +28,15 @@ export const metadata: Metadata = {
 };
 
 function liveModeForWork(id: string): WorkLiveMode {
-  if (id === 'wild-jawai-safari') return 'sequence';
-  if (id === 'bros-bar') return 'iframe';
+  if (id === 'wild-jawai-safari' || id === 'bros-bar') return 'iframe';
   return 'static';
+}
+
+/** Same-origin proxies so we can host the real sites + slow auto-scroll */
+function livePreviewSrc(id: string): string | undefined {
+  if (id === 'wild-jawai-safari') return '/work-proxy/jawai';
+  if (id === 'bros-bar') return '/work-proxy/brosbar';
+  return undefined;
 }
 
 /** Shipped work — cards open our case study pages */
@@ -47,6 +53,7 @@ const work = caseStudiesData
     note: c.statusLabel,
     externalUrl: c.url,
     liveMode: liveModeForWork(c.id),
+    livePreviewSrc: livePreviewSrc(c.id),
   }));
 
 const buildItems = [
@@ -264,8 +271,8 @@ export default function Home() {
             </div>
             <p className="v2-section-aside">
               Three live builds across tourism, hospitality and business software.
-              Wild Jawai and Bro&apos;s Bar previews move on their own — open a project
-              for the full story or visit the live site.
+              Wild Jawai slowly scrolls the real site; Bro&apos;s Bar shows its live
+              entrance animation. Open a project for the full story.
             </p>
           </div>
 
@@ -281,7 +288,7 @@ export default function Home() {
                   tag={item.tag}
                   image={item.image}
                   liveMode={item.liveMode}
-                  iframeSrc={item.externalUrl}
+                  iframeSrc={item.livePreviewSrc}
                 />
                 <div className="v2-work-meta">
                   <div>

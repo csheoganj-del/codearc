@@ -570,6 +570,12 @@ textarea {
   overflow: hidden;
   pointer-events: none;
   background: #0a0a0a;
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+.v2-work-iframe-wrap.is-ready {
+  opacity: 1;
 }
 
 .v2-work-iframe-wrap iframe {
@@ -579,6 +585,7 @@ textarea {
   border: 0;
   transform-origin: top left;
   pointer-events: none;
+  background: #0a0a0a;
 }
 
 .v2-live-badge {

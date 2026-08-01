@@ -26,10 +26,18 @@ const securityHeaders = [
       "font-src 'self' data:",
       "img-src 'self' data: https:",
       "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com",
-      "frame-src https://api.razorpay.com https://*.razorpay.com",
+      // 'self' = live Work previews (/work-proxy/*). Razorpay = checkout.
+      "frame-src 'self' https://api.razorpay.com https://*.razorpay.com",
       'upgrade-insecure-requests',
     ].join('; '),
   },
+];
+
+/** Live work-proxy HTML must not inherit the main CSP (GSAP/Lenis/CDN assets). */
+const workProxyHeaders = [
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  { key: 'Content-Security-Policy', value: "frame-ancestors 'self'" },
 ];
 
 const nextConfig: NextConfig = {
@@ -48,6 +56,10 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/work-proxy/:path*',
+        headers: workProxyHeaders,
+      },
       {
         source: '/:path*',
         headers: securityHeaders,
