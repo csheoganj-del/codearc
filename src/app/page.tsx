@@ -6,6 +6,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
 import ProductPreview from '../components/ProductPreview';
+import WorkLiveMedia from '../components/WorkLiveMedia';
+import type { WorkLiveMode } from '../components/WorkLiveMedia';
 import { productsData, productStatusClass, statusLabel } from '../data/products';
 import { caseStudiesData } from '../data/case-studies';
 import { site } from '../config/site';
@@ -25,6 +27,12 @@ export const metadata: Metadata = {
   }),
 };
 
+function liveModeForWork(id: string): WorkLiveMode {
+  if (id === 'wild-jawai-safari') return 'sequence';
+  if (id === 'bros-bar') return 'iframe';
+  return 'static';
+}
+
 /** Shipped work — cards open our case study pages */
 const work = caseStudiesData
   .filter((c) => c.isExternal && c.id !== 'restrosuite' && c.id !== 'bloom-cafe')
@@ -38,6 +46,7 @@ const work = caseStudiesData
     image: c.image,
     note: c.statusLabel,
     externalUrl: c.url,
+    liveMode: liveModeForWork(c.id),
   }));
 
 const buildItems = [
@@ -254,8 +263,9 @@ export default function Home() {
               <h2>Selected work.</h2>
             </div>
             <p className="v2-section-aside">
-              Three live builds across tourism, hospitality and business software. Open
-              a project for the story or visit it directly.
+              Three live builds across tourism, hospitality and business software.
+              Wild Jawai and Bro&apos;s Bar previews move on their own — open a project
+              for the full story or visit the live site.
             </p>
           </div>
 
@@ -265,17 +275,14 @@ export default function Home() {
                 key={item.id}
                 className={`v2-work-card is-${item.id}`}
               >
-                <Link href={item.href} className="v2-work-media">
-                  <Image
-                    src={item.image}
-                    alt={`${item.title} — ${item.tag}`}
-                    fill
-                    sizes={
-                      '(max-width: 720px) 100vw, (max-width: 960px) 50vw, 33vw'
-                    }
-                    className="object-cover"
-                  />
-                </Link>
+                <WorkLiveMedia
+                  href={item.href}
+                  title={item.title}
+                  tag={item.tag}
+                  image={item.image}
+                  liveMode={item.liveMode}
+                  iframeSrc={item.externalUrl}
+                />
                 <div className="v2-work-meta">
                   <div>
                     <p className="v2-work-tag">{item.note}</p>
