@@ -637,9 +637,9 @@ textarea {
   filter: brightness(1.08) contrast(1.02);
 }
 
-/* Dark brand cards (TheoMedia / similar) already read well — keep a light polish only */
-.v2-work-card.is-theo-media .v2-work-media img,
-.v2-work-card.is-codearc .v2-work-media img {
+/* Sister brand logo loops — dark canvas already matches the card */
+.v2-work-card.is-theo-media .v2-work-live-poster,
+.v2-work-card.is-codearc .v2-work-live-poster {
   filter: brightness(1.02) contrast(1.02);
 }
 
