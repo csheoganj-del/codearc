@@ -16,6 +16,14 @@ export type WorkLiveMediaProps = {
   iframeSrc?: string;
 };
 
+/** Logo previews are designed for the card itself — fill 100%, don't desktop-scale. */
+function isLogoPreview(src?: string): boolean {
+  if (!src) return false;
+  return (
+    src.includes('/work-proxy/theomedia') || src.includes('/work-proxy/codearc')
+  );
+}
+
 export default function WorkLiveMedia({
   href,
   title,
@@ -31,6 +39,8 @@ export default function WorkLiveMedia({
   const [failed, setFailed] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [iframeScale, setIframeScale] = useState(0.3);
+
+  const logoMode = isLogoPreview(iframeSrc);
 
   useEffect(() => {
     const el = shellRef.current;
@@ -52,23 +62,22 @@ export default function WorkLiveMedia({
   }, []);
 
   useEffect(() => {
-    if (liveMode !== 'iframe') return;
+    if (liveMode !== 'iframe' || logoMode) return;
     const el = shellRef.current;
     if (!el) return;
 
     const measure = () => {
       const w = el.clientWidth || 320;
       const h = el.clientHeight || 180;
-      // Desktop canvas sized so site chrome + type stay readable in the card
+      // Desktop canvas sized so full live sites stay readable in the card
       setIframeScale(Math.max(w / 1440, h / 900));
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [liveMode]);
+  }, [liveMode, logoMode]);
 
-  // Reset load state when leaving viewport so next entry reloads cleanly
   useEffect(() => {
     if (!inView) {
       setReady(false);
@@ -83,7 +92,7 @@ export default function WorkLiveMedia({
     <Link
       ref={shellRef}
       href={href}
-      className={`v2-work-media${isLive ? ' is-live' : ''}`}
+      className={`v2-work-media${isLive ? ' is-live' : ''}${logoMode ? ' is-logo' : ''}`}
       aria-label={`${title} — ${tag}`}
     >
       <Image
@@ -103,16 +112,24 @@ export default function WorkLiveMedia({
             title={`${title} live preview`}
             loading="eager"
             tabIndex={-1}
-            // Same-origin proxy: scripts + same-origin so injected auto-scroll can run
             sandbox="allow-scripts allow-same-origin allow-popups-to-escape-sandbox"
             referrerPolicy="no-referrer-when-downgrade"
             onLoad={() => setReady(true)}
             onError={() => setFailed(true)}
-            style={{
-              width: 1440,
-              height: 900,
-              transform: `scale(${iframeScale})`,
-            }}
+            style={
+              logoMode
+                ? {
+                    // Fill the card 1:1 so vmin-based logo art is large
+                    width: '100%',
+                    height: '100%',
+                    transform: 'none',
+                  }
+                : {
+                    width: 1440,
+                    height: 900,
+                    transform: `scale(${iframeScale})`,
+                  }
+            }
           />
         </div>
       ) : null}

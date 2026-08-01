@@ -588,6 +588,14 @@ textarea {
   background: #0a0a0a;
 }
 
+/* Sister logo cards: iframe fills the media area (no desktop scale-down) */
+.v2-work-media.is-logo .v2-work-iframe-wrap iframe {
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+}
+
 .v2-live-badge {
   position: absolute;
   top: 12px;

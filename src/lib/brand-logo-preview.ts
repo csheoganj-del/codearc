@@ -1,5 +1,6 @@
 /**
  * Self-contained looping logo animation HTML for Work-card live previews.
+ * Sized to fill a 16:9 work card (iframe is 100% of the card, no desktop scale-down).
  */
 
 export type BrandLogoPreview = {
@@ -44,36 +45,43 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
       height: 100%;
       display: grid;
       place-items: center;
+      padding: 4% 5%;
       background:
-        radial-gradient(circle at 50% 44%, rgba(61, 155, 106, 0.1), transparent 30%),
-        radial-gradient(circle at 68% 36%, rgba(232, 90, 47, 0.08), transparent 26%),
+        radial-gradient(circle at 50% 44%, rgba(61, 155, 106, 0.12), transparent 34%),
+        radial-gradient(circle at 70% 34%, rgba(232, 90, 47, 0.1), transparent 30%),
         #0b0c0b;
     }
     .stage {
       display: grid;
       place-items: center;
-      gap: 22px;
-      transform: translateY(-2%);
+      gap: clamp(14px, 4.5vmin, 28px);
+      width: min(100%, 920px);
+      /* Fill the work-card frame boldly */
+      transform: scale(1.08);
     }
     .brand-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      flex-wrap: nowrap;
+      gap: clamp(14px, 3.5vmin, 28px);
       animation: stageCycle 3.6s ease-in-out infinite;
+      max-width: 100%;
     }
     .mark-wrap {
       position: relative;
-      width: 88px;
-      height: 88px;
-      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.34));
+      flex-shrink: 0;
+      /* Large mark so it reads in the card thumbnail */
+      width: clamp(88px, 28vmin, 168px);
+      height: clamp(88px, 28vmin, 168px);
+      filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.4));
     }
     .mark-wrap::before {
       content: "";
       position: absolute;
-      inset: -22px;
+      inset: -18%;
       z-index: -1;
-      border: 1px solid rgba(243, 240, 232, 0.06);
+      border: 1px solid rgba(243, 240, 232, 0.07);
       border-radius: 50%;
       animation: haloIn 3.6s ease-in-out infinite;
     }
@@ -106,10 +114,10 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
     }
     .wordmark {
       display: flex;
-      font-size: 28px;
+      font-size: clamp(36px, 11.5vmin, 72px);
       font-weight: 780;
       line-height: 1;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.045em;
     }
     .letter {
       display: inline-block;
@@ -123,9 +131,10 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
       text-align: center;
       opacity: 0;
       animation: metaIn 3.6s ease infinite;
+      padding: 0 8px;
     }
     .meta .region {
-      font-size: 11px;
+      font-size: clamp(11px, 2.6vmin, 15px);
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -133,13 +142,12 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
       margin-bottom: 8px;
     }
     .meta .tag {
-      font-size: 14px;
-      color: rgba(243, 240, 232, 0.62);
-      max-width: 28rem;
-      line-height: 1.45;
+      font-size: clamp(13px, 3.2vmin, 18px);
+      color: rgba(243, 240, 232, 0.68);
+      max-width: 34rem;
+      line-height: 1.4;
     }
 
-    /* Timeline (3.6s loop): build 0–1.6s, hold 1.6–2.9s, fade 2.9–3.6s */
     @keyframes stageCycle {
       0%, 8% { opacity: 0; transform: translateY(8px); }
       18%, 78% { opacity: 1; transform: translateY(0); }
