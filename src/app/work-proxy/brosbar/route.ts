@@ -27,12 +27,21 @@ export async function GET() {
 
     html = html.replace(/<meta[^>]+http-equiv=["']?X-Frame-Options["']?[^>]*>/gi, '');
 
+    // Strip third-party credit pills from the live entry page
+    html = html.replace(
+      /<a[^>]*pixncraftstudio[^>]*>[\s\S]*?<\/a>/gi,
+      '',
+    );
+    html = html.replace(/Made by @?pixncraftstudio/gi, '');
+    html = html.replace(/@?pixncraftstudio/gi, '');
+
     // Soft zoom so the liquid title fills the card better
     const polish = `
 <style id="codearc-work-polish">
   html, body { overflow: hidden !important; }
   .main-title { font-size: clamp(2.4rem, 9vw, 4.6rem) !important; margin-top: 0 !important; }
   .center-content { transform: scale(0.92); }
+  .footer-pill { display: none !important; }
 </style>
 `;
     if (/<\/head>/i.test(html)) {
