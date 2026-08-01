@@ -94,7 +94,12 @@ const HTML = `<!DOCTYPE html>
       background-size: 300px 200%;
       -webkit-background-clip: text;
       background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
       -webkit-text-stroke: 0;
+      /* Force animation on iOS */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
       animation:
         wave-motion 1.5s linear infinite,
         fill-up 8s ease-in-out infinite;

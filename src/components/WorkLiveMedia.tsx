@@ -18,7 +18,7 @@ export type WorkLiveMediaProps = {
 
 /**
  * Full-bleed card previews (no desktop scale-down).
- * Logo loops + Deora entry animation are designed for the card frame.
+ * These are light HTML/CSS animations — safe to always mount on mobile.
  */
 function isFillPreview(src?: string): boolean {
   if (!src) return false;
@@ -30,6 +30,10 @@ function isFillPreview(src?: string): boolean {
   );
 }
 
+function isJawaiPreview(src?: string): boolean {
+  return Boolean(src?.includes('/work-proxy/jawai'));
+}
+
 export default function WorkLiveMedia({
   href,
   title,
@@ -38,35 +42,49 @@ export default function WorkLiveMedia({
   liveMode = 'static',
   iframeSrc,
 }: WorkLiveMediaProps) {
-  const shellRef = useRef<HTMLAnchorElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [inView, setInView] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [iframeScale, setIframeScale] = useState(0.3);
+  const [design, setDesign] = useState({ w: 1440, h: 900 });
 
   const fillMode = isFillPreview(iframeSrc);
+  const jawai = isJawaiPreview(iframeSrc);
+  const isLive = liveMode === 'iframe' && !failed && Boolean(iframeSrc);
 
+  // Mobile detection — never gate fill previews on IntersectionObserver alone
   useEffect(() => {
-    const el = shellRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { rootMargin: '120px', threshold: 0.12 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const apply = () => setReduceMotion(mq.matches);
+    const mq = window.matchMedia('(max-width: 900px)');
+    const apply = () => setIsMobile(mq.matches);
     apply();
     mq.addEventListener('change', apply);
     return () => mq.removeEventListener('change', apply);
   }, []);
 
+  // Soft "near viewport" for heavy Jawai only — very generous margins for mobile
+  useEffect(() => {
+    const el = shellRef.current;
+    if (!el) return;
+
+    // Fill previews always considered near so they mount immediately
+    if (fillMode) {
+      setNear(true);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setNear(true);
+      },
+      { rootMargin: '80% 0px', threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [fillMode]);
+
+  // Scale for full-site previews (Jawai). Phone uses phone canvas so motion is visible.
   useEffect(() => {
     if (liveMode !== 'iframe' || fillMode) return;
     const el = shellRef.current;
@@ -75,39 +93,48 @@ export default function WorkLiveMedia({
     const measure = () => {
       const w = el.clientWidth || 320;
       const h = el.clientHeight || 180;
-      // Desktop canvas sized so full live sites stay readable in the card
-      setIframeScale(Math.max(w / 1440, h / 900));
+      const mobile = window.matchMedia('(max-width: 900px)').matches;
+      // Phone-sized canvas on mobile so scroll/anim reads; desktop uses wide canvas
+      const dw = mobile ? 390 : 1280;
+      const dh = mobile ? 700 : 800;
+      setDesign({ w: dw, h: dh });
+      setIframeScale(Math.max(w / dw, h / dh));
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
-    return () => ro.disconnect();
+    window.addEventListener('resize', measure);
+    window.addEventListener('orientationchange', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('orientationchange', measure);
+    };
   }, [liveMode, fillMode]);
 
+  // Reveal iframe: fill previews ASAP; others after near + short fallback
   useEffect(() => {
-    if (!inView) {
-      setReady(false);
-      setFailed(false);
+    if (!isLive) return;
+    if (fillMode) {
+      setReady(true);
+      return;
     }
-  }, [inView]);
-
-  // If onLoad is flaky, still reveal the iframe so animation is visible
-  useEffect(() => {
-    if (!inView || liveMode !== 'iframe' || !iframeSrc || reduceMotion) return;
-    const t = window.setTimeout(() => setReady(true), 900);
+    if (!near) return;
+    const t = window.setTimeout(() => setReady(true), 400);
     return () => window.clearTimeout(t);
-  }, [inView, liveMode, iframeSrc, reduceMotion]);
+  }, [isLive, fillMode, near]);
 
-  const showIframe =
-    liveMode === 'iframe' && !reduceMotion && !failed && Boolean(iframeSrc) && inView;
-  const isLive = liveMode === 'iframe' && !failed;
+  // Mount policy:
+  // - fill previews (bros/deora/logo): always when live (mobile-safe)
+  // - jawai: when near viewport
+  const mountIframe = isLive && (fillMode || near);
 
   return (
-    <Link
+    <div
       ref={shellRef}
-      href={href}
-      className={`v2-work-media${isLive ? ' is-live' : ''}${fillMode ? ' is-logo' : ''}`}
-      aria-label={`${title} — ${tag}`}
+      className={`v2-work-media${isLive ? ' is-live' : ''}${fillMode ? ' is-logo' : ''}${
+        jawai ? ' is-jawai' : ''
+      }${isMobile ? ' is-mobile' : ''}`}
     >
       {/* Solid dark posters for entry animations — never watermarked screenshots */}
       {fillMode &&
@@ -116,7 +143,7 @@ export default function WorkLiveMedia({
         <div
           className={`v2-work-live-poster v2-work-entry-poster${
             iframeSrc?.includes('/work-proxy/deora') ? ' is-deora' : ' is-bros'
-          }${showIframe && ready ? ' is-covered' : ''}`}
+          }${mountIframe && ready ? ' is-covered' : ''}`}
           aria-hidden
         />
       ) : (
@@ -126,51 +153,65 @@ export default function WorkLiveMedia({
           fill
           sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 33vw"
           className={`object-cover v2-work-live-poster${
-            showIframe && ready ? ' is-covered' : ''
+            mountIframe && ready ? ' is-covered' : ''
           }`}
           priority={false}
         />
       )}
 
-      {showIframe ? (
-        <div className={`v2-work-iframe-wrap${ready ? ' is-ready' : ''}`} aria-hidden="true">
+      {mountIframe ? (
+        <div
+          className={`v2-work-iframe-wrap${ready ? ' is-ready' : ''}`}
+          aria-hidden="true"
+        >
           <iframe
-            ref={iframeRef}
             key={iframeSrc}
             src={iframeSrc}
             title={`${title} live preview`}
             loading="eager"
             tabIndex={-1}
-            // allow-scripts needed for Deora spark JS; CSS-only previews still fine
+            // Same-origin previews need scripts for Deora spark; pure CSS still works
             sandbox="allow-scripts allow-same-origin"
             referrerPolicy="no-referrer"
             onLoad={() => setReady(true)}
             onError={() => setFailed(true)}
+            // iOS: promote to own layer so CSS animations run in the iframe
             style={
               fillMode
                 ? {
                     width: '100%',
                     height: '100%',
                     border: 0,
-                    transform: 'none',
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)',
                   }
                 : {
-                    width: 1440,
-                    height: 900,
+                    width: design.w,
+                    height: design.h,
                     border: 0,
-                    transform: `scale(${iframeScale})`,
+                    transform: `scale(${iframeScale}) translateZ(0)`,
+                    WebkitTransform: `scale(${iframeScale}) translateZ(0)`,
+                    transformOrigin: 'top left',
+                    WebkitTransformOrigin: 'top left',
                   }
             }
           />
         </div>
       ) : null}
 
-      {isLive && !reduceMotion ? (
+      {/* Hit target — NOT wrapping the iframe (invalid + broken on iOS Safari) */}
+      <Link
+        href={href}
+        className="v2-work-media-hit"
+        aria-label={`${title} — ${tag}`}
+      />
+
+      {isLive ? (
         <span className="v2-live-badge" aria-hidden="true">
           <span className="v2-live-dot" />
           Live
         </span>
       ) : null}
-    </Link>
+    </div>
   );
 }

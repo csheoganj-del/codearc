@@ -42,7 +42,7 @@ function liveModeForWork(id: string): WorkLiveMode {
 
 /** Same-origin previews: live sites or looping brand logo animation */
 /** Cache-bust query so browsers/CDN never keep old credit-bearing previews */
-const PREVIEW_V = 'v5';
+const PREVIEW_V = 'v6';
 
 function livePreviewSrc(id: string): string | undefined {
   if (id === 'wild-jawai-safari') return `/work-proxy/jawai?${PREVIEW_V}`;

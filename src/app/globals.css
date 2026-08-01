@@ -570,8 +570,13 @@ textarea {
   overflow: hidden;
   pointer-events: none;
   background: #0a0a0a;
-  opacity: 0;
-  transition: opacity 420ms ease;
+  /* Always visible once mounted — no opacity gate that freezes iOS animations */
+  opacity: 1;
+  /* Promote compositing layer (critical for mobile CSS animations in iframes) */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .v2-work-iframe-wrap.is-ready {
@@ -586,6 +591,9 @@ textarea {
   transform-origin: top left;
   pointer-events: none;
   background: #0a0a0a;
+  /* iOS Safari: keep animations running */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Sister logo / entry-screen cards: iframe fills the media area */
@@ -593,7 +601,38 @@ textarea {
   inset: 0;
   width: 100% !important;
   height: 100% !important;
-  transform: none !important;
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+}
+
+/* Full-card click target over the media (iframe is NOT nested in <a>) */
+.v2-work-media-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: block;
+  /* Allow scroll gestures to pass on some browsers while still capturing taps */
+  cursor: pointer;
+}
+
+/* On mobile, ensure work media has real height so iframes paint */
+@media (max-width: 900px) {
+  .v2-work-media {
+    aspect-ratio: 16 / 10;
+    min-height: 200px;
+  }
+
+  .v2-work-iframe-wrap,
+  .v2-work-iframe-wrap iframe {
+    /* Force GPU layer — prevents frozen CSS animations on iOS */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .v2-work-media.is-logo .v2-work-iframe-wrap iframe {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
 }
 
 /* Entry-screen posters — solid dark, never watermarked screenshots */
