@@ -179,7 +179,7 @@ export default function Home() {
             </div>
             <div className="v2-proof-item">
               <strong>Live projects</strong>
-              <span>Wild Jawai, Bloom Café, Bro&apos;s Bar and Theo Media</span>
+              <span>Wild Jawai, Bloom Café, Bro&apos;s Bar and TheoMedia</span>
             </div>
           </div>
         </section>

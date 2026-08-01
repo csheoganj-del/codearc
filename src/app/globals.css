@@ -545,8 +545,9 @@ textarea {
   filter: brightness(1.18) contrast(1.03);
 }
 
+/* Dark brand cards (TheoMedia / similar) already read well — keep a light polish only */
 .v2-work-card.is-theo-media .v2-work-media img {
-  filter: brightness(0.78) saturate(0.84);
+  filter: brightness(1.02) contrast(1.02);
 }
 
 .v2-work-meta {
