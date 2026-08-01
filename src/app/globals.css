@@ -596,16 +596,24 @@ textarea {
   transform: none !important;
 }
 
-/* Deora poster — dark entry screen, never the building photo */
-.v2-work-deora-poster {
+/* Entry-screen posters — solid dark, never watermarked screenshots */
+.v2-work-entry-poster {
   position: absolute;
   inset: 0;
   z-index: 1;
+  background: #050505;
+}
+.v2-work-entry-poster.is-deora {
   background:
     radial-gradient(ellipse 70% 55% at 50% 42%, rgba(242, 185, 75, 0.08), transparent 55%),
     #0a0806;
 }
-.v2-work-deora-poster.is-covered {
+.v2-work-entry-poster.is-bros {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(240, 193, 75, 0.06), transparent 45%),
+    #050505;
+}
+.v2-work-entry-poster.is-covered {
   opacity: 0;
   pointer-events: none;
 }

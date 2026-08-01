@@ -109,7 +109,7 @@ export const caseStudiesData: CaseStudy[] = [
     statusLabel: 'Live site',
     tags: ['Bar', 'POS', 'Operations'],
     features: ['Counter billing', 'Bar operations screens', 'Service-hour speed'],
-    image: '/assets/brosbar_live.webp',
+    image: '/assets/brosbar_poster.png',
     challenge: 'Bars need faster item entry and settlement than a full restaurant stack.',
     research: 'Watched peak-hour order and settle patterns on a bar counter.',
     designProcess: 'Lean POS UI, fewer steps, readable under low light.',
@@ -139,7 +139,7 @@ export const caseStudiesData: CaseStudy[] = [
       'Dark luxury entry screen',
     ],
     // Dark entry frame (animation lives in /work-proxy/deora — not the building photo)
-    image: '/assets/deora_preview.png',
+    image: '/assets/deora_poster.png',
     challenge:
       'A multi-unit hospitality venue needed one system for hotel and cafe ops — without a plain admin shell.',
     research:
@@ -194,7 +194,7 @@ export const caseStudiesData: CaseStudy[] = [
     statusLabel: 'Live system',
     tags: ['Cafe', 'Operations'],
     features: ['Order visibility', 'Cafe floor patterns', 'Hospitality UI'],
-    image: '/assets/bloomcafe_live.webp',
+    image: '/assets/bloomcafe_poster.png',
     challenge: 'Cafe staff needed screens that match busy service, not a generic admin theme.',
     research: 'Peak hours: tickets, status, who is waiting.',
     designProcess: 'Calm surfaces, clear status, touch-friendly controls.',

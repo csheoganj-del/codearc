@@ -101,12 +101,14 @@ export default function WorkLiveMedia({
       className={`v2-work-media${isLive ? ' is-live' : ''}${fillMode ? ' is-logo' : ''}`}
       aria-label={`${title} — ${tag}`}
     >
-      {/* Dark poster for entry-style previews — never show building photo under Deora */}
-      {fillMode && iframeSrc?.includes('/work-proxy/deora') ? (
+      {/* Solid dark posters for entry animations — never watermarked screenshots */}
+      {fillMode &&
+      (iframeSrc?.includes('/work-proxy/deora') ||
+        iframeSrc?.includes('/work-proxy/brosbar')) ? (
         <div
-          className={`v2-work-live-poster v2-work-deora-poster${
-            showIframe && ready ? ' is-covered' : ''
-          }`}
+          className={`v2-work-live-poster v2-work-entry-poster${
+            iframeSrc?.includes('/work-proxy/deora') ? ' is-deora' : ' is-bros'
+          }${showIframe && ready ? ' is-covered' : ''}`}
           aria-hidden
         />
       ) : (
