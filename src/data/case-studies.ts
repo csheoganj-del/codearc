@@ -118,6 +118,40 @@ export const caseStudiesData: CaseStudy[] = [
     results: 'Live bar POS in use.',
   },
   {
+    id: 'deora-plaza',
+    title: 'Deora Plaza',
+    subtitle: 'Hospitality management system',
+    metaTitle: 'Deora Plaza — hospitality management',
+    metaDescription:
+      'Deora Plaza hospitality management system by CodeArc — cafe, hotel and operations in one dark-luxury entry experience.',
+    description:
+      'Full hospitality OS for Deora Plaza — hotel, cafe and floor ops behind a dark luxury entry with spark brand reveal.',
+    url: 'https://deora.vercel.app',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'client',
+    statusLabel: 'Live system',
+    tags: ['Hospitality', 'Hotel', 'Cafe', 'Operations'],
+    features: [
+      'Hotel + cafe modules',
+      'Staff dashboards',
+      'Billing and floor ops',
+      'Dark luxury entry screen',
+    ],
+    image: '/assets/deora_live.jpg',
+    challenge:
+      'A multi-unit hospitality venue needed one system for hotel and cafe ops — without a plain admin shell.',
+    research:
+      'Mapped reception, F&B and owner views so each desk opens the right module in seconds.',
+    designProcess:
+      'Cinematic entry with spark text reveal, then role-based dashboards for real service hours.',
+    techStackDetails:
+      'Next.js hospitality platform with auth, billing and multi-unit workflows (live at deora.vercel.app).',
+    performanceImprovements:
+      'Fast entry path and modular dashboards so staff are not lost in a generic ERP.',
+    results: 'Live hospitality management system for Deora Plaza.',
+  },
+  {
     id: 'theo-media',
     title: 'TheoMedia',
     subtitle: 'UK / Ireland / Europe sister site',

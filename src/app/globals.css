@@ -490,10 +490,10 @@ textarea {
   line-height: 1.55;
 }
 
-/* Work */
+/* Work — 2×2 on desktop for four live cards */
 .v2-work-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
