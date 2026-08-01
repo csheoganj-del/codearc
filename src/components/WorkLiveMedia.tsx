@@ -87,8 +87,16 @@ export default function WorkLiveMedia({
   useEffect(() => {
     if (!inView) {
       setReady(false);
+      setFailed(false);
     }
   }, [inView]);
+
+  // If onLoad is flaky, still reveal the iframe so animation is visible
+  useEffect(() => {
+    if (!inView || liveMode !== 'iframe' || !iframeSrc || reduceMotion) return;
+    const t = window.setTimeout(() => setReady(true), 900);
+    return () => window.clearTimeout(t);
+  }, [inView, liveMode, iframeSrc, reduceMotion]);
 
   const showIframe =
     liveMode === 'iframe' && !reduceMotion && !failed && Boolean(iframeSrc) && inView;
@@ -128,12 +136,14 @@ export default function WorkLiveMedia({
         <div className={`v2-work-iframe-wrap${ready ? ' is-ready' : ''}`} aria-hidden="true">
           <iframe
             ref={iframeRef}
+            key={iframeSrc}
             src={iframeSrc}
             title={`${title} live preview`}
             loading="eager"
             tabIndex={-1}
-            sandbox="allow-scripts allow-same-origin allow-popups-to-escape-sandbox"
-            referrerPolicy="no-referrer-when-downgrade"
+            // allow-scripts needed for Deora spark JS; CSS-only previews still fine
+            sandbox="allow-scripts allow-same-origin"
+            referrerPolicy="no-referrer"
             onLoad={() => setReady(true)}
             onError={() => setFailed(true)}
             style={
@@ -141,11 +151,13 @@ export default function WorkLiveMedia({
                 ? {
                     width: '100%',
                     height: '100%',
+                    border: 0,
                     transform: 'none',
                   }
                 : {
                     width: 1440,
                     height: 900,
+                    border: 0,
                     transform: `scale(${iframeScale})`,
                   }
             }

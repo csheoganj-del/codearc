@@ -41,12 +41,15 @@ function liveModeForWork(id: string): WorkLiveMode {
 }
 
 /** Same-origin previews: live sites or looping brand logo animation */
+/** Cache-bust query so browsers/CDN never keep old credit-bearing previews */
+const PREVIEW_V = 'v5';
+
 function livePreviewSrc(id: string): string | undefined {
-  if (id === 'wild-jawai-safari') return '/work-proxy/jawai';
-  if (id === 'bros-bar') return '/work-proxy/brosbar';
-  if (id === 'deora-plaza') return '/work-proxy/deora';
-  if (id === 'theo-media') return '/work-proxy/theomedia';
-  if (id === 'codearc') return '/work-proxy/codearc';
+  if (id === 'wild-jawai-safari') return `/work-proxy/jawai?${PREVIEW_V}`;
+  if (id === 'bros-bar') return `/work-proxy/brosbar?${PREVIEW_V}`;
+  if (id === 'deora-plaza') return `/work-proxy/deora?${PREVIEW_V}`;
+  if (id === 'theo-media') return `/work-proxy/theomedia?${PREVIEW_V}`;
+  if (id === 'codearc') return `/work-proxy/codearc?${PREVIEW_V}`;
   return undefined;
 }
 
