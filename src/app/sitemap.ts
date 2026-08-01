@@ -3,9 +3,10 @@ import { servicesData } from '../data/services';
 import { listedBlogPosts } from '../data/blog';
 import { caseStudiesData } from '../data/case-studies';
 import { productsData } from '../data/products';
+import { site } from '../config/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://codearc.co.in';
+  const baseUrl = site.domain;
 
   const routes = [
     {

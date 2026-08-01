@@ -5,19 +5,45 @@
   background: #0b0c0b;
   opacity: 1;
   visibility: visible;
+  /* Keep interactive only while fully visible */
+  pointer-events: auto;
   transition:
     opacity 420ms ease,
     visibility 420ms ease;
+}
+
+/*
+ * CSS failsafe: if client JS never hydrates (common mobile failure mode),
+ * still hide the full-screen logo so the real site is usable.
+ * Delay = intro hold (~2.6s) + exit (~0.4s) + small buffer.
+ */
+.autoHide {
+  animation: brandIntroFailsafeHide 420ms ease 3200ms forwards;
 }
 
 .leaving {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  /* Let React-driven exit win when JS is healthy */
+  animation: none;
+}
+
+@keyframes brandIntroFailsafeHide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .overlay {
     transition-duration: 120ms;
+  }
+
+  .autoHide {
+    animation-delay: 400ms;
+    animation-duration: 120ms;
   }
 }

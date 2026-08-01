@@ -7,6 +7,8 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import { getProduct, productsData, productStatusClass, statusLabel } from '../../../data/products';
 import { plansForProduct } from '../../../data/pricing';
+import { site } from '../../../config/site';
+import { socialMetadata } from '../../../lib/seo';
 
 export const dynamicParams = false;
 
@@ -20,18 +22,20 @@ export async function generateMetadata(props: {
   const { slug } = await props.params;
   const product = getProduct(slug);
   if (!product) return {};
+  const url = `${site.domain}/products/${product.slug}`;
   return {
     title: product.metaTitle,
     description: product.metaDescription,
     alternates: {
-      canonical: `https://codearc.co.in/products/${product.slug}`,
+      canonical: url,
     },
-    openGraph: {
+    ...socialMetadata({
       title: `${product.metaTitle} | CodeArc`,
       description: product.metaDescription,
-      url: `https://codearc.co.in/products/${product.slug}`,
-      images: [{ url: product.image, alt: product.name }],
-    },
+      url,
+      imageUrl: product.image,
+      imageAlt: product.name,
+    }),
   };
 }
 

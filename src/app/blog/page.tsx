@@ -6,13 +6,22 @@ import Footer from '../../components/Footer';
 import { listedBlogPosts } from '../../data/blog';
 import { formatBlogDate } from '../../lib/dates';
 
+import { site } from '../../config/site';
+import { socialMetadata } from '../../lib/seo';
+
 export const metadata: Metadata = {
   title: 'Blog',
   description:
     'Notes from CodeArc on websites, cost, SEO, and building software without the jargon.',
   alternates: {
-    canonical: 'https://codearc.co.in/blog',
+    canonical: `${site.domain}/blog`,
   },
+  ...socialMetadata({
+    title: 'Blog | CodeArc',
+    description:
+      'Notes from CodeArc on websites, cost, SEO, and building software without the jargon.',
+    url: `${site.domain}/blog`,
+  }),
 };
 
 export default function BlogListingPage() {

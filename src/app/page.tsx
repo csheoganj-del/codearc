@@ -8,20 +8,21 @@ import ContactForm from '../components/ContactForm';
 import ProductPreview from '../components/ProductPreview';
 import { productsData, productStatusClass, statusLabel } from '../data/products';
 import { caseStudiesData } from '../data/case-studies';
+import { site } from '../config/site';
+import { socialMetadata } from '../lib/seo';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'CodeArc — websites, apps & RestroSuite',
+    absolute: site.seo.defaultTitle,
   },
-  description:
-    'CodeArc builds websites, apps and business tools from Rajasthan. Product family: RestroSuite, StaySuite, MediSuite.',
-  alternates: { canonical: 'https://codearc.co.in/' },
-  openGraph: {
-    url: 'https://codearc.co.in/',
-    title: 'CodeArc — websites, apps & RestroSuite',
+  description: site.seo.description,
+  alternates: { canonical: `${site.domain}/` },
+  ...socialMetadata({
+    title: site.seo.defaultTitle,
     description:
       'Small team in Rajasthan. Client work plus RestroSuite, StaySuite and MediSuite.',
-  },
+    url: `${site.domain}/`,
+  }),
 };
 
 /** Shipped work — cards open our case study pages */

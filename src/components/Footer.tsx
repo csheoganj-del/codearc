@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { site } from '../config/site';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -11,7 +12,8 @@ export default function Footer() {
           <Logo variant="light" />
           <p className="v2-footer-blurb">
             Small software team in Rajasthan. We build client projects and a few products
-            of our own — RestroSuite, StaySuite, MediSuite.
+            of our own — RestroSuite, StaySuite, MediSuite. Pricing on this site is in INR
+            for India.
           </p>
         </div>
 
@@ -33,18 +35,33 @@ export default function Footer() {
           </div>
           <div>
             <h3>Contact</h3>
-            <a href="mailto:hello@codearc.co.in">hello@codearc.co.in</a>
-            <a href="https://wa.me/919983721179" target="_blank" rel="noopener noreferrer">
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+            <a href={`tel:${site.phone.e164}`}>{site.phone.display}</a>
+            <a
+              href={`https://wa.me/${site.phone.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               WhatsApp
             </a>
-            <span>Rajasthan, India</span>
+            <span>{site.region.label}</span>
           </div>
         </div>
       </div>
 
       <div className="v2-footer-bottom">
-        <span>© {year} CodeArc</span>
+        <span>
+          © {year} {site.brand}
+        </span>
         <span className="v2-footer-legal">
+          <a
+            href={site.sister.domain}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={site.sister.blurb}
+          >
+            {site.sister.brand} ({site.sister.marketLabel})
+          </a>
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
         </span>

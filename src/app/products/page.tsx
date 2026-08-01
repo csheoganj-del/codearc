@@ -5,19 +5,21 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { productsData, productStatusClass, statusLabel } from '../../data/products';
+import { site } from '../../config/site';
+import { socialMetadata } from '../../lib/seo';
 
 export const metadata: Metadata = {
   title: 'Products',
   description:
     'CodeArc product family: RestroSuite (restaurant POS), StaySuite (hotel PMS), MediSuite (clinic / OPD).',
   alternates: {
-    canonical: 'https://codearc.co.in/products',
+    canonical: `${site.domain}/products`,
   },
-  openGraph: {
+  ...socialMetadata({
     title: 'Products | CodeArc',
     description: 'RestroSuite, StaySuite and MediSuite — vertical products from CodeArc.',
-    url: 'https://codearc.co.in/products',
-  },
+    url: `${site.domain}/products`,
+  }),
 };
 
 export default function ProductsPage() {

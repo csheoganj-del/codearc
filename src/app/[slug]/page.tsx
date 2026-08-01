@@ -15,6 +15,8 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import ContactForm from '../../components/ContactForm';
 import { servicesData, type ServiceIconName } from '../../data/services';
+import { site } from '../../config/site';
+import { socialMetadata } from '../../lib/seo';
 
 export const dynamicParams = false;
 
@@ -43,27 +45,24 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   if (!service) return {};
 
   const title = service.metaTitle.replace(/\s*\|\s*CodeArc\s*$/i, '');
+  const ogTitle = service.metaTitle.includes('CodeArc')
+    ? service.metaTitle
+    : `${service.title} | CodeArc`;
+  const url = `${site.domain}/${params.slug}`;
 
   return {
     title,
     description: service.metaDescription,
     keywords: service.keywords,
     alternates: {
-      canonical: `https://codearc.co.in/${params.slug}`,
+      canonical: url,
     },
-    openGraph: {
-      title: service.metaTitle.includes('CodeArc') ? service.metaTitle : `${service.title} | CodeArc`,
+    ...socialMetadata({
+      title: ogTitle,
       description: service.metaDescription,
-      url: `https://codearc.co.in/${params.slug}`,
-      images: [
-        {
-          url: '/brand/codearc-og.jpg',
-          width: 1200,
-          height: 630,
-          alt: `${service.title} | CodeArc`,
-        },
-      ],
-    },
+      url,
+      imageAlt: `${service.title} | CodeArc`,
+    }),
   };
 }
 

@@ -6,6 +6,8 @@ import Footer from '../../../components/Footer';
 import ContactForm from '../../../components/ContactForm';
 import { blogPosts } from '../../../data/blog';
 import { formatBlogDate } from '../../../lib/dates';
+import { site } from '../../../config/site';
+import { socialMetadata } from '../../../lib/seo';
 
 export const dynamicParams = false;
 
@@ -21,29 +23,24 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   if (!post) return {};
 
   const title = post.metaTitle.replace(/\s*\|\s*CodeArc\s*$/i, '');
+  const ogTitle = post.metaTitle.includes('CodeArc') ? post.metaTitle : `${post.title} | CodeArc`;
+  const url = `${site.domain}/blog/${params.slug}`;
 
   return {
     title,
     description: post.metaDescription,
     keywords: post.keywords,
     alternates: {
-      canonical: `https://codearc.co.in/blog/${params.slug}`,
+      canonical: url,
     },
-    openGraph: {
-      title: post.metaTitle.includes('CodeArc') ? post.metaTitle : `${post.title} | CodeArc`,
+    ...socialMetadata({
+      title: ogTitle,
       description: post.metaDescription,
+      url,
       type: 'article',
       publishedTime: post.date,
-      url: `https://codearc.co.in/blog/${params.slug}`,
-      images: [
-        {
-          url: '/brand/codearc-og.jpg',
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
-    },
+      imageAlt: post.title,
+    }),
   };
 }
 

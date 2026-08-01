@@ -5,6 +5,8 @@ import { Check, ExternalLink, ArrowLeft } from 'lucide-react';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import { caseStudiesData } from '../../../data/case-studies';
+import { site } from '../../../config/site';
+import { socialMetadata } from '../../../lib/seo';
 
 export const dynamicParams = false;
 
@@ -18,18 +20,20 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
   const params = await props.params;
   const study = caseStudiesData.find((s) => s.id === params.id);
   if (!study) return {};
+  const url = `${site.domain}/case-studies/${params.id}`;
   return {
     title: study.metaTitle,
     description: study.metaDescription,
     alternates: {
-      canonical: `https://codearc.co.in/case-studies/${params.id}`,
+      canonical: url,
     },
-    openGraph: {
+    ...socialMetadata({
       title: study.metaTitle,
       description: study.metaDescription,
-      url: `https://codearc.co.in/case-studies/${params.id}`,
-      images: [{ url: study.image, alt: study.title }],
-    },
+      url,
+      imageUrl: study.image,
+      imageAlt: study.title,
+    }),
   };
 }
 

@@ -2,13 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { site } from '../../config/site';
+import { socialMetadata } from '../../lib/seo';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'The terms for using the CodeArc website — written simply.',
   alternates: {
-    canonical: 'https://codearc.co.in/terms',
+    canonical: `${site.domain}/terms`,
   },
+  ...socialMetadata({
+    title: 'Terms of Service | CodeArc',
+    description: 'The terms for using the CodeArc website — written simply.',
+    url: `${site.domain}/terms`,
+  }),
 };
 
 export default function TermsPage() {

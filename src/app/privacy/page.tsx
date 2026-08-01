@@ -2,13 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { site } from '../../config/site';
+import { socialMetadata } from '../../lib/seo';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'How CodeArc handles your information — explained in plain English.',
   alternates: {
-    canonical: 'https://codearc.co.in/privacy',
+    canonical: `${site.domain}/privacy`,
   },
+  ...socialMetadata({
+    title: 'Privacy Policy | CodeArc',
+    description: 'How CodeArc handles your information — explained in plain English.',
+    url: `${site.domain}/privacy`,
+  }),
 };
 
 export default function PrivacyPage() {

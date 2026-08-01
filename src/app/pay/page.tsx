@@ -5,17 +5,19 @@ import Footer from '../../components/Footer';
 import PayPlans from '../../components/PayPlans';
 import { getPaymentPlan } from '../../data/pricing';
 import { isPaymentConfigured } from '../../lib/razorpay';
+import { site } from '../../config/site';
+import { socialMetadata } from '../../lib/seo';
 
 export const metadata: Metadata = {
   title: 'Pay',
   description:
     'Pay for CodeArc products and project deposits securely with Razorpay — RestroSuite, StaySuite, MediSuite and custom work.',
-  alternates: { canonical: 'https://codearc.co.in/pay' },
-  openGraph: {
+  alternates: { canonical: `${site.domain}/pay` },
+  ...socialMetadata({
     title: 'Pay | CodeArc',
     description: 'Secure online payment for CodeArc SaaS products and project deposits.',
-    url: 'https://codearc.co.in/pay',
-  },
+    url: `${site.domain}/pay`,
+  }),
 };
 
 export default async function PayPage(props: {
