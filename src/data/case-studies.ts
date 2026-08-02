@@ -62,13 +62,47 @@ export const caseStudiesData: CaseStudy[] = [
   },
   {
     id: 'wild-jawai-safari',
+    title: 'Wild Jawai',
+    subtitle: 'Cinematic leopard brand experience',
+    metaTitle: 'Wild Jawai — land of leopards brand site',
+    metaDescription:
+      'Wild Jawai: cinematic brand website for the land of leopards — walking leopard hero, granite sky story and safari booking — built by CodeArc.',
+    description:
+      'A cinematic brand site for Wild Jawai — leopard on the granite sky, slow scroll storytelling and a clear path to book a safari.',
+    url: 'https://wild-jawai-safari.vercel.app',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'client',
+    statusLabel: 'Live site',
+    tags: ['Tourism', 'Brand', 'Cinematic', 'Rajasthan'],
+    features: [
+      'Walking leopard hero sequence',
+      'Cinematic scroll storytelling',
+      'Safari booking CTA',
+      'Mobile-friendly motion layout',
+    ],
+    image: '/assets/wild_jawai_live.webp',
+    challenge:
+      'A Jawai brand needed a first impression that felt wild and premium — not a stock tourism brochure.',
+    research:
+      'Guests remember the landscape and the leopard; the site had to lead with motion and place, then invite booking.',
+    designProcess:
+      'Bone-white sky canvas, full-bleed leopard walk, typography-led sections and a quiet booking path.',
+    techStackDetails:
+      'Lightweight marketing site with cinematic hero media and smooth scroll.',
+    performanceImprovements:
+      'Hero frames and assets tuned so motion stays smooth on mobile networks.',
+    results: 'Live at wild-jawai-safari.vercel.app as the brand flagship experience.',
+  },
+  {
+    id: 'wild-jawai',
     title: 'Wild Jawai Safari',
-    subtitle: 'Leopard safari & Jawai tourism site',
+    subtitle: 'Safari tours & guest enquiry site',
     metaTitle: 'Wild Jawai Safari — tourism website',
     metaDescription:
       'Wild Jawai Safari: website for leopard safaris, dam trips and stays in Jawai, Rajasthan — built by CodeArc.',
     description:
-      'A premium tourism site for Jawai leopard safaris, dam experiences, Rabari culture and guest enquiries.',
+      'A practical tourism site for Jawai leopard safaris, dam experiences, Rabari culture and guest enquiries.',
     url: 'https://wild-jawai.vercel.app',
     isExternal: true,
     creator: 'codearc',
@@ -81,7 +115,7 @@ export const caseStudiesData: CaseStudy[] = [
       'Photo-led Jawai storytelling',
       'Mobile-friendly layout',
     ],
-    image: '/assets/wild_jawai_live.webp',
+    image: '/assets/wild_jawai_safari_live.webp',
     challenge:
       'Guests needed a clear path from “I want to see leopards” to a real enquiry, without a cluttered brochure site.',
     research:
@@ -89,10 +123,10 @@ export const caseStudiesData: CaseStudy[] = [
     designProcess:
       'Strong hero media, short sections, obvious contact — built for phones first.',
     techStackDetails:
-      'Fast marketing website with enquiry form and structured tour pages.',
+      'Next.js marketing website with enquiry form and structured tour pages.',
     performanceImprovements:
       'Images and pages tuned so the site loads cleanly on mobile networks.',
-    results: 'Live and open to guests for safari enquiries.',
+    results: 'Live at wild-jawai.vercel.app for safari enquiries.',
   },
   {
     id: 'leopard-trails',

@@ -35,6 +35,7 @@ function isFullSitePreview(src?: string): boolean {
   if (!src) return false;
   return (
     src.includes('/work-proxy/jawai') ||
+    src.includes('/work-proxy/wildjawai') ||
     src.includes('/work-proxy/leopardtrails')
   );
 }
