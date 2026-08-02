@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 function liveModeForWork(id: string): WorkLiveMode {
   if (
     id === 'wild-jawai-safari' ||
+    id === 'leopard-trails' ||
     id === 'bros-bar' ||
     id === 'deora-plaza' ||
     id === 'theo-media' ||
@@ -42,10 +43,11 @@ function liveModeForWork(id: string): WorkLiveMode {
 
 /** Same-origin previews: live sites or looping brand logo animation */
 /** Cache-bust query so browsers/CDN never keep old credit-bearing previews */
-const PREVIEW_V = 'v6';
+const PREVIEW_V = 'v7';
 
 function livePreviewSrc(id: string): string | undefined {
   if (id === 'wild-jawai-safari') return `/work-proxy/jawai?${PREVIEW_V}`;
+  if (id === 'leopard-trails') return `/work-proxy/leopardtrails?${PREVIEW_V}`;
   if (id === 'bros-bar') return `/work-proxy/brosbar?${PREVIEW_V}`;
   if (id === 'deora-plaza') return `/work-proxy/deora?${PREVIEW_V}`;
   if (id === 'theo-media') return `/work-proxy/theomedia?${PREVIEW_V}`;
@@ -53,9 +55,10 @@ function livePreviewSrc(id: string): string | undefined {
   return undefined;
 }
 
-/** Preferred Work grid order (4 live cards) */
+/** Preferred Work grid order (live cards first) */
 const WORK_ORDER = [
   'wild-jawai-safari',
+  'leopard-trails',
   'bros-bar',
   'deora-plaza',
   'theo-media',
@@ -65,7 +68,7 @@ const WORK_ORDER = [
 /** Shipped work — cards open our case study pages */
 const work = WORK_ORDER.map((id) => caseStudiesData.find((c) => c.id === id))
   .filter((c): c is (typeof caseStudiesData)[number] => Boolean(c))
-  .slice(0, 4)
+  .slice(0, 5)
   .map((c) => ({
     id: c.id,
     title: c.title,
@@ -218,7 +221,7 @@ export default function Home() {
             </div>
             <div className="v2-proof-item">
               <strong>Live projects</strong>
-              <span>Wild Jawai, Bro&apos;s Bar, Deora Plaza and TheoMedia</span>
+              <span>Wild Jawai, Leopard Trails, Bro&apos;s Bar, Deora Plaza and TheoMedia</span>
             </div>
           </div>
         </section>
@@ -293,8 +296,8 @@ export default function Home() {
               <h2>Selected work.</h2>
             </div>
             <p className="v2-section-aside">
-              Four live builds — Wild Jawai, Bro&apos;s Bar, Deora Plaza and
-              TheoMedia. Previews move on their own; open a project for the full story.
+              Live builds — Wild Jawai, Leopard Trails, Bro&apos;s Bar, Deora Plaza
+              and TheoMedia. Previews move on their own; open a project for the full story.
             </p>
           </div>
 

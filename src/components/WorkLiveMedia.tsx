@@ -30,8 +30,13 @@ function isFillPreview(src?: string): boolean {
   );
 }
 
-function isJawaiPreview(src?: string): boolean {
-  return Boolean(src?.includes('/work-proxy/jawai'));
+/** Full live-site previews (scaled desktop canvas + auto-scroll proxy) */
+function isFullSitePreview(src?: string): boolean {
+  if (!src) return false;
+  return (
+    src.includes('/work-proxy/jawai') ||
+    src.includes('/work-proxy/leopardtrails')
+  );
 }
 
 export default function WorkLiveMedia({
@@ -51,7 +56,7 @@ export default function WorkLiveMedia({
   const [design, setDesign] = useState({ w: 1440, h: 900 });
 
   const fillMode = isFillPreview(iframeSrc);
-  const jawai = isJawaiPreview(iframeSrc);
+  const jawai = isFullSitePreview(iframeSrc);
   const isLive = liveMode === 'iframe' && !failed && Boolean(iframeSrc);
 
   // Mobile detection — never gate fill previews on IntersectionObserver alone

@@ -69,7 +69,7 @@ export const caseStudiesData: CaseStudy[] = [
       'Wild Jawai Safari: website for leopard safaris, dam trips and stays in Jawai, Rajasthan — built by CodeArc.',
     description:
       'A premium tourism site for Jawai leopard safaris, dam experiences, Rabari culture and guest enquiries.',
-    url: 'https://wild-jawai-safari.vercel.app',
+    url: 'https://wild-jawai.vercel.app',
     isExternal: true,
     creator: 'codearc',
     kind: 'client',
@@ -93,6 +93,40 @@ export const caseStudiesData: CaseStudy[] = [
     performanceImprovements:
       'Images and pages tuned so the site loads cleanly on mobile networks.',
     results: 'Live and open to guests for safari enquiries.',
+  },
+  {
+    id: 'leopard-trails',
+    title: 'Leopard Trails',
+    subtitle: 'Ultra-luxury Jawai leopard safari resort',
+    metaTitle: 'Leopard Trails — luxury safari resort website',
+    metaDescription:
+      'Leopard Trails Jawai: ultra-luxury leopard safari resort website with suites, expeditions and reservations — built by CodeArc.',
+    description:
+      'A cinematic luxury resort site for Leopard Trails Jawai — granite-hill safaris, plunge-pool suites, bush dining and concierge booking.',
+    url: 'https://leopardtrails.vercel.app',
+    isExternal: true,
+    creator: 'codearc',
+    kind: 'client',
+    statusLabel: 'Live site',
+    tags: ['Tourism', 'Luxury', 'Resort', 'Rajasthan'],
+    features: [
+      'Luxury suite storytelling',
+      'Safari & expedition pages',
+      'Reservation / concierge flow',
+      'Photo-led wilderness brand',
+    ],
+    image: '/assets/leopard_trails_live.png',
+    challenge:
+      'A high-end Jawai resort needed a brand site that felt exclusive — not a generic hotel template.',
+    research:
+      'Guests book on feeling and clarity: suites, safaris, dining, and how to reach the outpost.',
+    designProcess:
+      'Dark luxury palette, full-bleed wilderness media, clear paths to reserve and explore.',
+    techStackDetails:
+      'Marketing site with multi-page resort content and reservation request flow.',
+    performanceImprovements:
+      'Hero and gallery assets tuned for mobile while keeping a cinematic desktop feel.',
+    results: 'Live at leopardtrails.vercel.app for resort and safari enquiries.',
   },
   {
     id: 'bros-bar',

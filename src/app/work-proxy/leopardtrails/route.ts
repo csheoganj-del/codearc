@@ -1,12 +1,12 @@
 /**
- * Same-origin live preview of Wild Jawai with slow auto-scroll.
+ * Same-origin live preview of Leopard Trails Jawai with slow auto-scroll.
  * Served without the main-site CSP so GSAP/Lenis/CDN assets can load.
  */
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const UPSTREAM = 'https://wild-jawai.vercel.app/';
+const UPSTREAM = 'https://leopardtrails.vercel.app/';
 
 const AUTO_SCROLL = `
 <script id="codearc-work-autoscroll">
@@ -119,7 +119,7 @@ export async function GET() {
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'proxy failed';
-    return new Response(`Wild Jawai preview unavailable: ${message}`, {
+    return new Response(`Leopard Trails preview unavailable: ${message}`, {
       status: 502,
     });
   }
