@@ -115,7 +115,8 @@ export const caseStudiesData: CaseStudy[] = [
       'Photo-led Jawai storytelling',
       'Mobile-friendly layout',
     ],
-    image: '/assets/wild_jawai_safari_live.webp',
+    // Homepage hero (above the fold) — static card preview, no iframe animation
+    image: '/assets/wild_jawai_safari_live.jpg',
     challenge:
       'Guests needed a clear path from “I want to see leopards” to a real enquiry, without a cluttered brochure site.',
     research:

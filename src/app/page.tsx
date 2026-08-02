@@ -28,9 +28,9 @@ export const metadata: Metadata = {
 };
 
 function liveModeForWork(id: string): WorkLiveMode {
+  // wild-jawai: static homepage hero only (Next.js live proxy is unreliable in cards)
   if (
     id === 'wild-jawai-safari' ||
-    id === 'wild-jawai' ||
     id === 'leopard-trails' ||
     id === 'bros-bar' ||
     id === 'deora-plaza' ||
@@ -44,11 +44,10 @@ function liveModeForWork(id: string): WorkLiveMode {
 
 /** Same-origin previews: live sites or looping brand logo animation */
 /** Cache-bust query so browsers/CDN never keep old credit-bearing previews */
-const PREVIEW_V = 'v8';
+const PREVIEW_V = 'v9';
 
 function livePreviewSrc(id: string): string | undefined {
   if (id === 'wild-jawai-safari') return `/work-proxy/jawai?${PREVIEW_V}`;
-  if (id === 'wild-jawai') return `/work-proxy/wildjawai?${PREVIEW_V}`;
   if (id === 'leopard-trails') return `/work-proxy/leopardtrails?${PREVIEW_V}`;
   if (id === 'bros-bar') return `/work-proxy/brosbar?${PREVIEW_V}`;
   if (id === 'deora-plaza') return `/work-proxy/deora?${PREVIEW_V}`;
