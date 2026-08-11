@@ -149,11 +149,12 @@ export default function PayPlans({ initialPlanId, paymentsAvailable = true }: Pa
           <a href="mailto:hello@codearc.co.in" style={{ color: 'rgba(243,240,232,0.75)' }}>
             hello@codearc.co.in
           </a>{' '}
-          if you need help with activation. Prefer a custom quote?{' '}
+          if you need help with activation. Custom website or project payment? Use your written
+          quotation milestones —{' '}
           <Link href="/#contact" style={{ color: 'rgba(243,240,232,0.75)' }}>
-            Write to us
-          </Link>
-          .
+            write to us
+          </Link>{' '}
+          for an invoice or private payment link.
         </p>
       </div>
     </div>

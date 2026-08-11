@@ -54,16 +54,9 @@ export const paymentPlans: PaymentPlan[] = [
     badge: 'Building',
     buttonLabel: 'Pay early access',
   },
-  {
-    id: 'project-deposit',
-    name: 'Custom project deposit',
-    blurb: 'Partial payment to start a website, web app or custom build.',
-    amountPaise: 500000,
-    currency: 'INR',
-    product: 'studio',
-    badge: 'Client work',
-    buttonLabel: 'Pay deposit',
-  },
+  // Custom websites / client projects are not listed here as a fixed deposit.
+  // Advances follow the written quotation (e.g. 40% / 30% / 30%) and are collected
+  // via invoice, bank transfer, or a private payment link — not a generic checkout card.
 ];
 
 export function getPaymentPlan(id: string | undefined | null): PaymentPlan | undefined {

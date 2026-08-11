@@ -11,11 +11,11 @@ import { socialMetadata } from '../../lib/seo';
 export const metadata: Metadata = {
   title: 'Pay',
   description:
-    'Pay for CodeArc products and project deposits securely with Razorpay — RestroSuite, StaySuite, MediSuite and custom work.',
+    'Pay for CodeArc products securely with Razorpay — RestroSuite, StaySuite and MediSuite setup or early access.',
   alternates: { canonical: `${site.domain}/pay` },
   ...socialMetadata({
     title: 'Pay | CodeArc',
-    description: 'Secure online payment for CodeArc SaaS products and project deposits.',
+    description: 'Secure online payment for CodeArc SaaS products and early access plans.',
     url: `${site.domain}/pay`,
   }),
 };
@@ -43,15 +43,19 @@ export default async function PayPage(props: {
             Pay online. <em>Simply.</em>
           </h1>
           <p className="v2-inner-lede">
-            Choose a product plan, early-access fee, or project deposit. Payments are processed
-            securely through Razorpay.
+            Choose a product setup or early-access plan. Payments are processed securely through
+            Razorpay. Custom website and project advances follow your written quotation (milestone
+            payments) — contact us for an invoice or private payment link.
           </p>
           <div className="v2-inline-actions">
             <Link className="v2-btn v2-btn-ghost" href="/products">
               Browse products
             </Link>
-            <a className="v2-btn v2-btn-ghost" href="mailto:hello@codearc.co.in?subject=Payment question">
-              Need a custom amount?
+            <a
+              className="v2-btn v2-btn-ghost"
+              href="mailto:hello@codearc.co.in?subject=Custom%20project%20payment"
+            >
+              Custom project payment
             </a>
           </div>
         </section>

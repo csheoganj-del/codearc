@@ -69,21 +69,27 @@ export default function TermsPage() {
             <h2>Online payments</h2>
             <p>
               Prices shown at checkout are in Indian rupees and identify the selected product,
-              onboarding fee, subscription start, early-access fee, or project deposit. Payments
-              are processed by Razorpay. A successful payment confirms receipt of funds; delivery,
-              onboarding, access, scope, and timing remain subject to the description shown at
-              checkout and any written quote or product agreement.
+              onboarding fee, subscription start, or early-access fee. Payments are processed by
+              Razorpay. A successful payment confirms receipt of funds; delivery, onboarding,
+              access, scope, and timing remain subject to the description shown at checkout and any
+              written quote or product agreement.
+            </p>
+            <p>
+              Custom websites and client projects are not sold as a fixed online deposit. Advances
+              and milestone payments (for example 40% kickoff / 30% design approval / 30% before
+              go-live) follow the accepted written quotation and are collected via invoice, bank
+              transfer, or a private payment link we issue for the agreed amount.
             </p>
 
             <h2>Cancellations and refunds</h2>
             <p>
               Duplicate or incorrect charges should be reported within seven days. Setup and
               early-access payments may be cancelled for a full refund before onboarding, access,
-              or reserved work begins. For custom-project deposits, any refund after work begins is
-              limited to the undelivered portion after completed work and committed third-party
-              costs are deducted. Approved refunds are returned to the original payment method and
-              may take the payment provider&apos;s standard processing time. These terms do not
-              limit rights that cannot legally be excluded.
+              or reserved work begins. For custom-project milestone payments under a written quote,
+              any refund after work begins is limited to the undelivered portion after completed
+              work and committed third-party costs are deducted. Approved refunds are returned to
+              the original payment method and may take the payment provider&apos;s standard
+              processing time. These terms do not limit rights that cannot legally be excluded.
             </p>
 
             <h2>Payment support</h2>
