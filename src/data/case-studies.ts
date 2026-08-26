@@ -69,7 +69,7 @@ export const caseStudiesData: CaseStudy[] = [
       'Wild Jawai: cinematic brand website for the land of leopards — walking leopard hero, granite sky story and safari booking — built by CodeArc.',
     description:
       'A cinematic brand site for Wild Jawai — leopard on the granite sky, slow scroll storytelling and a clear path to book a safari.',
-    url: 'https://wild-jawai-safari.vercel.app',
+    url: 'https://wildjawai.in/',
     isExternal: true,
     creator: 'codearc',
     kind: 'client',
@@ -92,7 +92,7 @@ export const caseStudiesData: CaseStudy[] = [
       'Lightweight marketing site with cinematic hero media and smooth scroll.',
     performanceImprovements:
       'Hero frames and assets tuned so motion stays smooth on mobile networks.',
-    results: 'Live at wild-jawai-safari.vercel.app as the brand flagship experience.',
+    results: 'Live at wildjawai.in as the brand flagship experience.',
   },
   {
     id: 'wild-jawai',

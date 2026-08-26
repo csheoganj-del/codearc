@@ -6,7 +6,7 @@
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const UPSTREAM = 'https://wild-jawai-safari.vercel.app/';
+const UPSTREAM = 'https://wildjawai.in/';
 
 const AUTO_SCROLL = `
 <script id="codearc-work-autoscroll">
