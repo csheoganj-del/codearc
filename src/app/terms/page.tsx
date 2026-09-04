@@ -63,16 +63,16 @@ export default function TermsPage() {
             <p>
               This website is an introduction, not a contract. Custom software projects and product
               access (including suites such as RestroSuite) are governed by separate written
-              agreements covering scope, timeline, pricing and support in plain English.
+              agreements covering scope, timeline, quotation and support in plain English.
             </p>
 
-            <h2>Online payments</h2>
+            <h2>Invoices and payments</h2>
             <p>
-              Prices shown at checkout are in Indian rupees and identify the selected product,
-              onboarding fee, subscription start, or early-access fee. Payments are processed by
-              Razorpay. A successful payment confirms receipt of funds; delivery, onboarding,
-              access, scope, and timing remain subject to the description shown at checkout and any
-              written quote or product agreement.
+              All formal quotations, invoices, and private payment links are issued in Indian rupees
+              and identify the agreed scope, onboarding, or service milestones. When payments are
+              processed securely via Razorpay or direct bank transfer, a successful transaction
+              confirms receipt of funds; delivery, onboarding, access, scope, and timing remain
+              subject to the accepted quotation and product agreement.
             </p>
             <p>
               Custom websites and client projects are not sold as a fixed online deposit. Advances
@@ -84,7 +84,7 @@ export default function TermsPage() {
             <h2>Cancellations and refunds</h2>
             <p>
               Duplicate or incorrect charges should be reported within seven days. Setup and
-              early-access payments may be cancelled for a full refund before onboarding, access,
+              early-access fees may be cancelled for a full refund before onboarding, access,
               or reserved work begins. For custom-project milestone payments under a written quote,
               any refund after work begins is limited to the undelivered portion after completed
               work and committed third-party costs are deducted. Approved refunds are returned to

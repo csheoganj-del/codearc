@@ -96,11 +96,11 @@ export default async function ProductDetailPage(props: {
                 )}
                 {primaryPayPlan ? (
                   <Link className="v2-btn v2-btn-ghost" href={`/pay?plan=${primaryPayPlan.id}`}>
-                    Pay for {product.name}
+                    Price enquiry
                   </Link>
                 ) : (
                   <Link className="v2-btn v2-btn-ghost" href="/pay">
-                    Pay online
+                    Price enquiry
                   </Link>
                 )}
                 <a className="v2-btn v2-btn-ghost" href="mailto:hello@codearc.co.in">
@@ -175,16 +175,16 @@ export default async function ProductDetailPage(props: {
               </div>
               {primaryPayPlan ? (
                 <div className="v2-aside-panel">
-                  <h3>Pay online</h3>
+                  <h3>Pricing & enquiry</h3>
                   <p style={{ marginBottom: 12 }}>
-                    Setup and plan payments via Razorpay on codearc.co.in.
+                    Get tailored pricing, onboarding timeline, and demo access for {product.name}.
                   </p>
                   <Link
                     className="v2-btn v2-btn-primary"
                     href={`/pay?plan=${primaryPayPlan.id}`}
                     style={{ display: 'inline-flex' }}
                   >
-                    Pay for {product.name} <ArrowRight size={16} />
+                    Price enquiry <ArrowRight size={16} />
                   </Link>
                 </div>
               ) : null}
@@ -239,7 +239,7 @@ export default async function ProductDetailPage(props: {
                   className="v2-btn v2-btn-ghost-light"
                   href={`/pay?plan=${primaryPayPlan.id}`}
                 >
-                  Pay for {product.name}
+                  Price enquiry
                 </Link>
               ) : null}
               <a

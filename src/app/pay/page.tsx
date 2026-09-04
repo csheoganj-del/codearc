@@ -9,13 +9,13 @@ import { site } from '../../config/site';
 import { socialMetadata } from '../../lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Pay',
+  title: 'Price Enquiry & Plans',
   description:
-    'Pay for CodeArc products securely with Razorpay — RestroSuite, StaySuite and MediSuite setup or early access.',
+    'Enquire about pricing and onboarding for CodeArc products — RestroSuite, StaySuite, and MediSuite, or request a custom project quote.',
   alternates: { canonical: `${site.domain}/pay` },
   ...socialMetadata({
-    title: 'Pay | CodeArc',
-    description: 'Secure online payment for CodeArc SaaS products and early access plans.',
+    title: 'Price Enquiry & Plans | CodeArc',
+    description: 'Enquire about pricing and onboarding for CodeArc products or request a custom proposal.',
     url: `${site.domain}/pay`,
   }),
 };
@@ -36,16 +36,14 @@ export default async function PayPage(props: {
           <p className="v2-crumb">
             <Link href="/">Home</Link>
             <span>/</span>
-            <span>Pay</span>
+            <span>Pricing</span>
           </p>
-          <p className="v2-kicker">Secure checkout</p>
+          <p className="v2-kicker">Plans & proposals</p>
           <h1>
-            Pay online. <em>Simply.</em>
+            Price enquiry. <em>Tailored to your needs.</em>
           </h1>
           <p className="v2-inner-lede">
-            Choose a product setup or early-access plan. Payments are processed securely through
-            Razorpay. Custom website and project advances follow your written quotation (milestone
-            payments) — contact us for an invoice or private payment link.
+            Explore our software products or ask for tailored pricing and onboarding. Every business is unique — we provide clear quotations, transparent deliverables, and responsive support.
           </p>
           <div className="v2-inline-actions">
             <Link className="v2-btn v2-btn-ghost" href="/products">
@@ -53,9 +51,9 @@ export default async function PayPage(props: {
             </Link>
             <a
               className="v2-btn v2-btn-ghost"
-              href="mailto:hello@codearc.co.in?subject=Custom%20project%20payment"
+              href="mailto:hello@codearc.co.in?subject=Custom%20project%20enquiry"
             >
-              Custom project payment
+              Custom project enquiry
             </a>
           </div>
         </section>
@@ -67,21 +65,19 @@ export default async function PayPage(props: {
         <section className="v2-section v2-section-tight">
           <div className="v2-grid-2">
             <div className="v2-card v2-card-static v2-card-body">
-              <h3 style={{ marginTop: 0 }}>What happens after you pay</h3>
+              <h3 style={{ marginTop: 0 }}>How enquiry & onboarding works</h3>
               <p style={{ color: 'rgba(243,240,232,0.62)', lineHeight: 1.55, margin: 0 }}>
-                Razorpay issues a receipt and we verify the selected plan, amount, and payment
-                status directly. We&apos;ll then activate the product or contact you to schedule
-                onboarding or project kickoff.
+                Once you send an enquiry via WhatsApp or email, we discuss your setup, demonstrate the product or walk through scope, and send a transparent quotation tailored to your outlets or users.
               </p>
             </div>
             <div className="v2-card v2-card-static v2-card-body">
-              <h3 style={{ marginTop: 0 }}>Need help?</h3>
+              <h3 style={{ marginTop: 0 }}>Need a custom proposal?</h3>
               <p style={{ color: 'rgba(243,240,232,0.62)', lineHeight: 1.55, margin: 0 }}>
-                Questions about a plan, invoice, or custom quote? Write to{' '}
+                Questions about a custom website, portal, or bespoke SaaS tool? Write to{' '}
                 <a href="mailto:hello@codearc.co.in" style={{ color: 'rgba(243,240,232,0.85)' }}>
                   hello@codearc.co.in
                 </a>{' '}
-                or WhatsApp +91 99837 21179 — we’ll reply quickly.
+                or WhatsApp +91 99837 21179 — we’ll reply promptly.
               </p>
             </div>
           </div>

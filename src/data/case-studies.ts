@@ -229,7 +229,7 @@ export const caseStudiesData: CaseStudy[] = [
     metaDescription:
       'TheoMedia is CodeArc’s UK, Ireland and Europe branch — websites, apps and the same product family for international clients.',
     description:
-      'Our sister brand for UK, Ireland and Europe. Same studio DNA — websites, apps, RestroSuite and more — with local contact and pricing.',
+      'Our sister brand for UK, Ireland and Europe. Same studio DNA — websites, apps, RestroSuite and more — with local contact and consultations.',
     url: 'https://www.theomedia.co.uk',
     isExternal: true,
     creator: 'codearc',
@@ -239,7 +239,7 @@ export const caseStudiesData: CaseStudy[] = [
     features: ['UK / EU market site', 'Local contact & currency', 'Shared product family'],
     image: '/assets/theo_live.png',
     challenge:
-      'International clients needed a clear CodeArc-family presence without India-only contact and INR pricing.',
+      'International clients needed a clear CodeArc-family presence with direct UK & Europe contact channels.',
     research:
       'Sister-brand sites work when the story stays consistent and the market details (phone, currency, legal) are local.',
     designProcess:

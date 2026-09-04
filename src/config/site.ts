@@ -73,7 +73,7 @@ export const site = {
     brand: 'TheoMedia',
     domain: 'https://theomedia.co.uk',
     marketLabel: 'UK, Ireland & Europe',
-    blurb: 'Outside India? Visit our UK / Europe branch for local contact and pricing.',
+    blurb: 'Outside India? Visit our UK / Europe branch for local contact and enquiries.',
   },
 
   productHosts: {

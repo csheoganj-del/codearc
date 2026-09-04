@@ -12,8 +12,7 @@ export default function Footer() {
           <Logo variant="light" />
           <p className="v2-footer-blurb">
             Small software team in Rajasthan. We build client projects and a few products
-            of our own — RestroSuite, StaySuite, MediSuite. Pricing on this site is in INR
-            for India.
+            of our own — RestroSuite, StaySuite, MediSuite. Enquiries and custom proposals welcome across India.
           </p>
         </div>
 
@@ -31,7 +30,7 @@ export default function Footer() {
             <Link href="/#build">Services</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/website-design">Website design</Link>
-            <Link href="/pay">Pay online</Link>
+            <Link href="/pay">Price enquiry</Link>
           </div>
           <div>
             <h3>Contact</h3>

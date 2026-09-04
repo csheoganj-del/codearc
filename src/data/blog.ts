@@ -68,47 +68,51 @@ export const blogPosts: BlogPost[] = [
       },
       {
         question: 'Is it bad if a web design agency uses templates?',
-        answer: 'It is only bad if they sell them as premium, custom-built sites and charge custom prices while neglecting basic quality control.'
+        answer: 'It is only bad if they sell them as premium, custom-built sites and charge custom rates while neglecting basic quality control.'
       }
     ]
   },
   {
     slug: 'cost-of-website-development-in-india-2026',
-    title: 'Cost of Website Development in India 2026: The Complete Guide',
-    excerpt: 'How much does it cost to build a website in India in 2026? We break down prices for single-pages, custom business systems, ecommerce stores, and ongoing maintenance.',
+    title: 'Website Development Scope & Quotation Guide India: The Complete Guide',
+    excerpt: 'Planning a new website or web application? We break down the key factors influencing scope, tech stack, maintenance, and how to get an accurate proposal for your business.',
     date: '2026-06-10',
     author: 'CodeArc Team',
     readTime: '8 min read',
     category: 'Business',
-    metaTitle: 'Cost of Website Development in India 2026 | Web Price Guide',
-    metaDescription: 'Discover the real cost of website development in India for 2026. We break down prices for small business sites, custom web apps, ecommerce stores, and agency rates.',
-    keywords: ['Cost of Website Development in India 2026', 'Website Development Cost', 'Web Design Price India', 'Small Business Website Cost'],
+    metaTitle: 'Website Development Scope & Quotation Guide India | CodeArc',
+    metaDescription: 'Learn how website development scope is determined in India. Understand requirements for small business sites, custom web apps, and ecommerce before requesting a quote.',
+    keywords: ['Website Development Scope India', 'Website Quotation Guide', 'Custom Web Design India', 'Website Price Enquiry'],
     sections: [
       {
-        title: 'Introduction to Web Pricing in 2026',
-        content: 'As we navigate 2026, a website is no longer just a digital business card; it is the central nervous system of your business growth. If you are an entrepreneur or marketing manager in India, one of the first questions you will ask is: "How much does it cost to build a website?" The short answer is that website development costs in India can range from ₹15,000 to ₹5,00,000+ depending on the complexity, technology stack, and whether you hire a freelance developer or a professional agency. In this comprehensive guide, we will break down every cost item to help you make an informed decision.',
+        title: 'Understanding Web Project Scope in 2026',
+        content: 'As we navigate 2026, a website is no longer just a digital business card; it is the central nervous system of your business growth. When planning your investment, the most important question is: "What does my specific business model actually require?" Project investments vary significantly based on functional complexity, integrations, custom UI/UX, and technical infrastructure. In this guide, we break down each tier to help you assess your needs before requesting a tailored quotation.',
       },
       {
-        title: 'Classification of Website Types and Cost Breakdown',
-        content: 'To understand pricing, we must categorize websites based on their functionality and design complexity:\n\n1. Single Landing Pages: Best for lead generation ads. Costs typically range from ₹10,000 to ₹25,000.\n2. Small Business Websites: 5 to 10 page standard sites presenting services. Costs range from ₹20,000 to ₹50,000.\n3. Custom Web Applications: Dynamic portals with user logins and database operations. Costs range from ₹1,00,000 to ₹3,50,000+.\n4. E-commerce Online Stores: Fully featured carts, checkout, and inventory integrations. Costs range from ₹60,000 to ₹2,00,000.',
+        title: 'Classification of Website Types and Scope Breakdown',
+        content: 'To understand project scope and obtain an accurate quote, websites are best categorized by their core functionality:\n\n1. Single Landing Pages: Built for direct response campaigns and lead generation ads. Focused on rapid load times, conversion architecture, and clear calls to action.\n2. Small Business Websites: 5 to 10 page structured websites presenting services, team credentials, customer testimonials, and localized SEO.\n3. Custom Web Applications: Dynamic portals with role-based user logins, database operations, automated workflows, and internal tooling.\n4. E-commerce Online Stores: Catalogs with product variants, inventory tracking, secure checkout integrations, and automated order notifications.',
       },
       {
-        title: 'The Hidden Costs: Domains, Hosting, and SSLs',
-        content: 'Beyond code development, a running site requires structural hosting: Domain registration costs roughly ₹800 to ₹2,000 per year. Hosting can vary widely, from shared hosting (₹3,000/year) to high-speed cloud hosting on platforms like Vercel or AWS (which start free but scale with user traffic). Security certificates (SSLs) are critical for SEO and security. While many hosts supply SSLs free, enterprise levels cost extra.',
+        title: 'Infrastructure Requirements: Domains, Hosting, and Security',
+        content: 'Beyond design and development, every live application requires structural infrastructure: domain registration, scalable cloud hosting (such as Vercel, AWS, or Cloudflare), and SSL encryption. Modern cloud hosting can often start on generous tiers and scale cleanly as user traffic expands, keeping fixed overhead predictable.',
       },
       {
         title: 'Agency vs. Freelancer: Which is Right for You?',
-        content: 'While hiring a freelancer might save upfront capital, it comes with risks regarding availability, project delays, and quality assurance. A structured agency like CodeArc provides dedicated designers, developers, and ongoing support. This ensures your project is delivered on time, works perfectly on mobile devices, and is optimized for search engines from day one.',
+        content: 'While hiring an individual freelancer might suit smaller experiments, business-critical projects benefit from structured engineering standards. At CodeArc, we assign dedicated designers and developers with transparent milestone delivery, complete code ownership, and responsive ongoing support.',
       },
     ],
     faqs: [
       {
-        question: 'Are there any hidden monthly fees for website hosting?',
-        answer: 'No hidden fees. Standard hosting is billed annually. At CodeArc, we outline all server and domain costs upfront, and many static projects can run on free tier cloud structures.',
+        question: 'How can I get an accurate price estimate for my project?',
+        answer: 'Simply send us a short summary of your requirements via email or WhatsApp. We review your scope, suggest the most efficient tech stack, and deliver a transparent written proposal.',
       },
       {
-        question: 'How much does it cost to maintain a website annually?',
-        answer: 'Annual maintenance typically runs between 10% to 20% of the initial development cost, covering server hosting, domain renewals, security updates, and content additions.',
+        question: 'Are there any hidden monthly fees for website hosting?',
+        answer: 'No hidden fees. All infrastructure and development milestones are outlined clearly in your written quotation before kickoff.',
+      },
+      {
+        question: 'How is ongoing maintenance handled?',
+        answer: 'Maintenance packages are tailored to your needs—covering security updates, server monitoring, backups, and regular content or feature enhancements.',
       },
     ],
   },

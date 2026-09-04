@@ -2,32 +2,41 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { MessageCircle, Mail } from 'lucide-react';
 import {
-  formatInrFromPaise,
   getPaymentPlan,
   paymentPlans,
   type PaymentPlan,
 } from '../data/pricing';
-import RazorpayCheckout from './RazorpayCheckout';
+import { site, whatsappUrl } from '../config/site';
 
 type PayPlansProps = {
   initialPlanId?: string;
   paymentsAvailable?: boolean;
 };
 
-export default function PayPlans({ initialPlanId, paymentsAvailable = true }: PayPlansProps) {
+export default function PayPlans({ initialPlanId }: PayPlansProps) {
   const defaultPlan =
     getPaymentPlan(initialPlanId) ||
     paymentPlans.find((p) => p.id === 'restrosuite-setup') ||
     paymentPlans[0];
 
   const [selectedId, setSelectedId] = useState(defaultPlan.id);
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const selected: PaymentPlan = useMemo(
     () => getPaymentPlan(selectedId) || defaultPlan,
     [selectedId, defaultPlan],
   );
+
+  const whatsappLink = whatsappUrl(
+    `Hi CodeArc, I would like to enquire about pricing and details for ${selected.name}.`,
+  );
+
+  const mailLink = `mailto:${site.email}?subject=${encodeURIComponent(
+    `Price enquiry: ${selected.name}`,
+  )}&body=${encodeURIComponent(
+    `Hi CodeArc team,\n\nI would like to enquire about pricing, onboarding and fit for ${selected.name}.\n\nBusiness name:\nLocation:\nRequirements:\n`,
+  )}`;
 
   return (
     <div className="v2-grid-2" style={{ alignItems: 'start', gap: 24 }}>
@@ -61,9 +70,16 @@ export default function PayPlans({ initialPlanId, paymentsAvailable = true }: Pa
                 }}
               >
                 <h3 style={{ margin: 0, fontSize: 17 }}>{plan.name}</h3>
-                <strong style={{ color: '#f3f0e8', whiteSpace: 'nowrap' }}>
-                  {formatInrFromPaise(plan.amountPaise)}
-                </strong>
+                <span
+                  style={{
+                    color: '#8fd4ad',
+                    fontSize: 13,
+                    fontWeight: 600,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  Price on enquiry
+                </span>
               </div>
               {plan.badge ? (
                 <span
@@ -83,79 +99,71 @@ export default function PayPlans({ initialPlanId, paymentsAvailable = true }: Pa
 
       <div className="v2-card v2-card-static" style={{ padding: '28px 24px', position: 'sticky', top: 96 }}>
         <p className="v2-kicker" style={{ marginBottom: 8 }}>
-          Checkout
+          Price enquiry & proposal
         </p>
         <h2 style={{ margin: '0 0 8px', fontSize: 22 }}>{selected.name}</h2>
-        <p style={{ margin: '0 0 6px', fontSize: 28, fontWeight: 750, color: '#f3f0e8' }}>
-          {formatInrFromPaise(selected.amountPaise)}
+        <p style={{ margin: '0 0 10px', fontSize: 20, fontWeight: 700, color: '#8fd4ad' }}>
+          Custom Quote / On Enquiry
         </p>
         <p style={{ margin: '0 0 20px', color: 'rgba(243,240,232,0.62)', lineHeight: 1.55 }}>
           {selected.blurb}
         </p>
 
-        <RazorpayCheckout
-          key={selected.id}
-          planId={selected.id}
-          amountPaise={selected.amountPaise}
-          description={selected.name}
-          buttonLabel={selected.buttonLabel}
-          disabled={!acceptedTerms || !paymentsAvailable}
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <a
+            className="v2-btn v2-btn-primary"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+          >
+            <MessageCircle size={18} /> Enquire on WhatsApp
+          </a>
 
-        {!paymentsAvailable ? (
-          <p role="status" className="v2-form-error" style={{ marginTop: 14 }}>
-            Online checkout is temporarily unavailable while secure payment webhooks are being
-            configured. Email hello@codearc.co.in and we&apos;ll help you directly.
-          </p>
-        ) : null}
-
-        <label
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 10,
-            marginTop: 14,
-            color: 'rgba(243,240,232,0.72)',
-            fontSize: 13,
-            lineHeight: 1.5,
-            cursor: 'pointer',
-          }}
-        >
-          <input
-            type="checkbox"
-            checked={acceptedTerms}
-            onChange={(event) => setAcceptedTerms(event.target.checked)}
-            style={{ width: 18, height: 18, marginTop: 1, accentColor: '#3d9b6a' }}
-          />
-          <span>
-            I agree to the{' '}
-            <Link href="/terms" style={{ color: '#8fd4ad', textDecoration: 'underline' }}>
-              payment, cancellation and refund terms
-            </Link>
-            .
-          </span>
-        </label>
+          <a
+            className="v2-btn v2-btn-ghost"
+            href={mailLink}
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+          >
+            <Mail size={18} /> Enquire via Email
+          </a>
+        </div>
 
         <p
           style={{
             margin: '18px 0 0',
             fontSize: 13,
-            color: 'rgba(243,240,232,0.5)',
+            color: 'rgba(243,240,232,0.55)',
             lineHeight: 1.5,
           }}
         >
-          Secure payment via Razorpay. We verify the amount and plan directly with Razorpay.
-          Keep the receipt for your records, and contact{' '}
-          <a href="mailto:hello@codearc.co.in" style={{ color: 'rgba(243,240,232,0.75)' }}>
-            hello@codearc.co.in
+          We will review your requirements and provide clear scope, onboarding timeline, and a written quotation.
+          Have questions? You can also reach us directly at{' '}
+          <a href={`mailto:${site.email}`} style={{ color: 'rgba(243,240,232,0.85)' }}>
+            {site.email}
           </a>{' '}
-          if you need help with activation. Custom website or project payment? Use your written
-          quotation milestones —{' '}
-          <Link href="/#contact" style={{ color: 'rgba(243,240,232,0.75)' }}>
-            write to us
-          </Link>{' '}
-          for an invoice or private payment link.
+          or call {site.phone.display}.
         </p>
+
+        <div
+          style={{
+            marginTop: 20,
+            paddingTop: 16,
+            borderTop: '1px solid rgba(243,240,232,0.08)',
+          }}
+        >
+          <h4 style={{ margin: '0 0 6px', fontSize: 13, color: '#f3f0e8', fontWeight: 600 }}>
+            Existing client or custom project payment?
+          </h4>
+          <p style={{ margin: 0, fontSize: 12, color: 'rgba(243,240,232,0.5)', lineHeight: 1.5 }}>
+            Milestone payments follow your accepted quotation. We issue direct invoices with bank details or private payment links for agreed amounts.
+          </p>
+          <div style={{ marginTop: 8 }}>
+            <Link href="/terms" style={{ color: '#8fd4ad', fontSize: 12, textDecoration: 'underline' }}>
+              View payment & terms policy
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
