@@ -73,7 +73,7 @@ export const blogPosts: BlogPost[] = [
     ]
   },
   {
-    slug: 'cost-of-website-development-in-india-2026',
+    slug: 'website-development-scope-guide-india-2026',
     title: 'Website Development Scope & Quotation Guide India: The Complete Guide',
     excerpt: 'Planning a new website or web application? We break down the key factors influencing scope, tech stack, maintenance, and how to get an accurate proposal for your business.',
     date: '2026-06-10',
@@ -82,7 +82,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Business',
     metaTitle: 'Website Development Scope & Quotation Guide India | CodeArc',
     metaDescription: 'Learn how website development scope is determined in India. Understand requirements for small business sites, custom web apps, and ecommerce before requesting a quote.',
-    keywords: ['Website Development Scope India', 'Website Quotation Guide', 'Custom Web Design India', 'Website Price Enquiry'],
+    keywords: ['Website Development Scope India', 'Website Quotation Guide', 'Custom Web Design India', 'Website Scope Planning'],
     sections: [
       {
         title: 'Understanding Web Project Scope in 2026',

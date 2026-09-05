@@ -54,6 +54,15 @@ const nextConfig: NextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog/cost-of-website-development-in-india-2026',
+        destination: '/blog/website-development-scope-guide-india-2026',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
