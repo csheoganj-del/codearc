@@ -1,9 +1,8 @@
 /**
- * CodeArc market profile — India branch.
- * TheoMedia (UK / Ireland / Europe) lives at theomedia.co.uk with its own market config.
+ * CodeArc market profile — India.
  */
 
-export type MarketId = 'IN' | 'GB';
+export type MarketId = 'IN';
 
 export const site = {
   market: 'IN' as const satisfies MarketId,
@@ -55,10 +54,10 @@ export const site = {
   },
 
   seo: {
-    defaultTitle: 'CodeArc — websites, apps & RestroSuite',
+    defaultTitle: 'CodeArc — Web Design & Business Software',
     titleTemplate: '%s | CodeArc',
     description:
-      'CodeArc builds websites, apps and business tools from Rajasthan. Product family: RestroSuite, StaySuite, MediSuite.',
+      'CodeArc designs distinctive websites and practical business software in Rajasthan. Products include RestroSuite, StaySuite, and MediSuite.',
     keywords: [
       'Web Development Company India',
       'Restaurant POS Software',
@@ -67,13 +66,6 @@ export const site = {
       'MediSuite',
       'Software company Rajasthan',
     ],
-  },
-
-  sister: {
-    brand: 'TheoMedia',
-    domain: 'https://theomedia.co.uk',
-    marketLabel: 'UK, Ireland & Europe',
-    blurb: 'Outside India? Visit our UK / Europe branch for local contact and enquiries.',
   },
 
   productHosts: {

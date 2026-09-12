@@ -14,7 +14,7 @@
   display: grid;
   place-items: center;
   padding: 0;
-  border: 1px solid rgba(243, 240, 232, 0.16);
+  border: 1px solid rgba(28, 24, 20, 0.16);
   border-radius: 50%;
   transition:
     transform 160ms ease,
@@ -25,7 +25,7 @@
 
 .action:hover {
   transform: translateY(-2px);
-  border-color: rgba(243, 240, 232, 0.32);
+  border-color: rgba(28, 24, 20, 0.35);
 }
 
 .icon {
@@ -42,8 +42,8 @@
 }
 
 .call {
-  color: #0b0c0b;
-  background: rgba(243, 240, 232, 0.96);
+  color: #f7f3ea;
+  background: #1c1814;
 }
 
 .whatsapp {

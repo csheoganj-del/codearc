@@ -122,7 +122,7 @@ export default function TermsPage() {
             </p>
           </div>
 
-          <p style={{ marginTop: 40, fontSize: 13, color: 'rgba(243,240,232,0.45)' }}>
+          <p style={{ marginTop: 40, fontSize: 13, color: '#7a7368' }}>
             <Link href="/privacy" style={{ color: '#3d9b6a' }}>
               Privacy Policy
             </Link>

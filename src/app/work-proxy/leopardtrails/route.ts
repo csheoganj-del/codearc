@@ -111,7 +111,9 @@ export async function GET() {
       status: 200,
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+        'Pragma': 'no-cache',
+        'Expires': '0',
         // Allow embedding only on our own origin
         'Content-Security-Policy': "frame-ancestors 'self'",
         'X-Content-Type-Options': 'nosniff',

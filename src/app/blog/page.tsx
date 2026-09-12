@@ -60,7 +60,7 @@ export default function BlogListingPage() {
                     <span
                       style={{
                         fontSize: 12,
-                        color: 'rgba(243,240,232,0.45)',
+                        color: '#7a7368',
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: 6,

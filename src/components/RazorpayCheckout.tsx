@@ -199,7 +199,7 @@ export default function RazorpayCheckout({
             style={{
               margin: '10px 0 0',
               fontSize: 13,
-              color: 'rgba(243,240,232,0.62)',
+              color: '#5e564c',
               wordBreak: 'break-all',
             }}
           >
@@ -261,7 +261,7 @@ export default function RazorpayCheckout({
             alignItems: 'center',
             gap: 6,
             fontSize: 12,
-            color: 'rgba(243,240,232,0.55)',
+            color: '#6a635a',
           }}
         >
           <ShieldCheck size={14} />
@@ -275,7 +275,7 @@ export default function RazorpayCheckout({
           style={{
             margin: 0,
             fontSize: 14,
-            color: status === 'cancelled' ? 'rgba(243,240,232,0.7)' : '#f0a0a0',
+            color: status === 'cancelled' ? '#5e564c' : '#c43c11',
             lineHeight: 1.5,
           }}
         >

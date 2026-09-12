@@ -2,18 +2,21 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 
 const navLinks = [
-  { name: 'Products', href: '/products' },
   { name: 'Work', href: '/#work' },
-  { name: 'Services', href: '/#build' },
-  { name: 'How we work', href: '/#approach' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Studio', href: '/#studio' },
+  { name: 'Capabilities', href: '/#capabilities' },
+  { name: 'Suite', href: '/#suite' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
@@ -21,11 +24,12 @@ export default function Navbar() {
   const mobileNavRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const threshold = isHome ? 640 : 16;
+    const onScroll = () => setScrolled(window.scrollY > threshold);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -72,10 +76,14 @@ export default function Navbar() {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
+  if (isHome && !scrolled) {
+    return null;
+  }
+
   return (
     <header className={`v2-nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="v2-nav-inner">
-        <Logo variant="light" onClick={() => setOpen(false)} />
+        <Logo variant="dark" onClick={() => setOpen(false)} />
 
         <nav className="v2-desktop-nav" aria-label="Primary">
           {navLinks.map((link) => (
@@ -85,8 +93,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a className="v2-nav-cta" href="mailto:hello@codearc.co.in?subject=Hi from CodeArc">
-          Write to us
+        <a className="v2-nav-cta" href="/#contact">
+          Start a project ↗
         </a>
 
         <button
@@ -116,10 +124,10 @@ export default function Navbar() {
           ))}
           <a
             className="v2-mobile-cta"
-            href="mailto:hello@codearc.co.in?subject=Hi from CodeArc"
+            href="/#contact"
             onClick={() => setOpen(false)}
           >
-            Write to us
+            Start a project ↗
           </a>
         </nav>
       ) : null}

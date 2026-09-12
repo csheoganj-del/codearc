@@ -54,7 +54,7 @@ export default function PayPlans({ initialPlanId }: PayPlansProps) {
                 cursor: 'pointer',
                 border: active
                   ? '1px solid rgba(61, 155, 106, 0.55)'
-                  : '1px solid rgba(243,240,232,0.08)',
+                  : '1px solid rgba(28, 24, 20, 0.06)',
                 background: active ? 'rgba(61, 155, 106, 0.08)' : undefined,
                 width: '100%',
               }}
@@ -72,7 +72,7 @@ export default function PayPlans({ initialPlanId }: PayPlansProps) {
                 <h3 style={{ margin: 0, fontSize: 17 }}>{plan.name}</h3>
                 <span
                   style={{
-                    color: '#8fd4ad',
+                    color: '#2f7a4e',
                     fontSize: 13,
                     fontWeight: 600,
                     whiteSpace: 'nowrap',
@@ -89,7 +89,7 @@ export default function PayPlans({ initialPlanId }: PayPlansProps) {
                   {plan.badge}
                 </span>
               ) : null}
-              <p style={{ margin: 0, color: 'rgba(243,240,232,0.62)', lineHeight: 1.5 }}>
+              <p style={{ margin: 0, color: '#5e564c', lineHeight: 1.5 }}>
                 {plan.blurb}
               </p>
             </button>
@@ -102,10 +102,10 @@ export default function PayPlans({ initialPlanId }: PayPlansProps) {
           Price enquiry & proposal
         </p>
         <h2 style={{ margin: '0 0 8px', fontSize: 22 }}>{selected.name}</h2>
-        <p style={{ margin: '0 0 10px', fontSize: 20, fontWeight: 700, color: '#8fd4ad' }}>
-          Custom Quote / On Enquiry
+        <p style={{ margin: '0 0 10px', fontSize: 20, fontWeight: 700, color: '#2f7a4e' }}>
+          Quoted after a short review
         </p>
-        <p style={{ margin: '0 0 20px', color: 'rgba(243,240,232,0.62)', lineHeight: 1.55 }}>
+        <p style={{ margin: '0 0 20px', color: '#5e564c', lineHeight: 1.55 }}>
           {selected.blurb}
         </p>
 
@@ -133,13 +133,13 @@ export default function PayPlans({ initialPlanId }: PayPlansProps) {
           style={{
             margin: '18px 0 0',
             fontSize: 13,
-            color: 'rgba(243,240,232,0.55)',
+            color: '#6a635a',
             lineHeight: 1.5,
           }}
         >
-          We will review your requirements and provide clear scope, onboarding timeline, and a written quotation.
+          We will review your requirements and provide a clear scope, onboarding timeline, and written quotation.
           Have questions? You can also reach us directly at{' '}
-          <a href={`mailto:${site.email}`} style={{ color: 'rgba(243,240,232,0.85)' }}>
+          <a href={`mailto:${site.email}`} style={{ color: '#1c1814' }}>
             {site.email}
           </a>{' '}
           or call {site.phone.display}.
@@ -149,17 +149,17 @@ export default function PayPlans({ initialPlanId }: PayPlansProps) {
           style={{
             marginTop: 20,
             paddingTop: 16,
-            borderTop: '1px solid rgba(243,240,232,0.08)',
+            borderTop: '1px solid rgba(28, 24, 20, 0.06)',
           }}
         >
-          <h4 style={{ margin: '0 0 6px', fontSize: 13, color: '#f3f0e8', fontWeight: 600 }}>
+          <h4 style={{ margin: '0 0 6px', fontSize: 13, color: '#1c1814', fontWeight: 600 }}>
             Existing client or custom project payment?
           </h4>
-          <p style={{ margin: 0, fontSize: 12, color: 'rgba(243,240,232,0.5)', lineHeight: 1.5 }}>
+          <p style={{ margin: 0, fontSize: 12, color: '#5e564c', lineHeight: 1.5 }}>
             Milestone payments follow your accepted quotation. We issue direct invoices with bank details or private payment links for agreed amounts.
           </p>
           <div style={{ marginTop: 8 }}>
-            <Link href="/terms" style={{ color: '#8fd4ad', fontSize: 12, textDecoration: 'underline' }}>
+            <Link href="/terms" style={{ color: '#2f7a4e', fontSize: 12, fontWeight: 600, textDecoration: 'underline' }}>
               View payment & terms policy
             </Link>
           </div>

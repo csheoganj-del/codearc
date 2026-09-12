@@ -56,7 +56,7 @@ export default function ProductsPage() {
 
         <section className="v2-section" style={{ paddingTop: 0 }}>
           <div className="v2-grid-3">
-            {productsData.map((product) => (
+            {productsData.map((product, index) => (
               <Link key={product.slug} href={product.href} className="v2-card">
                 <div className="v2-work-media">
                   <Image
@@ -65,6 +65,7 @@ export default function ProductsPage() {
                     fill
                     sizes="(max-width: 900px) 100vw, 33vw"
                     className="object-cover"
+                    priority={index === 0}
                   />
                 </div>
                 <div className="v2-card-body">
@@ -83,7 +84,7 @@ export default function ProductsPage() {
                       style={{
                         fontSize: 11,
                         fontWeight: 700,
-                        color: 'rgba(243,240,232,0.4)',
+                        color: '#7a7368',
                         textTransform: 'uppercase',
                       }}
                     >

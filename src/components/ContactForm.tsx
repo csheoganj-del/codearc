@@ -54,11 +54,11 @@ export default function ContactForm() {
       <div className="v2-section-head">
         <div>
           <p className="v2-kicker">Contact</p>
-          <h2>Send a short note.</h2>
+          <h2>A sentence is enough.</h2>
         </div>
         <p className="v2-section-aside">
-          Tell us what you are building, what is difficult today and your ideal timeline.
-          Continue in email or WhatsApp — you review the message before it sends.
+          What you are building, what is difficult today, and when. Continue in email or
+          WhatsApp — you review the message before it sends.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export default function ContactForm() {
               style={{
                 margin: '14px auto 0',
                 maxWidth: 420,
-                color: 'rgba(243,240,232,0.62)',
+                color: '#5e564c',
                 lineHeight: 1.55,
               }}
             >
@@ -170,7 +170,7 @@ export default function ContactForm() {
               </button>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                style={{ fontSize: 13, color: 'rgba(243,240,232,0.55)' }}
+                style={{ fontSize: 13, color: '#6a635a' }}
               >
                 {CONTACT_EMAIL}
               </a>

@@ -1,209 +1,178 @@
 /**
- * Self-contained Deora Plaza entry animation for Work cards.
- * Recreates the live deora.vercel.app spark title reveal (no building photo).
+ * Same-origin live preview of Deora Plaza (deora.vercel.app).
+ * Always serves the latest live upstream version with zero caching.
  */
 
 export const runtime = 'nodejs';
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
-const HTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Deora Plaza</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #0a0806;
-      color: #f5f5f7;
-      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", system-ui, sans-serif;
-    }
-    .viewport {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      position: relative;
-      background:
-        radial-gradient(ellipse 70% 55% at 50% 42%, rgba(242, 185, 75, 0.07), transparent 55%),
-        #0a0806;
-    }
-    .content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(18px, 4.5vmin, 32px);
-      padding: 6% 4%;
-      text-align: center;
-      width: min(100%, 920px);
-    }
-    .title {
-      position: relative;
-      display: inline-flex;
-      gap: 0.02em;
-      font-size: clamp(34px, 10.5vmin, 68px);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      line-height: 1;
-      white-space: nowrap;
-    }
-    .letter {
-      display: inline-block;
-      opacity: 0;
-      color: #f5f5f7;
-      transition: opacity 0.35s ease, text-shadow 0.35s ease;
-    }
-    .letter.is-on {
-      opacity: 1;
-      text-shadow: 0 0 18px rgba(242, 185, 75, 0.28), 0 0 40px rgba(242, 185, 75, 0.12);
-    }
-    .spark {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: clamp(7px, 1.4vmin, 11px);
-      height: clamp(7px, 1.4vmin, 11px);
-      border-radius: 50%;
-      background: radial-gradient(circle, #fff 0%, #f2b94b 45%, transparent 72%);
-      box-shadow: 0 0 14px rgba(242, 185, 75, 0.95), 0 0 28px rgba(242, 185, 75, 0.45);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      z-index: 5;
-    }
-    .spark.is-on { opacity: 1; }
-    .subtitle {
-      font-size: clamp(12px, 2.8vmin, 16px);
-      letter-spacing: 0.16em;
-      text-transform: none;
-      color: rgba(245, 245, 247, 0.55);
-      font-weight: 400;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.55s ease 0.15s, transform 0.55s ease 0.15s;
-    }
-    .subtitle.is-on {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .btn {
-      margin-top: clamp(4px, 1.5vmin, 12px);
-      appearance: none;
-      border: none;
-      cursor: default;
-      padding: clamp(12px, 2.4vmin, 16px) clamp(28px, 5.5vmin, 40px);
-      border-radius: 999px;
-      background: linear-gradient(180deg, #f2b94b 0%, #d9a441 100%);
-      color: #1a1206;
-      font-size: clamp(13px, 2.8vmin, 16px);
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      box-shadow:
-        0 10px 28px rgba(242, 185, 75, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.35);
-      opacity: 0;
-      transform: translateY(10px) scale(0.96);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .btn.is-on {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  </style>
-</head>
-<body>
-  <div class="viewport">
-    <div class="content">
-      <div class="title" id="title" aria-label="DEORA PLAZA">
-        <!-- letters injected -->
-        <div class="spark" id="spark"></div>
-      </div>
-      <p class="subtitle" id="subtitle">Hospitality Management System</p>
-      <button class="btn" id="btn" type="button" tabindex="-1">Enter System</button>
-    </div>
-  </div>
-  <script>
-    (function () {
-      var TEXT = 'DEORA PLAZA';
-      var SPEED = 120;
-      var PAUSE = 2800;
-      var title = document.getElementById('title');
-      var spark = document.getElementById('spark');
-      var subtitle = document.getElementById('subtitle');
-      var btn = document.getElementById('btn');
+const UPSTREAM = 'https://deora.vercel.app/';
 
-      // Build letter spans (preserve space)
-      TEXT.split('').forEach(function (ch) {
-        var span = document.createElement('span');
-        span.className = 'letter';
-        span.textContent = ch === ' ' ? '\\u00A0' : ch;
-        title.insertBefore(span, spark);
-      });
+export async function GET() {
+  try {
+    const res = await fetch(UPSTREAM, {
+      headers: { Accept: 'text/html' },
+      cache: 'no-store',
+    });
+    if (!res.ok) {
+      return new Response(`Upstream error ${res.status}`, { status: 502 });
+    }
+    let html = await res.text();
 
-      var letters = title.querySelectorAll('.letter');
-      var timer = null;
-      var loopTimer = null;
+    // Ensure relative assets resolve against the live site
+    if (!/<base\s/i.test(html)) {
+      html = html.replace(
+        /<head([^>]*)>/i,
+        `<head$1><base href="${UPSTREAM}">`,
+      );
+    }
 
-      function reset() {
-        letters.forEach(function (el) {
-          el.classList.remove('is-on');
-        });
-        spark.classList.remove('is-on');
-        subtitle.classList.remove('is-on');
-        btn.classList.remove('is-on');
-      }
+    // Strip frame-busting headers or meta tags
+    html = html.replace(/<meta[^>]+http-equiv=["']?X-Frame-Options["']?[^>]*>/gi, '');
 
-      function run() {
-        reset();
-        var i = 0;
-        spark.classList.add('is-on');
-        if (timer) clearInterval(timer);
-        timer = setInterval(function () {
-          if (i >= letters.length) {
-            clearInterval(timer);
-            spark.classList.remove('is-on');
-            subtitle.classList.add('is-on');
-            btn.classList.add('is-on');
-            loopTimer = setTimeout(run, PAUSE);
-            return;
+    // Reveal luxury typography letters and containers (initial CSS has opacity:0)
+    html = html.replace(/class="deora-brand-container\s*"/g, 'class="deora-brand-container visible"');
+    html = html.replace(/class="deora-brand-subtitle"/g, 'class="deora-brand-subtitle visible"');
+    html = html.replace(/class="deora-cta-container\s*"/g, 'class="deora-cta-container visible"');
+
+    // Strip crashing Next.js App Router client scripts that throw route mismatch exceptions
+    html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+
+    // Inject upstream golden animations:
+    // 1. Interactive Golden Spark Trail across letters
+    // 2. Floating Golden Embers (using upstream .particle & floatUp keyframes)
+    // 3. Luxury breathing glow on button and typography
+    const liveAnimationScript = `
+      <style>
+        .deora-brand-container.visible,
+        .deora-brand-subtitle.visible,
+        .deora-cta-container.visible {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+          visibility: visible !important;
+        }
+        .letter {
+          display: inline-block !important;
+          color: #F5F5F7 !important;
+          opacity: 0;
+          transition: opacity 0.35s ease, text-shadow 0.35s ease;
+        }
+        .spark {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #FFE9A6, #F2B94B 60%, transparent 70%);
+          box-shadow: 0 0 16px rgba(242, 185, 75, 0.95), 0 0 30px rgba(242, 185, 75, 0.6);
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 10;
+        }
+        .deora-luxury-button {
+          box-shadow: 0 0 24px rgba(242, 185, 75, 0.3), 0 4px 14px rgba(0, 0, 0, 0.5);
+          animation: buttonGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes buttonGlow {
+          0% { box-shadow: 0 0 16px rgba(242, 185, 75, 0.25); }
+          100% { box-shadow: 0 0 30px rgba(242, 185, 75, 0.55); }
+        }
+      </style>
+      <script>
+        (function() {
+          function initLiveDeora() {
+            var brand = document.querySelector('.deora-brand-container');
+            var subtitle = document.querySelector('.deora-brand-subtitle');
+            var cta = document.querySelector('.deora-cta-container');
+            var container = document.querySelector('.deora-brand-name > div');
+            var spark = document.querySelector('.spark');
+            var letters = document.querySelectorAll('.letter');
+            var bg = document.querySelector('.deora-luxury-background');
+
+            // Spawn floating embers in background using upstream .particle class
+            if (bg && !bg.dataset.particlesCreated) {
+              bg.dataset.particlesCreated = 'true';
+              for (var p = 0; p < 22; p++) {
+                var particle = document.createElement('div');
+                particle.className = 'particle';
+                var size = (Math.random() * 3 + 2).toFixed(1);
+                var left = (Math.random() * 100).toFixed(1);
+                var duration = (Math.random() * 6 + 7).toFixed(1);
+                var delay = (Math.random() * 8).toFixed(1);
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = left + '%';
+                particle.style.animationDuration = duration + 's';
+                particle.style.animationDelay = delay + 's';
+                bg.appendChild(particle);
+              }
+            }
+
+            if (!container || !spark || !letters.length) return;
+
+            if (brand) brand.classList.add('visible');
+            if (subtitle) subtitle.classList.add('visible');
+            if (cta) cta.classList.add('visible');
+
+            function runSparkTrace() {
+              var idx = 0;
+              letters.forEach(function(l) {
+                l.style.opacity = '0';
+                l.style.textShadow = 'none';
+              });
+              spark.style.opacity = '1';
+
+              var interval = setInterval(function() {
+                if (idx >= letters.length) {
+                  clearInterval(interval);
+                  spark.style.opacity = '0';
+                  // Pause with fully lit text before re-tracing
+                  setTimeout(runSparkTrace, 4500);
+                  return;
+                }
+                var cur = letters[idx];
+                var lRect = cur.getBoundingClientRect();
+                var cRect = container.getBoundingClientRect();
+                var sparkX = (lRect.left - cRect.left + lRect.width / 2);
+                spark.style.left = sparkX + 'px';
+
+                cur.style.opacity = '1';
+                cur.style.textShadow = '0 0 18px rgba(242, 185, 75, 0.65), 0 0 32px rgba(255, 233, 166, 0.4)';
+                idx++;
+              }, 130);
+            }
+
+            setTimeout(runSparkTrace, 350);
           }
-          var letter = letters[i];
-          var rect = letter.getBoundingClientRect();
-          var parent = title.getBoundingClientRect();
-          spark.style.left = (rect.left - parent.left + rect.width / 2) + 'px';
-          letter.classList.add('is-on');
-          i += 1;
-        }, SPEED);
-      }
 
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        letters.forEach(function (el) { el.classList.add('is-on'); });
-        subtitle.classList.add('is-on');
-        btn.classList.add('is-on');
-        return;
-      }
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLiveDeora);
+          } else {
+            initLiveDeora();
+          }
+        })();
+      </script>
+    `;
+    html = html.replace('</head>', `${liveAnimationScript}</head>`);
 
-      setTimeout(run, 350);
-    })();
-  </script>
-</body>
-</html>`;
-
-export function GET() {
-  return new Response(HTML, {
-    status: 200,
-    headers: {
-      'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'public, max-age=60, must-revalidate',
-      'Content-Security-Policy': "frame-ancestors 'self'",
-      'X-Content-Type-Options': 'nosniff',
-    },
-  });
+    return new Response(html, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Content-Security-Policy': "frame-ancestors 'self'",
+        'X-Content-Type-Options': 'nosniff',
+      },
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'proxy failed';
+    return new Response(`Deora preview unavailable: ${message}`, {
+      status: 502,
+    });
+  }
 }

@@ -64,17 +64,17 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 16, alignItems: 'center' }}>
             <span className="v2-badge">{post.category}</span>
-            <span style={{ fontSize: 12, color: 'rgba(243,240,232,0.5)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontSize: 12, color: '#5e564c', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               <Calendar size={13} /> {formatBlogDate(post.date)}
             </span>
-            <span style={{ fontSize: 12, color: 'rgba(243,240,232,0.5)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontSize: 12, color: '#5e564c', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               <Clock size={13} /> {post.readTime}
             </span>
           </div>
           <h1 style={{ maxWidth: '22ch' }}>{post.title}</h1>
           <p className="v2-inner-lede">{post.excerpt}</p>
-          <p style={{ marginTop: 18, fontSize: 13, color: 'rgba(243,240,232,0.5)' }}>
-            By <strong style={{ color: '#f3f0e8' }}>{post.author}</strong>
+          <p style={{ marginTop: 18, fontSize: 13, color: '#5e564c' }}>
+            By <strong style={{ color: '#1c1814' }}>{post.author}</strong>
           </p>
         </section>
 

@@ -43,7 +43,7 @@ export default async function PayPage(props: {
             Price enquiry. <em>Tailored to your needs.</em>
           </h1>
           <p className="v2-inner-lede">
-            Explore our software products or ask for tailored pricing and onboarding. Every business is unique — we provide clear quotations, transparent deliverables, and responsive support.
+            Tell us which product or project you are considering. We will confirm the scope, onboarding plan, deliverables, and price in writing before you decide.
           </p>
           <div className="v2-inline-actions">
             <Link className="v2-btn v2-btn-ghost" href="/products">
@@ -66,15 +66,15 @@ export default async function PayPage(props: {
           <div className="v2-grid-2">
             <div className="v2-card v2-card-static v2-card-body">
               <h3 style={{ marginTop: 0 }}>How enquiry & onboarding works</h3>
-              <p style={{ color: 'rgba(243,240,232,0.62)', lineHeight: 1.55, margin: 0 }}>
-                Once you send an enquiry via WhatsApp or email, we discuss your setup, demonstrate the product or walk through scope, and send a transparent quotation tailored to your outlets or users.
+              <p style={{ color: '#5e564c', lineHeight: 1.55, margin: 0 }}>
+                Send a short enquiry by WhatsApp or email. We will discuss your setup, demonstrate the product or clarify the project scope, then provide a written quotation for your outlets or users.
               </p>
             </div>
             <div className="v2-card v2-card-static v2-card-body">
               <h3 style={{ marginTop: 0 }}>Need a custom proposal?</h3>
-              <p style={{ color: 'rgba(243,240,232,0.62)', lineHeight: 1.55, margin: 0 }}>
-                Questions about a custom website, portal, or bespoke SaaS tool? Write to{' '}
-                <a href="mailto:hello@codearc.co.in" style={{ color: 'rgba(243,240,232,0.85)' }}>
+              <p style={{ color: '#5e564c', lineHeight: 1.55, margin: 0 }}>
+                Questions about a custom website, portal, or subscription product? Write to{' '}
+                <a href="mailto:hello@codearc.co.in" style={{ color: '#1c1814' }}>
                   hello@codearc.co.in
                 </a>{' '}
                 or WhatsApp +91 99837 21179 — we’ll reply promptly.

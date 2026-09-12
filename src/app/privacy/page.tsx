@@ -116,7 +116,7 @@ export default function PrivacyPage() {
             </p>
           </div>
 
-          <p style={{ marginTop: 40, fontSize: 13, color: 'rgba(243,240,232,0.45)' }}>
+          <p style={{ marginTop: 40, fontSize: 13, color: '#7a7368' }}>
             <Link href="/terms" style={{ color: '#3d9b6a' }}>
               Terms of Service
             </Link>

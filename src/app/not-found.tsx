@@ -28,7 +28,7 @@ export default function NotFound() {
           >
             Nothing here.
           </h1>
-          <p style={{ color: 'rgba(243,240,232,0.62)', lineHeight: 1.55, marginBottom: 28 }}>
+          <p style={{ color: '#5e564c', lineHeight: 1.55, marginBottom: 28 }}>
             That link is broken or the page moved. Try the home page, products, or the blog.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
@@ -42,7 +42,7 @@ export default function NotFound() {
               Blog
             </Link>
           </div>
-          <p style={{ marginTop: 28, fontSize: 14, color: 'rgba(243,240,232,0.5)' }}>
+          <p style={{ marginTop: 28, fontSize: 14, color: '#5e564c' }}>
             Still stuck?{' '}
             <a href="mailto:hello@codearc.co.in" style={{ color: '#3d9b6a', fontWeight: 600 }}>
               hello@codearc.co.in

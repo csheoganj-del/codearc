@@ -145,35 +145,35 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         question: 'Should I rewrite my React website in Next.js?',
-        answer: 'If your business relies on organic Google traffic, yes. Moving to Next.js ensures search crawlers can read and rank your content, leading to higher traffic numbers.',
+        answer: 'Not automatically. Next.js can improve how public content is rendered and indexed, but a rewrite only makes sense when the current site has clear technical, performance, or maintainability limits. Rankings still depend on useful content, authority, and careful migration.',
       },
     ],
   },
   {
     slug: 'why-small-businesses-need-professional-websites',
-    title: 'Why Small Businesses Need a Professional Website to Survive in 2026',
-    excerpt: 'Is a social media page enough for your local business? Discover why a dedicated, SEO-optimized website is crucial for building trust and capturing leads.',
+    title: 'Why Small Businesses Still Need a Professional Website in 2026',
+    excerpt: 'A practical look at what a business website adds when you already use social media and Google Business Profile.',
     date: '2026-06-05',
     author: 'CodeArc Design',
     readTime: '6 min read',
     category: 'Marketing',
     metaTitle: 'Why Small Businesses Need a Professional Website in 2026',
-    metaDescription: 'Relying only on Facebook or Instagram for your business? Learn why small businesses need a custom, SEO-optimized website to build trust and capture high-intent leads.',
+    metaDescription: 'See what a dedicated website adds alongside social media: ownership, clearer service information, search visibility, trust, and direct enquiries.',
     keywords: ['Why Small Businesses Need Websites', 'Small Business Website Design', 'Local Lead Generation', 'Professional Web Presence'],
     sections: [
       {
         title: 'The Limits of Social Media Pages',
-        content: 'Many small business owners in India start with a Facebook page or Instagram profile. While these are excellent channels for social engagement, they have significant limits: you do not own the platform. An algorithm shift can drop your post reach to zero, and visitors cannot search for your specific services on Google. A dedicated domain is a property you own and control completely.',
+        content: 'Many small businesses in India begin with Instagram, Facebook, or a Google Business Profile. These are useful channels, but their reach and presentation are controlled by another platform. A website gives you a stable address, more control over your message, and pages that can answer specific customer questions in search.',
       },
       {
         title: 'Building Customer Trust and Authority',
-        content: 'When looking for local services, modern customers search on Google first. Having a domain email address (like hello@yourbusiness.com) and a clean website establishes credibility. It shows you are an established, professional operator, not a fly-by-night setup.',
+        content: 'Customers often compare several businesses before making contact. A clear website, consistent business details, and a domain email address can make that comparison easier and show that the business is active, organised, and reachable.',
       },
     ],
     faqs: [
       {
         question: 'Can I just use Google My Business instead of a website?',
-        answer: 'Google Business Profile is essential for local search maps, but linking it to a custom website multiplies your search rankings and allows you to capture leads via custom forms.',
+        answer: 'Google Business Profile is valuable for maps and local discovery, but a website gives you more space to explain services, publish useful pages, and collect enquiries. The two usually work better together than either does alone.',
       },
     ],
   },
@@ -195,13 +195,13 @@ export const blogPosts: BlogPost[] = [
       },
       {
         title: 'Comparing the Top Hosting Providers',
-        content: '1. Vercel: The absolute best choice for Next.js apps. It has an excellent CDN with servers in Mumbai, automated deployments from git, and is free for small projects.\n2. Cloudflare Pages: Fast static hosting with edge locations globally. Highly secure.\n3. Hostinger: Cheap and reliable for standard PHP/WordPress sites, though less optimized for React frontends.\n4. AWS: Power and scalability for custom backends, but requires server administration knowledge.',
+        content: '1. Vercel: A convenient choice for many Next.js projects, with close framework integration and Git-based deployments.\n2. Cloudflare: A strong option for static sites and edge applications with a broad global network.\n3. Hostinger: Often considered for conventional WordPress and PHP hosting where simple management matters.\n4. AWS: Flexible infrastructure for custom systems, but usually requires more setup and operational knowledge.\n\nPricing, limits, and regional availability change, so compare the current plans against your traffic, data, and support needs before choosing.',
       },
     ],
     faqs: [
       {
         question: 'Which hosting is best for Next.js applications?',
-        answer: 'Vercel is built by the creators of Next.js, making it the most optimized and easiest platform to deploy and host Next.js apps.',
+        answer: 'Vercel is a convenient default for many Next.js projects because the framework and platform are closely integrated. Cloudflare, AWS, and other providers may be a better fit depending on runtime needs, budget, geography, and operational preferences.',
       },
     ],
   },
@@ -220,11 +220,11 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         title: 'The Rise of Git-Backed Frontend Hosting',
-        content: 'Gone are the days of manual FTP uploads. Modern web workflows deploy code automatically whenever you push to a git repository (GitHub, GitLab, Bitbucket). Vercel and Cloudflare Pages are leaders in this developer-centric space, providing instant previews, free SSLs, and fast builds.',
+        content: 'Modern hosting platforms can deploy automatically from a Git repository and create preview versions for review. Vercel and Cloudflare both support this workflow, though their build systems, runtime features, pricing, and limits differ.',
       },
       {
         title: 'Edge Network Architecture and Routing',
-        content: 'Cloudflare owns one of the largest global networks, meaning static assets are cached incredibly close to users. Vercel utilizes major cloud networks (like AWS and GCP) to provide optimized routing paths. For static files, both networks load in milliseconds. However, Vercel provides smoother integrations for Next.js server actions and API routes.',
+        content: 'Both platforms use distributed infrastructure to serve content closer to visitors. Cloudflare offers a broad edge network and Worker runtime; Vercel provides particularly close integration with Next.js features. Real performance depends on the application, data location, cache strategy, and visitor geography, so test the routes that matter before deciding.',
       },
     ],
     faqs: [
@@ -275,8 +275,8 @@ export const blogPosts: BlogPost[] = [
     keywords: ['Core Web Vitals', 'Largest Contentful Paint', 'Cumulative Layout Shift', 'Page Speed Optimization'],
     sections: [
       {
-        title: 'Why Seconds Equal Sales',
-        content: 'A one-second delay in page load time can reduce conversions by up to 20%. Users expect web pages to load instantly. If a visitor has to wait on a blank white loader, they will tap back and click on a competitor\'s link.',
+        title: 'Why speed affects business results',
+        content: 'Slow pages interrupt attention and make every next step feel harder, especially on mobile connections. Visitors may leave before they see the offer or complete an enquiry. Measure the important journeys on real devices rather than relying on a single headline score.',
       },
       {
         title: 'Understanding the Three Core Metrics',
@@ -292,7 +292,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'local-seo-guide-indian-businesses',
-    title: 'The Ultimate Guide to Local SEO for Indian Businesses in 2026',
+    title: 'A Practical Local SEO Guide for Indian Businesses in 2026',
     excerpt: 'Want local customers to find your shop or agency on Google Maps? Learn how to optimize your Google Business Profile and local schema tags.',
     date: '2026-05-22',
     author: 'CodeArc SEO Team',
@@ -304,7 +304,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         title: 'The Power of "Near Me" Searches',
-        content: 'Over 80% of local searches on mobile phones result in an offline purchase or inquiry within 24 hours. When users search for "Web Development Company near me" or "Website designer in Jaipur," Google serves local map listings ahead of organic search results.',
+        content: 'Local searches often show map results prominently, especially when the query includes a place or “near me.” A complete Google Business Profile, consistent contact details, relevant service pages, and genuine customer reviews help people understand whether your business fits their need.',
       },
       {
         title: 'Optimizing Google Business Profile',
@@ -328,7 +328,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tech & Dev',
     listed: false,
     metaTitle: 'What is Headless CMS? Modern decoupled web apps explained',
-    metaDescription: 'Learn about Headless CMS architecture. Compare decoupled systems with traditional WordPress setups, and see why Next.js is the perfect frontend choice.',
+    metaDescription: 'Learn how a headless CMS separates content management from presentation, when that flexibility helps, and when a conventional CMS may be simpler.',
     keywords: ['Headless CMS', 'Decoupled Architecture', 'WordPress vs Headless', 'Nextjs Headless CMS'],
     sections: [
       {
@@ -337,7 +337,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         title: 'Benefits of Going Headless',
-        content: '1. Load Speeds: There are no heavy PHP databases slowing page loads.\n2. Security: Your backend editor is hidden from public view, making SQL attacks impossible.\n3. Design Freedom: Custom layouts are coded in React, not limited by pre-made theme rules.',
+        content: '1. Delivery options: Content can be pre-rendered, cached, or served through APIs according to each page’s needs.\n2. Separation: The public website and content editor can be secured, deployed, and updated independently.\n3. Design freedom: The presentation layer is not tied to a conventional theme system.\n\nThat flexibility also adds integration and maintenance work, so a headless setup is not automatically the right choice for every site.',
       },
     ],
     faqs: [

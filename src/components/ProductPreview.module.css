@@ -55,7 +55,7 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--identity-accent) 42%, rgba(243, 240, 232, 0.08));
+  border: 1px solid color-mix(in srgb, var(--identity-accent) 42%, rgba(28, 24, 20, 0.06));
   border-radius: 28px;
   color: #f5f2ea;
   background: #171a18;
@@ -75,7 +75,7 @@
 }
 
 .wordmark strong {
-  color: #f3f0e8;
+  color: #f5f2ea;
   font-size: 17px;
   font-weight: 760;
   line-height: 1;
@@ -83,7 +83,7 @@
 }
 
 .wordmark span {
-  color: color-mix(in srgb, var(--identity-accent) 76%, #f3f0e8);
+  color: color-mix(in srgb, var(--identity-accent) 76%, #f5f2ea);
   font-size: 7px;
   font-weight: 700;
   text-transform: uppercase;
@@ -94,7 +94,7 @@
   position: absolute;
   right: 13px;
   bottom: 11px;
-  color: rgba(243, 240, 232, 0.32);
+  color: rgba(245, 242, 234, 0.32);
   font-size: 6px;
   font-weight: 700;
   text-transform: uppercase;

@@ -222,33 +222,6 @@ export const caseStudiesData: CaseStudy[] = [
     results: 'Live hospitality management system for Deora Plaza.',
   },
   {
-    id: 'theo-media',
-    title: 'TheoMedia',
-    subtitle: 'UK / Ireland / Europe sister site',
-    metaTitle: 'TheoMedia — CodeArc UK & Europe branch',
-    metaDescription:
-      'TheoMedia is CodeArc’s UK, Ireland and Europe branch — websites, apps and the same product family for international clients.',
-    description:
-      'Our sister brand for UK, Ireland and Europe. Same studio DNA — websites, apps, RestroSuite and more — with local contact and consultations.',
-    url: 'https://www.theomedia.co.uk',
-    isExternal: true,
-    creator: 'codearc',
-    kind: 'client',
-    statusLabel: 'Live site',
-    tags: ['Sister brand', 'UK & Europe', 'Marketing site'],
-    features: ['UK / EU market site', 'Local contact & currency', 'Shared product family'],
-    image: '/assets/theo_live.png',
-    challenge:
-      'International clients needed a clear CodeArc-family presence with direct UK & Europe contact channels.',
-    research:
-      'Sister-brand sites work when the story stays consistent and the market details (phone, currency, legal) are local.',
-    designProcess:
-      'Matched CodeArc’s product story with TheoMedia branding for UK, Ireland and Europe.',
-    techStackDetails: 'Next.js marketing site aligned with the CodeArc codebase and product pages.',
-    performanceImprovements: 'Fast static pages with the same product family narrative as CodeArc.',
-    results: 'Live at theomedia.co.uk for international enquiries.',
-  },
-  {
     id: 'bloom-cafe',
     title: 'Bloom Café',
     subtitle: 'Cafe operations interface',

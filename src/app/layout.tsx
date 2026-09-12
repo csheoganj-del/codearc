@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Manrope, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
+import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans, Syne } from 'next/font/google';
 import ScrollToTop from '../components/ScrollToTop';
 import FloatingContact from '../components/FloatingContact';
 import BrandIntro from '../components/BrandIntro';
@@ -7,22 +7,29 @@ import { site } from '../config/site';
 import { absoluteOgImageUrl, socialMetadata } from '../lib/seo';
 import './globals.css';
 
-const sans = Manrope({
+const sans = IBM_Plex_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 });
 
-const serif = Instrument_Serif({
+const display = Syne({
   subsets: ['latin'],
-  weight: ['400'],
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const serif = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
   variable: '--font-serif',
   display: 'swap',
 });
 
-const mono = JetBrains_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-mono',
@@ -63,7 +70,7 @@ export default function RootLayout({
   const ogImageUrl = absoluteOgImageUrl();
 
   return (
-    <html lang={site.htmlLang} className={`${sans.variable} ${serif.variable} ${mono.variable} scroll-smooth`}>
+    <html lang={site.htmlLang} className={`${sans.variable} ${display.variable} ${serif.variable} ${mono.variable} scroll-smooth`}>
       <head>
         {/* Hard-coded absolute tags for WhatsApp / Facebook scrapers (belt-and-braces) */}
         <meta property="og:image" content={ogImageUrl} />
@@ -92,7 +99,7 @@ export default function RootLayout({
                   description: `${site.brand} is a small software team in ${site.region.label} building websites, apps, and products: RestroSuite, StaySuite, MediSuite.`,
                   email: site.email,
                   telephone: site.phone.e164,
-                  sameAs: [site.productHosts.restrosuite, site.productHosts.medisuite, site.sister.domain],
+                  sameAs: [site.productHosts.restrosuite, site.productHosts.medisuite],
                 },
                 {
                   '@type': 'LocalBusiness',
@@ -188,11 +195,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#0b0c0b] text-[#f3f0e8] font-sans antialiased overflow-x-hidden">
+      <body className="bg-[#F5F1E8] text-[#181713] font-sans antialiased overflow-x-hidden">
         {/* Nuclear failsafe: if React never hydrates on mobile, still clear the logo splash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k='codearc-brand-intro-seen';if(sessionStorage.getItem(k)==='1'){var s=document.createElement('style');s.textContent='[data-brand-intro]{display:none!important}';document.head.appendChild(s);return;}setTimeout(function(){var el=document.querySelector('[data-brand-intro]');if(!el)return;el.style.opacity='0';el.style.visibility='hidden';el.style.pointerEvents='none';try{sessionStorage.setItem(k,'1');}catch(e){}setTimeout(function(){if(el&&el.parentNode)el.parentNode.removeChild(el);},500);},3800);}catch(e){}})();`,
+            __html: `(function(){try{var k='codearc-brand-intro-seen';if(sessionStorage.getItem(k)==='1'){var s=document.createElement('style');s.textContent='[data-brand-intro]{display:none!important}';document.head.appendChild(s);return;}setTimeout(function(){if(!document.querySelector('[data-brand-intro]'))return;var s=document.createElement('style');s.textContent='[data-brand-intro]{opacity:0!important;visibility:hidden!important;pointer-events:none!important}';document.head.appendChild(s);try{sessionStorage.setItem(k,'1');}catch(e){}},3800);}catch(e){}})();`,
           }}
         />
         <BrandIntro />

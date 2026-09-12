@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: #0b0c0b;
+  background: #f7f3ea;
   opacity: 1;
   visibility: visible;
   /* Keep interactive only while fully visible */

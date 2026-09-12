@@ -74,7 +74,7 @@ export default async function ProductDetailPage(props: {
               <h1>{product.name}</h1>
               <p className="v2-inner-lede">{product.description}</p>
               <p className="v2-inner-lede" style={{ marginTop: 12, fontSize: 14 }}>
-                <strong style={{ color: '#f3f0e8' }}>Who it’s for:</strong> {product.audience}
+                <strong style={{ color: '#1c1814' }}>Who it’s for:</strong> {product.audience}
               </p>
               <div className="v2-inline-actions">
                 {product.externalUrl ? (
@@ -151,9 +151,9 @@ export default async function ProductDetailPage(props: {
               <h2 style={{ marginTop: 0 }}>Why we built it</h2>
               <p>{product.story}</p>
               <p>
-                {product.name} sits under CodeArc — same team that does custom websites and
-                apps. Products get a long road; client projects stay separate so neither story
-                gets muddy.
+                {product.name} is designed and maintained by the same CodeArc team that builds
+                custom websites and applications. Product development continues over time,
+                while each client project keeps its own goals, scope, and identity.
               </p>
             </div>
             <div>

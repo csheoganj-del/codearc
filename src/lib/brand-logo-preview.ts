@@ -36,8 +36,8 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #0b0c0b;
-      color: #f3f0e8;
+      background: #f7f3ea;
+      color: #1c1814;
       font-family: Manrope, Inter, system-ui, sans-serif;
     }
     .screen {
@@ -49,7 +49,7 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
       background:
         radial-gradient(circle at 50% 44%, rgba(61, 155, 106, 0.12), transparent 34%),
         radial-gradient(circle at 70% 34%, rgba(232, 90, 47, 0.1), transparent 30%),
-        #0b0c0b;
+        #f7f3ea;
     }
     .stage {
       display: grid;
@@ -81,7 +81,7 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
       position: absolute;
       inset: -18%;
       z-index: -1;
-      border: 1px solid rgba(243, 240, 232, 0.07);
+      border: 1px solid rgba(28, 24, 20, 0.06);
       border-radius: 50%;
       animation: haloIn 3.6s ease-in-out infinite;
     }
@@ -143,7 +143,7 @@ export function brandLogoPreviewHtml(opts: BrandLogoPreview): string {
     }
     .meta .tag {
       font-size: clamp(13px, 3.2vmin, 18px);
-      color: rgba(243, 240, 232, 0.68);
+      color: #5e564c;
       max-width: 34rem;
       line-height: 1.4;
     }
@@ -232,18 +232,10 @@ function escapeHtml(s: string): string {
     .replace(/"/g, '&quot;');
 }
 
-export const THEOMEDIA_LOGO_PREVIEW: BrandLogoPreview = {
-  brand: 'TheoMedia',
-  letters: ['T', 'h', 'e', 'o', 'M', 'e', 'd', 'i', 'a'],
-  accentIndexes: [4, 5, 6, 7, 8],
-  region: 'UK · Ireland · Europe',
-  tagline: 'Sister brand — software people actually use.',
-};
-
 export const CODEARC_LOGO_PREVIEW: BrandLogoPreview = {
   brand: 'CodeArc',
   letters: ['C', 'o', 'd', 'e', 'A', 'r', 'c'],
   accentIndexes: [4, 5, 6],
   region: 'Rajasthan · Working across India',
-  tagline: 'Sister brand — websites, apps & RestroSuite.',
+  tagline: 'Websites, apps & RestroSuite.',
 };

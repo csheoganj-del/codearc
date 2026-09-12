@@ -91,8 +91,8 @@ export default async function CaseStudyPage(props: { params: Promise<{ id: strin
                 Product page
               </Link>
             )}
-            <span style={{ fontSize: 13, color: 'rgba(243,240,232,0.55)', alignSelf: 'center' }}>
-              Built by <strong style={{ color: '#f3f0e8' }}>CodeArc</strong>
+            <span style={{ fontSize: 13, color: '#6a635a', alignSelf: 'center' }}>
+              Built by <strong style={{ color: '#1c1814' }}>CodeArc</strong>
             </span>
           </div>
 

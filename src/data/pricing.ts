@@ -36,13 +36,13 @@ export const paymentPlans: PaymentPlan[] = [
   },
   {
     id: 'staysuite-setup',
-    name: 'StaySuite — early access',
-    blurb: 'Reserve onboarding while StaySuite is in active build.',
+    name: 'StaySuite — onboarding',
+    blurb: 'Property setup, team onboarding, and go-live support for StaySuite.',
     amountPaise: 299900,
     currency: 'INR',
     product: 'staysuite',
-    badge: 'Building',
-    buttonLabel: 'Pay early access',
+    badge: 'Live product',
+    buttonLabel: 'Pay onboarding',
   },
   {
     id: 'medisuite-setup',

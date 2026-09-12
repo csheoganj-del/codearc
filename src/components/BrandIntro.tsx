@@ -20,8 +20,8 @@ export default function BrandIntro() {
     // Skip the splash on later visits in the same tab session
     try {
       if (sessionStorage.getItem(SESSION_KEY) === '1') {
-        setVisible(false);
-        return;
+        const skipTimer = window.setTimeout(() => setVisible(false), 0);
+        return () => window.clearTimeout(skipTimer);
       }
     } catch {
       // private mode / blocked storage — still show once

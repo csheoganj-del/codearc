@@ -23,7 +23,6 @@ export type WorkLiveMediaProps = {
 function isFillPreview(src?: string): boolean {
   if (!src) return false;
   return (
-    src.includes('/work-proxy/theomedia') ||
     src.includes('/work-proxy/codearc') ||
     src.includes('/work-proxy/deora') ||
     src.includes('/work-proxy/brosbar')

@@ -1,4 +1,6 @@
-import { Phone } from 'lucide-react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import styles from './FloatingContact.module.css';
 
 const PHONE_NUMBER = '+919983721179';
@@ -17,22 +19,25 @@ function WhatsAppIcon() {
 }
 
 export default function FloatingContact() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // Only show after user has scrolled past the hero (~680px)
+      setVisible(window.scrollY > 680);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  if (!visible) return null;
+
   const whatsappUrl = `https://wa.me/${PHONE_NUMBER.replace('+', '')}?text=${encodeURIComponent(
     WHATSAPP_MESSAGE,
   )}`;
 
   return (
-    <aside className={styles.dock} aria-label="Quick contact">
-      <a
-        className={`${styles.action} ${styles.call}`}
-        href={`tel:${PHONE_NUMBER}`}
-        aria-label="Call CodeArc"
-        title="Call CodeArc"
-      >
-        <span className={styles.icon} aria-hidden="true">
-          <Phone size={20} strokeWidth={2.2} />
-        </span>
-      </a>
+    <aside className={styles.dock} aria-label="Quick WhatsApp contact">
       <a
         className={`${styles.action} ${styles.whatsapp}`}
         href={whatsappUrl}

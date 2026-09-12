@@ -27,18 +27,18 @@ export const servicesData: Record<string, ServiceDetails> = {
   'website-design': {
     slug: 'website-design',
     title: 'Website Design Services',
-    subtitle: 'Stunning, Conversion-Focused Visual Design',
+    subtitle: 'Distinctive design with a clear business purpose',
     metaTitle: 'Website Design Company India | Professional Web Design Services',
-    metaDescription: 'Looking for a premier website design company in India? We create bespoke, mobile-responsive, and high-converting websites tailored to grow your small business.',
-    description: 'We craft beautiful, high-converting websites designed specifically to turn search traffic into loyal clients. Every pixel, layout, and line of copy is optimized to tell your story clearly and drive actions.',
+    metaDescription: 'Custom website design in India for hospitality brands and growing businesses. Clear strategy, responsive layouts, distinctive visuals, and purposeful conversion journeys.',
+    description: 'We design distinctive websites that explain your value clearly and make the next step easy. Every page is shaped around your brand, your customers, and the action you want them to take.',
     icon: 'Monitor',
     accentColor: '#174C3C',
     accentSoft: '#E7EFE9',
     keywords: ['Website Design Company India', 'Small Business Website Design', 'Responsive Web Design', 'Custom UI/UX Design'],
     features: [
       { title: 'Mobile-first responsive layouts', detail: 'Every page is designed and tested on phone screens first, then scaled up — since most Indian visitors will meet your site on mobile.' },
-      { title: 'High-conversion landing architectures', detail: 'Page structure follows a proven attention flow: hook, proof, offer, and a clear call to action, so visitors know exactly what to do next.' },
-      { title: 'Custom graphics and UI iconography', detail: 'Icons, illustrations, and imagery are chosen or created to match your brand — never generic stock art dropped into a template.' },
+      { title: 'Clear, conversion-focused page structure', detail: 'We organise the message around what visitors need to understand, trust, and do next—without forcing every project into the same formula.' },
+      { title: 'Brand-led graphics and interface details', detail: 'Icons, illustrations, and imagery are selected or created to support your brand rather than make the site feel generic.' },
       { title: 'Sleek animations & micro-interactions', detail: 'Subtle hover states, transitions, and scroll reveals add polish without slowing the page down or distracting from your content.' },
     ],
     faqs: [
@@ -48,7 +48,7 @@ export const servicesData: Record<string, ServiceDetails> = {
       },
       {
         question: 'Will my website work on mobile devices?',
-        answer: 'Yes, absolutely. Over 60% of web traffic in India is mobile. We design mobile-first to ensure your site is fast, responsive, and easy to read on screens of all sizes.',
+        answer: 'Yes. We design mobile-first and test the important pages across phone, tablet, laptop, and large desktop sizes.',
       },
       {
         question: 'Do you design custom graphics or use stock templates?',
@@ -61,26 +61,26 @@ export const servicesData: Record<string, ServiceDetails> = {
     ],
     sections: [
       {
-        title: 'Why Professional Web Design Matters in 2026',
-        content: 'Your website is your digital storefront. Within 0.05 seconds, users form an opinion about your business based on your design. A generic template screams unprofessionalism, while a polished, custom-designed user interface creates instant credibility. At CodeArc, a leading website design company in India, we blend visual aesthetics with modern conversion practices to build digital experiences that drive phone calls, lead forms, and digital purchases.',
+        title: 'Why thoughtful web design matters',
+        content: 'People decide quickly whether a website feels credible, relevant, and easy to use. Strong design supports that decision with clear information, confident visuals, and an obvious next step. We bring those elements together to help your website earn enquiries, bookings, or purchases.',
       },
       {
         title: 'Our Custom Design Methodology',
-        content: 'Our process starts with visual wireframing. We map out user journeys, identifying how customers discover your service and what steps they take to make an inquiry. We then build interactive, clickable high-fidelity design mockups. You can open these mockups directly on your mobile device to test layouts, spacing, and buttons before we begin coding. This ensures zero surprises and a polished final product.',
+        content: 'We begin by mapping what visitors need and how they move from interest to enquiry. Interactive mockups let you review the hierarchy, wording, spacing, and key actions on real devices before development begins. That makes decisions visible early and keeps the finished site aligned with the agreed direction.',
       },
       {
-        title: 'High Performance Meets Creative Design',
-        content: 'Many designers build bloated websites filled with heavy images and slow scripts. We balance visual elements with code optimization. By leveraging modern layouts, SVG illustrations, and optimized web fonts, we guarantee that your website is not only beautiful but also scores 95+ on Lighthouse audits. Speed is a vital ranking factor on Google, and we design with speed in mind from day one.',
+        title: 'Creative design without unnecessary weight',
+        content: 'Rich visuals should not make a website frustrating to use. We optimise images, fonts, motion, and code throughout the build, then test performance against targets agreed for the project. The aim is a site that feels distinctive and remains fast in everyday conditions.',
       },
     ],
   },
   'web-development': {
     slug: 'web-development',
     title: 'Custom Web Development',
-    subtitle: 'Robust, Scaleable Web Applications & Systems',
+    subtitle: 'Reliable web applications shaped around your workflow',
     metaTitle: 'Web Development Company India | Custom Web App Services',
-    metaDescription: 'Searching for a trusted web development company in India? CodeArc builds robust, fast, and secure custom web applications, SaaS tools, and business backends.',
-    description: 'We develop secure, responsive, and robust web portals and tools designed to run your business operations smoothly. We eliminate complex spreadsheet dependencies and replace them with intuitive databases.',
+    metaDescription: 'Custom web development in India for business portals, subscription products, workflow tools, and secure data-backed applications.',
+    description: 'We build secure web portals and business tools around the way your team actually works—from bookings and customer records to inventory, reporting, and approvals.',
     icon: 'AppWindow',
     accentColor: '#174C3C',
     accentSoft: '#E7EFE9',
@@ -94,15 +94,15 @@ export const servicesData: Record<string, ServiceDetails> = {
     faqs: [
       {
         question: 'What technologies do you use for web development?',
-        answer: 'We specialize in React, Next.js, Node.js, and TypeScript, backed by robust database platforms like PostgreSQL. This ensures your systems are secure, scalable, and fast.',
+        answer: 'We specialise in React, Next.js, Node.js, TypeScript, and databases such as PostgreSQL. The final stack depends on your workflow, data, integrations, security needs, and expected scale.',
       },
       {
         question: 'Can you integrate third-party APIs into my portal?',
         answer: 'Yes, we regularly integrate payment gateways (Razorpay, Stripe), SMS/WhatsApp APIs, shipping aggregators, and CRM platforms like Salesforce or HubSpot.',
       },
       {
-        question: 'How do you guarantee the security of our data?',
-        answer: 'We implement industry best practices: HTTPS protocols, end-to-end data encryption, secure environment variables, sanitized SQL inputs to prevent injection, and JWT authorization.',
+        question: 'How do you protect our data?',
+        answer: 'We apply security controls appropriate to the system, including encrypted connections, protected credentials, validated inputs, role-based access, and careful handling of sensitive data. We agree any specialist compliance requirements before work begins.',
       },
     ],
     sections: [
@@ -112,17 +112,17 @@ export const servicesData: Record<string, ServiceDetails> = {
       },
       {
         title: 'Engineered for Performance and Security',
-        content: 'At CodeArc, our engineering standards are built around efficiency. We write modular, well-typed TypeScript code that keeps bugs out of production. We ensure databases are indexed for rapid queries, servers are configured for auto-scaling, and code loads incrementally so your pages load in milliseconds.',
+        content: 'We use modular, well-typed code, sensible database design, and focused testing to reduce avoidable failures. Performance is measured against the real journeys that matter to your team, with infrastructure chosen for expected traffic and growth.',
       },
     ],
   },
   'react-development': {
     slug: 'react-development',
     title: 'React.js Development Services',
-    subtitle: 'Dynamic, Highly-Interactive Frontends',
+    subtitle: 'Fast, consistent interfaces for complex web products',
     metaTitle: 'React Development Services | Custom SPA & Dashboard Development',
     metaDescription: 'Boost your digital products with expert React development services. We build responsive, modular, and high-performance user interfaces and Single Page Apps.',
-    description: 'We build interactive, component-driven user interfaces that feel native. Leverage React.js to build smooth client dashboards, CRM interfaces, and booking forms with fast responses.',
+    description: 'We use React to build responsive dashboards, portals, booking journeys, and product interfaces that stay consistent as new screens and features are added.',
     icon: 'Sparkles',
     accentColor: '#174C3C',
     accentSoft: '#E7EFE9',
@@ -136,11 +136,11 @@ export const servicesData: Record<string, ServiceDetails> = {
     faqs: [
       {
         question: 'Why choose React for my frontend product?',
-        answer: 'React allows developers to build modular, reusable components, ensuring faster development cycles and consistent UI styling across complex portals.',
+        answer: 'React is a strong fit for products with repeated interface patterns, live data, and complex interactions. Its component model helps teams keep behaviour and design consistent as the product grows.',
       },
       {
         question: 'Can you migrate our existing HTML/PHP system to React?',
-        answer: 'Yes, we can wrap your legacy backend in a RESTful API and build a modern, interactive React frontend to improve user satisfaction.',
+        answer: 'Often, yes. We first assess the existing system, data, and business risk, then plan a staged migration so essential workflows remain available while the interface is modernised.',
       },
       {
         question: 'How long does a typical React project take?',
@@ -154,7 +154,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     sections: [
       {
         title: 'Building Interactive User Experiences',
-        content: 'Modern web users expect applications to react instantly without full-page reloads. React makes this possible. By rendering state changes in memory before updating the UI, React applications provide responsive interactions, ensuring user attention is maintained during complex tasks.',
+        content: 'People expect forms, filters, dashboards, and navigation to respond without interrupting their flow. React gives us a structured way to build those interactions while keeping each part of the interface understandable and testable.',
       },
       {
         title: 'Performance at Scale',
@@ -169,10 +169,10 @@ export const servicesData: Record<string, ServiceDetails> = {
   'nextjs-development': {
     slug: 'nextjs-development',
     title: 'Next.js Development Services',
-    subtitle: 'Server-Side Rendered Web Applications',
+    subtitle: 'Fast, search-ready websites and web applications',
     metaTitle: 'Next.js Development Services | High-Performance Server-Side Rendering',
     metaDescription: 'Optimize SEO and load speeds with our Next.js development services. We specialize in Next.js App Router, Static Site Generation (SSG), and API routes.',
-    description: 'Combine React interactive styling with Server-Side Rendering (SSR) and Static Generation (SSG) for SEO. Next.js is the framework of choice for modern, search-rankable web apps.',
+    description: 'We use Next.js to create fast public websites and capable web applications, choosing the right rendering approach for search visibility, content freshness, and product behaviour.',
     icon: 'Rocket',
     accentColor: '#171714',
     accentSoft: '#F1F5F9',
@@ -186,7 +186,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     faqs: [
       {
         question: 'Is Next.js better than standard React for SEO?',
-        answer: 'Yes. React renders purely on the client side, showing bots an empty shell until JS loads. Next.js renders HTML on the server, serving crawlers fully-formed pages instantly.',
+        answer: 'Next.js adds routing, server rendering, static generation, and metadata tools around React. Those capabilities can make public content easier for search engines to discover while preserving rich interactions.',
       },
       {
         question: 'Can you migrate my existing React app to Next.js?',
@@ -199,8 +199,8 @@ export const servicesData: Record<string, ServiceDetails> = {
     ],
     sections: [
       {
-        title: 'The SEO Powerhouse: Server-Side Rendering',
-        content: 'For any public-facing portal, landing page, or content blog, Google ranking is critical. Next.js bridges the gap between interactive React frontends and search crawler compatibility. By pre-rendering routes during build or on demand, crawlers receive semantic HTML pages, complete with title tags, canonical links, and JSON-LD schema schemas.',
+        title: 'A stronger foundation for search visibility',
+        content: 'Next.js can deliver complete, semantic HTML with clear titles, canonical links, structured data, and useful page content before client-side interactions begin. That creates a sound technical foundation for SEO, while content quality and authority still determine the wider result.',
       },
       {
         title: 'Choosing Between SSR, SSG, and ISR',
@@ -211,10 +211,10 @@ export const servicesData: Record<string, ServiceDetails> = {
   'ecommerce-development': {
     slug: 'ecommerce-development',
     title: 'Ecommerce Website Development',
-    subtitle: 'High-Converting Online Stores & Custom Carts',
+    subtitle: 'Online stores designed around confident buying',
     metaTitle: 'Ecommerce Website Development India | Custom Online Stores',
     metaDescription: 'Scale your online sales with our ecommerce website development services in India. We design custom e-shops, Shopify templates, and custom carts.',
-    description: 'We design custom web stores designed to turn casual browsers into paying customers. Secure checkouts, smooth product sorting, and WhatsApp invoices are built-in.',
+    description: 'We create online stores that make products easy to find, understand, and buy. Checkout, payments, stock, and customer communication are tailored to your operation.',
     icon: 'Smartphone',
     accentColor: '#F04E2F',
     accentSoft: '#F8E4DE',
@@ -222,7 +222,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     features: [
       { title: 'Advanced product listings & category filters', detail: 'Shoppers can filter by price, size, or category and find what they want in seconds, even in large catalogs.' },
       { title: 'Secure payment integrations (Razorpay, Stripe)', detail: 'Checkout runs through trusted, PCI-compliant payment gateways, so customers pay confidently and you get settled fast.' },
-      { title: 'Automated WhatsApp invoices & tracking', detail: 'Order confirmations and shipping updates are sent automatically over WhatsApp, cutting support questions and no-shows.' },
+      { title: 'WhatsApp order updates when required', detail: 'Where it fits the project, confirmations and delivery updates can be connected to an approved WhatsApp messaging provider.' },
       { title: 'Admin dashboard for stock & order management', detail: 'You manage inventory, pricing, and order status from one simple screen, no spreadsheet exports required.' },
     ],
     faqs: [
@@ -242,7 +242,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     sections: [
       {
         title: 'Converting Carts to Customers',
-        content: 'E-commerce success is a game of friction. Every extra second a page takes to load, or every confusing input field on checkout, drops sales. We design clean checkouts, optimized search bars, and high-performance product pages that keep user flows smooth.',
+        content: 'Online stores lose customers when products are difficult to find or checkout asks for more effort than necessary. We simplify search, product pages, and payment steps while keeping the information shoppers need to make a confident choice.',
       },
       {
         title: 'Built for Indian Payment & Delivery Realities',
@@ -253,10 +253,10 @@ export const servicesData: Record<string, ServiceDetails> = {
   'landing-page-design': {
     slug: 'landing-page-design',
     title: 'High-Converting Landing Pages',
-    subtitle: 'Custom Lead Capture & Sales Architecture',
+    subtitle: 'Focused campaign pages built around one clear action',
     metaTitle: 'Landing Page Design India | Conversion Rate Optimization',
     metaDescription: 'Generate more leads with custom landing page design services. Optimized layouts, clear CTAs, and automated sheet integrations to capture leads.',
-    description: 'We construct high-converting, single-purpose landing pages aimed at maximizing your ad spend returns. Includes custom analytics hooks and clean visual structures.',
+    description: 'We design focused landing pages that connect an advert or campaign to one clear next step, with useful analytics and fewer distractions.',
     icon: 'MessageSquare',
     accentColor: '#10B981',
     accentSoft: '#ECFDF5',
@@ -284,7 +284,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     sections: [
       {
         title: 'Turning Clicks into Calls',
-        content: 'If you run Google Ads or Facebook campaigns, sending traffic to your homepage is a waste of money. A dedicated landing page strips away distracting navigation links, focusing entirely on a value statement, social proof, and a straightforward lead capture form.',
+        content: 'Campaign traffic often arrives with a specific question or intent. A dedicated landing page can answer it directly, support the offer with relevant proof, and guide visitors towards one clear enquiry or purchase action.',
       },
       {
         title: 'Designed for Ad Spend ROI',
@@ -295,10 +295,10 @@ export const servicesData: Record<string, ServiceDetails> = {
   'website-redesign': {
     slug: 'website-redesign',
     title: 'Website Redesign Services',
-    subtitle: 'Revitalize Your Brand & Technical Performance',
+    subtitle: 'A clearer brand, faster experience, and safer migration',
     metaTitle: 'Website Redesign Services India | Modernize & Speed Up Your Site',
     metaDescription: 'Modernize your online presence. Our website redesign services in India upgrade your site with modern UI/UX design, mobile responsiveness, and page speed.',
-    description: 'Transform your outdated, slow website into a modern, mobile-friendly digital experience. We import your existing content while overhauling your visual design and load speeds.',
+    description: 'We improve outdated or underperforming websites without losing the content, search visibility, and brand recognition that already have value.',
     icon: 'Eye',
     accentColor: '#E11D48',
     accentSoft: '#FFF1F2',
@@ -307,12 +307,12 @@ export const servicesData: Record<string, ServiceDetails> = {
       { title: 'Complete brand identity revitalization', detail: 'Colors, type, and imagery are refreshed to look current, while keeping the brand recognizable to returning customers.' },
       { title: 'Clean layouts and layout shifts fixed', detail: 'Common culprits like unsized images and late-loading fonts are addressed so pages stop jumping around as they load.' },
       { title: 'SEO rank protection (URL mapping)', detail: 'Existing URLs are mapped to their new equivalents with proper redirects, so your rankings and backlinks carry over.' },
-      { title: 'Page load time reductions', detail: 'Bloated scripts and unoptimized images from the old site are replaced, often cutting load times by more than half.' },
+      { title: 'Measured performance improvements', detail: 'We identify heavy scripts, images, fonts, and third-party tools, then compare the redesigned site against the original using agreed performance measures.' },
     ],
     faqs: [
       {
         question: 'Will our current Google rankings drop during a redesign?',
-        answer: 'Not with us. We handle redesigns with strict SEO migration protocols: maintaining URL paths, setting up 301 redirects, and mapping headings to protect your traffic.',
+        answer: 'Any redesign carries some search risk, so we reduce it by auditing important pages, preserving useful URLs, mapping redirects, carrying over metadata, and monitoring the site after launch.',
       },
       {
         question: 'How long does a redesign typically take?',
@@ -326,7 +326,7 @@ export const servicesData: Record<string, ServiceDetails> = {
     sections: [
       {
         title: 'Why Redesign an Outdated Website?',
-        content: 'Web standards move fast. A website built 3-4 years ago likely loads slowly, lacks mobile optimization, and uses outdated web fonts. Redesigning allows you to re-introduce your business to modern clients with clean aesthetics, fast loaders, and responsive layouts.',
+        content: 'A redesign is worthwhile when the current site no longer represents the business, performs poorly on important devices, or makes essential information difficult to find. We keep what still works and improve the structure, visual language, speed, and content where evidence supports the change.',
       },
       {
         title: 'Our Redesign Safety Net',
