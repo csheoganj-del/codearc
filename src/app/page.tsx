@@ -6,6 +6,7 @@ import StudioStatement from '../components/home/StudioStatement';
 import Capabilities from '../components/home/Capabilities';
 import ProductFamily from '../components/home/ProductFamily';
 import Philosophy from '../components/home/Philosophy';
+import ProjectEstimator from '../components/home/ProjectEstimator';
 import FinalCTA from '../components/home/FinalCTA';
 import Footer from '../components/Footer';
 import { site } from '../config/site';
@@ -37,6 +38,7 @@ export default function Home() {
         <Capabilities />
         <ProductFamily />
         <Philosophy />
+        <ProjectEstimator />
         <FinalCTA />
       </main>
       <Footer />

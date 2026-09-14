@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface Project {
@@ -13,8 +14,10 @@ interface Project {
   year: string;
   image: string;
   liveUrl: string;
-  previewUrl: string;
   caseStudyUrl: string;
+  displayUrl: string;
+  tags: string[];
+  highlight: string;
 }
 
 const projects: Project[] = [
@@ -28,8 +31,10 @@ const projects: Project[] = [
     year: '2026',
     image: '/assets/wild_jawai_live.webp',
     liveUrl: 'https://wildjawai.in/',
-    previewUrl: '/work-proxy/jawai',
     caseStudyUrl: '/case-studies/wild-jawai-safari',
+    displayUrl: 'wildjawai.in',
+    tags: ['Next.js', 'Editorial Art', 'Safari Bookings', 'WhatsApp Flow'],
+    highlight: 'Direct expedition enquiries increased with cinematic storytelling',
   },
   {
     id: 'leopard-trails',
@@ -41,8 +46,10 @@ const projects: Project[] = [
     year: '2026',
     image: '/assets/leopard_trails_live.png',
     liveUrl: 'https://leopardtrails.vercel.app',
-    previewUrl: '/work-proxy/leopardtrails',
     caseStudyUrl: '/case-studies/leopard-trails',
+    displayUrl: 'leopardtrails.vercel.app',
+    tags: ['Luxury Resort', 'Suite Gallery', 'Wilderness Dining', 'Concierge'],
+    highlight: 'High-touch guest reservation journey with zero friction',
   },
   {
     id: 'bros-bar',
@@ -54,8 +61,10 @@ const projects: Project[] = [
     year: '2025',
     image: '/assets/brosbar_poster.png',
     liveUrl: 'https://brosbar.vercel.app',
-    previewUrl: '/work-proxy/brosbar',
     caseStudyUrl: '/case-studies/bros-bar',
+    displayUrl: 'brosbar.vercel.app',
+    tags: ['Offline-First POS', 'Sub-second Billing', 'Kitchen Routing'],
+    highlight: 'Zero downtime during peak rush hours, even when offline',
   },
   {
     id: 'deora-plaza',
@@ -67,56 +76,23 @@ const projects: Project[] = [
     year: '2025',
     image: '/assets/deora_poster.png',
     liveUrl: 'https://deora.vercel.app',
-    previewUrl: '/work-proxy/deora',
     caseStudyUrl: '/case-studies/deora-plaza',
+    displayUrl: 'deora.vercel.app',
+    tags: ['Multi-Unit ERP', 'Hotel Reception', 'Cafe Billing', 'Staff Roles'],
+    highlight: 'Unified operations dashboard connecting reception with cafe desk',
   },
 ];
 
 export default function SelectedWork() {
   const [activeId, setActiveId] = useState<string>(projects[0].id);
   const activeProject = projects.find((p) => p.id === activeId) || projects[0];
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.5);
-  const [loadedMap, setLoadedMap] = useState<Record<string, boolean>>({});
-  const [mountedMap, setMountedMap] = useState<Record<string, boolean>>({
-    [projects[0].id]: true,
-  });
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      setLoadedMap((prev) => ({ ...prev, [activeId]: true }));
-    }, 700);
-    return () => clearTimeout(t);
-  }, [activeId]);
-
-  useEffect(() => {
-    const el = stageRef.current;
-    if (!el) return;
-    const measure = () => {
-      const w = el.clientWidth || 640;
-      setScale(Math.max(w / 1280, 0.25));
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    window.addEventListener('resize', measure);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener('resize', measure);
-    };
-  }, []);
-
-  const selectProject = (id: string) => {
-    setMountedMap((prev) => ({ ...prev, [id]: true }));
-    setActiveId(id);
-  };
 
   return (
-    <section id="work" className="w-full bg-[#F5F1E8] py-16 sm:py-24 lg:py-36 border-b border-[rgba(24,23,19,0.1)]">
+    <section id="work" className="w-full bg-[#F5F1E8] py-16 sm:py-24 lg:py-32 border-b border-[rgba(24,23,19,0.1)]">
       <div className="w-[calc(100%-clamp(32px,5vw,96px))] max-w-[1536px] mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-8 sm:pb-10 mb-8 sm:mb-16 border-b border-[rgba(24,23,19,0.14)]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-8 sm:pb-10 mb-8 sm:mb-14 border-b border-[rgba(24,23,19,0.14)]">
           <div>
             <span className="font-mono text-[12px] sm:text-[14px] uppercase tracking-[0.22em] text-[#C43C11] font-bold block mb-2 sm:mb-4">
               01 / Selected Work
@@ -126,12 +102,12 @@ export default function SelectedWork() {
               Built around real businesses.
             </h2>
           </div>
-          <p className="max-w-[480px] text-[15px] sm:text-[19px] leading-[1.62] text-[#2C2923] font-normal">
+          <p className="max-w-[480px] text-[15px] sm:text-[18px] leading-[1.62] text-[#2C2923] font-normal">
             Explore websites and business software we have designed, built, and shipped for hospitality brands across Rajasthan.
           </p>
         </div>
 
-        {/* Mobile Project Selector Tabs (Mobile Only: lg:hidden) */}
+        {/* Mobile Project Selector Tabs */}
         <div className="flex lg:hidden items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6 -mx-2 px-2">
           {projects.map((p) => {
             const isAct = p.id === activeId;
@@ -139,7 +115,7 @@ export default function SelectedWork() {
               <button
                 key={p.id}
                 type="button"
-                onClick={() => selectProject(p.id)}
+                onClick={() => setActiveId(p.id)}
                 className={`shrink-0 px-4 py-2.5 rounded-full font-mono text-[12px] tracking-wider uppercase transition-all duration-200 ${
                   isAct
                     ? 'bg-[#181713] text-[#FAF7F2] shadow-sm font-semibold ring-1 ring-[#181713]'
@@ -154,23 +130,23 @@ export default function SelectedWork() {
         </div>
 
         {/* The Interactive Studio Atelier */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 xl:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 xl:gap-20 items-start">
           
-          {/* Left: Typographic Commission Ledger (Desktop: lg:flex, hidden on mobile) */}
-          <div className="hidden lg:flex lg:col-span-6 xl:col-span-6 flex-col divide-y divide-[rgba(24,23,19,0.14)]">
+          {/* Left: Typographic Commission Ledger */}
+          <div className="hidden lg:flex lg:col-span-6 flex-col divide-y divide-[rgba(24,23,19,0.14)]">
             {projects.map((project) => {
               const isActive = project.id === activeId;
               return (
                 <div
                   key={project.id}
-                  onMouseEnter={() => selectProject(project.id)}
-                  onClick={() => selectProject(project.id)}
-                  className={`py-8 sm:py-9 cursor-pointer transition-all duration-300 group ${
+                  onMouseEnter={() => setActiveId(project.id)}
+                  onClick={() => setActiveId(project.id)}
+                  className={`py-7 sm:py-8 cursor-pointer transition-all duration-300 group ${
                     isActive ? 'opacity-100' : 'opacity-60 hover:opacity-95'
                   }`}
                 >
                   {/* Meta tag */}
-                  <div className="flex items-center justify-between font-mono text-[12px] sm:text-[13px] tracking-wider uppercase mb-2.5">
+                  <div className="flex items-center justify-between font-mono text-[12px] sm:text-[13px] tracking-wider uppercase mb-2">
                     <span className={isActive ? 'text-[#C43C11] font-bold' : 'text-[#4A463E] font-medium'}>
                       {project.number} &mdash; {project.category}
                     </span>
@@ -180,16 +156,16 @@ export default function SelectedWork() {
                   {/* Title */}
                   <div className="flex items-center justify-between gap-4">
                     <h3
-                      className={`font-serif text-[32px] sm:text-[42px] xl:text-[48px] font-normal leading-[1.05] tracking-[-0.03em] transition-colors ${
+                      className={`font-serif text-[30px] sm:text-[40px] xl:text-[44px] font-normal leading-[1.06] tracking-[-0.03em] transition-colors ${
                         isActive ? 'text-[#181713]' : 'text-[#181713] group-hover:text-[#C43C11]'
                       }`}
                     >
                       {project.title}
                     </h3>
                     <span
-                      className={`font-mono text-2xl sm:text-3xl transition-transform duration-300 ${
+                      className={`font-mono text-2xl transition-transform duration-300 ${
                         isActive
-                          ? 'text-[#C43C11] translate-x-1.5 -translate-y-1.5'
+                          ? 'text-[#C43C11] translate-x-1 -translate-y-1'
                           : 'text-[#4A463E] opacity-0 group-hover:opacity-100'
                       }`}
                     >
@@ -199,17 +175,29 @@ export default function SelectedWork() {
 
                   {/* Active project extended story & links */}
                   {isActive ? (
-                    <div className="mt-5 pt-4 border-t border-[rgba(24,23,19,0.1)] animate-in fade-in duration-200">
-                      <p className="text-[17px] sm:text-[18px] leading-[1.65] text-[#2C2923] max-w-[50ch]">
+                    <div className="mt-4 pt-4 border-t border-[rgba(24,23,19,0.1)] animate-in fade-in duration-200">
+                      <p className="text-[16px] sm:text-[17px] leading-[1.65] text-[#2C2923] max-w-[52ch]">
                         {project.tagline}
                       </p>
 
-                      <div className="mt-6 flex items-center gap-7 text-[15px] sm:text-[16px]">
+                      {/* Tags */}
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-1 rounded-md bg-[rgba(24,23,19,0.06)] text-[#4A453C] font-mono text-[11px] tracking-wide"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-5 flex items-center gap-6 text-[14px] sm:text-[15px]">
                         <Link
                           href={project.caseStudyUrl}
                           className="font-semibold text-[#181713] hover:text-[#C43C11] transition-colors underline underline-offset-4 decoration-[rgba(24,23,19,0.3)] hover:decoration-[#C43C11]"
                         >
-                          Read case study
+                          Read case study →
                         </Link>
                         <a
                           href={project.liveUrl}
@@ -217,7 +205,7 @@ export default function SelectedWork() {
                           rel="noopener noreferrer"
                           className="font-semibold text-[#C43C11] hover:text-[#8F290B] transition-colors flex items-center gap-1.5"
                         >
-                          <span>Open live platform</span>
+                          <span>Open live site</span>
                           <span className="text-xs">↗</span>
                         </a>
                       </div>
@@ -228,105 +216,86 @@ export default function SelectedWork() {
             })}
           </div>
 
-          {/* Right (and Mobile Top): Single Cinematic Focus Stage */}
-          <div className="w-full lg:col-span-6 xl:col-span-6 lg:sticky lg:top-28">
-            <div
-              ref={stageRef}
-              className="relative aspect-[16/11] w-full rounded-[12px] sm:rounded-[16px] overflow-hidden bg-[#181713] border border-[rgba(24,23,19,0.12)] shadow-[0_20px_50px_-20px_rgba(24,23,19,0.14)]"
-            >
-              {/* Top Live Status Indicator */}
-              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-30 flex items-center gap-2">
-                <span className="px-2.5 sm:px-3 py-1 rounded-full bg-[rgba(18,16,13,0.85)] backdrop-blur-md text-[#34D399] font-mono text-[10px] sm:text-[11px] font-bold tracking-wider uppercase flex items-center gap-1.5 border border-white/10 shadow-sm">
+          {/* Right: High-Performance Device Frame Showcase */}
+          <div className="w-full lg:col-span-6 lg:sticky lg:top-28">
+            <div className="relative rounded-[16px] overflow-hidden bg-[#14120E] border border-[rgba(24,23,19,0.15)] shadow-[0_24px_60px_-20px_rgba(24,23,19,0.25)]">
+              
+              {/* Device Frame Window Bar */}
+              <div className="flex items-center justify-between px-4 py-3 bg-[#1F1D19] border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-[#EF4444]/80" />
+                  <div className="w-3 h-3 rounded-full bg-[#F59E0B]/80" />
+                  <div className="w-3 h-3 rounded-full bg-[#10B981]/80" />
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#14120E] text-[#FAF7F2] font-mono text-[11px] border border-white/10 max-w-[200px] truncate">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
-                  {loadedMap[activeId] ? 'Latest Live Preview' : 'Loading preview...'}
+                  <span>https://{activeProject.displayUrl}</span>
+                </div>
+                <span className="font-mono text-[10px] text-[#A8A29E] uppercase tracking-wider hidden sm:inline">
+                  Live Production
                 </span>
               </div>
 
-              {projects.map((project) => {
-                const isActive = project.id === activeId;
-                const isMounted = Boolean(mountedMap[project.id]);
+              {/* Viewport Image Canvas */}
+              <div className="relative aspect-[16/10] w-full bg-[#181713] overflow-hidden group">
+                <Image
+                  src={activeProject.image}
+                  alt={`${activeProject.title} preview`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  priority
+                />
 
-                if (!isMounted) return null;
+                {/* Subtle bottom shadow overlay */}
+                <div
+                  className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[rgba(18,16,13,0.95)] via-[rgba(18,16,13,0.4)] to-transparent pointer-events-none"
+                  aria-hidden="true"
+                />
 
-                return (
-                  <div
-                    key={project.id}
-                    className={`absolute inset-0 transition-opacity duration-400 ease-in-out bg-[#14120E] ${
-                      isActive ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
-                    }`}
-                  >
-                    {/* Live Same-Origin Upstream Preview */}
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                      <iframe
-                        src={project.previewUrl}
-                        title={`${project.title} live preview`}
-                        loading="eager"
-                        tabIndex={-1}
-                        onLoad={() => setLoadedMap((prev) => ({ ...prev, [project.id]: true }))}
-                        style={{
-                          width: 1280,
-                          height: 880,
-                          border: 0,
-                          transform: `scale(${scale}) translateZ(0)`,
-                          transformOrigin: 'top left',
-                        }}
-                      />
-                    </div>
-
-                    {/* Subtle bottom shadow overlay */}
-                    <div
-                      className="absolute inset-x-0 bottom-0 h-28 sm:h-32 bg-gradient-to-t from-[rgba(18,16,13,0.92)] via-[rgba(18,16,13,0.35)] to-transparent pointer-events-none z-20"
-                      aria-hidden="true"
-                    />
-
-                    {/* Stage Meta Caption */}
-                    <div className="absolute bottom-3.5 sm:bottom-5 inset-x-4 sm:inset-x-6 flex items-center justify-between text-[#FAF7F2] text-[12px] sm:text-[14px] font-mono tracking-wider uppercase z-30">
-                      <span className="font-medium text-shadow-sm truncate pr-2">
-                        {project.title} &mdash; {project.year}
-                      </span>
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 px-3 sm:px-4 py-1.5 rounded-full bg-[rgba(250,246,240,0.95)] text-[#181713] text-[11px] sm:text-[12px] font-mono font-bold hover:bg-[#E85A2F] hover:text-[#FAF7F2] transition-colors shadow-sm"
-                      >
-                        Visit ↗
-                      </a>
-                    </div>
+                {/* Overlay Caption & Live CTA */}
+                <div className="absolute bottom-4 inset-x-4 sm:inset-x-6 flex items-center justify-between text-[#FAF7F2] z-20">
+                  <div>
+                    <span className="font-mono text-[11px] sm:text-[12px] uppercase tracking-wider text-[#E85A2F] block font-semibold">
+                      {activeProject.category}
+                    </span>
+                    <h4 className="font-serif text-[18px] sm:text-[22px] font-normal text-white">
+                      {activeProject.title}
+                    </h4>
                   </div>
-                );
-              })}
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#FAF6F0] text-[#181713] font-semibold text-[12px] sm:text-[13px] hover:bg-[#E85A2F] hover:text-white transition-all shadow-md transform hover:-translate-y-0.5"
+                  >
+                    <span>Visit Live</span>
+                    <span className="text-xs">↗</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Highlight summary bar under viewport */}
+              <div className="px-5 py-3.5 bg-[#1C1A16] border-t border-white/10 flex items-center justify-between text-[12px] sm:text-[13px] font-mono text-[#D6D3CD]">
+                <span className="flex items-center gap-2">
+                  <span className="text-[#C43C11] font-bold">Outcome:</span>
+                  <span className="truncate max-w-[280px] sm:max-w-[420px]">{activeProject.highlight}</span>
+                </span>
+                <span className="text-[#8C887B] hidden sm:inline">{activeProject.year}</span>
+              </div>
             </div>
 
-            {/* Mobile Active Project Card (Mobile Only: lg:hidden) */}
-            <div className="block lg:hidden mt-5 pt-4 border-t border-[rgba(24,23,19,0.12)]">
-              <div className="flex items-center justify-between font-mono text-[11px] tracking-wider uppercase mb-1.5">
-                <span className="text-[#C43C11] font-bold">
-                  {activeProject.number} &mdash; {activeProject.category}
-                </span>
-                <span className="text-[#4A463E] font-medium">{activeProject.location}</span>
-              </div>
-              <h3 className="font-serif text-[26px] font-normal leading-tight text-[#181713]">
-                {activeProject.title}
-              </h3>
-              <p className="mt-2 text-[15px] leading-[1.6] text-[#2C2923]">
+            {/* Mobile Info details */}
+            <div className="block lg:hidden mt-4 pt-3 border-t border-[rgba(24,23,19,0.1)]">
+              <p className="text-[15px] leading-relaxed text-[#2C2923]">
                 {activeProject.tagline}
               </p>
-              <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <a
-                  href={activeProject.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 h-[44px] px-6 rounded-full bg-[#181713] text-[#FAF7F2] font-semibold text-[14px] shadow-sm text-center"
-                >
-                  <span>Open live platform</span>
-                  <span className="text-xs">↗</span>
-                </a>
+              <div className="mt-3 flex items-center gap-4">
                 <Link
                   href={activeProject.caseStudyUrl}
-                  className="text-[14px] font-semibold text-[#181713] hover:text-[#C43C11] text-center underline underline-offset-4 decoration-[rgba(24,23,19,0.3)] py-1.5"
+                  className="font-semibold text-[14px] text-[#181713] underline underline-offset-4 hover:text-[#C43C11]"
                 >
-                  Read case study
+                  Read full case study →
                 </Link>
               </div>
             </div>

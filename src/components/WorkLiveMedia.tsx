@@ -48,16 +48,15 @@ export default function WorkLiveMedia({
   iframeSrc,
 }: WorkLiveMediaProps) {
   const shellRef = useRef<HTMLDivElement>(null);
-  const [near, setNear] = useState(false);
-  const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [iframeScale, setIframeScale] = useState(0.3);
-  const [design, setDesign] = useState({ w: 1440, h: 900 });
-
   const fillMode = isFillPreview(iframeSrc);
   const jawai = isFullSitePreview(iframeSrc);
   const isLive = liveMode === 'iframe' && !failed && Boolean(iframeSrc);
+  const [near, setNear] = useState(fillMode);
+  const [ready, setReady] = useState(fillMode && isLive);
+  const [isMobile, setIsMobile] = useState(false);
+  const [iframeScale, setIframeScale] = useState(0.3);
+  const [design, setDesign] = useState({ w: 1440, h: 900 });
 
   // Mobile detection — never gate fill previews on IntersectionObserver alone
   useEffect(() => {
@@ -71,13 +70,7 @@ export default function WorkLiveMedia({
   // Soft "near viewport" for heavy Jawai only — very generous margins for mobile
   useEffect(() => {
     const el = shellRef.current;
-    if (!el) return;
-
-    // Fill previews always considered near so they mount immediately
-    if (fillMode) {
-      setNear(true);
-      return;
-    }
+    if (!el || fillMode) return;
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -119,11 +112,7 @@ export default function WorkLiveMedia({
 
   // Reveal iframe: fill previews ASAP; others after near + short fallback
   useEffect(() => {
-    if (!isLive) return;
-    if (fillMode) {
-      setReady(true);
-      return;
-    }
+    if (!isLive || fillMode) return;
     if (!near) return;
     const t = window.setTimeout(() => setReady(true), 400);
     return () => window.clearTimeout(t);

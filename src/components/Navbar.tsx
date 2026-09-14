@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Studio', href: '/#studio' },
   { name: 'Capabilities', href: '/#capabilities' },
   { name: 'Suite', href: '/#suite' },
+  { name: 'Estimate', href: '/#estimate' },
   { name: 'Contact', href: '/#contact' },
 ];
 
@@ -24,12 +25,12 @@ export default function Navbar() {
   const mobileNavRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const threshold = isHome ? 640 : 16;
+    const threshold = 40;
     const onScroll = () => setScrolled(window.scrollY > threshold);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [isHome]);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -76,61 +77,109 @@ export default function Navbar() {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
-  if (isHome && !scrolled) {
-    return null;
-  }
-
   return (
-    <header className={`v2-nav ${scrolled ? 'is-scrolled' : ''}`}>
-      <div className="v2-nav-inner">
-        <Logo variant="dark" onClick={() => setOpen(false)} />
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'py-3 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-[rgba(24,23,19,0.1)] shadow-[0_4px_20px_-4px_rgba(24,23,19,0.06)]'
+          : 'py-4 sm:py-6 bg-transparent'
+      }`}
+    >
+      <div className="w-[calc(100%-clamp(24px,5vw,96px))] max-w-[1536px] mx-auto flex items-center justify-between gap-4">
+        
+        {/* Logo container */}
+        <div
+          className={`transition-all duration-300 ${
+            !scrolled && isHome
+              ? 'px-3.5 sm:px-4 py-2 rounded-full bg-[#FAF6F0] border border-[rgba(24,23,19,0.12)] shadow-[0_4px_24px_-4px_rgba(24,23,19,0.12)]'
+              : ''
+          }`}
+        >
+          <Logo variant="dark" onClick={() => setOpen(false)} />
+        </div>
 
-        <nav className="v2-desktop-nav" aria-label="Primary">
+        {/* Desktop Navigation Links */}
+        <nav
+          aria-label="Primary"
+          className={`hidden md:flex items-center gap-6 lg:gap-8 text-[14px] font-medium tracking-wide transition-all duration-300 ${
+            !scrolled && isHome
+              ? 'px-6 lg:px-8 py-2.5 rounded-full bg-[#FAF6F0] border border-[rgba(24,23,19,0.12)] shadow-[0_4px_24px_-4px_rgba(24,23,19,0.12)] text-[#181713]'
+              : 'text-[#5A554C]'
+          }`}
+        >
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href}>
+            <Link
+              key={link.name}
+              href={link.href}
+              className="hover:text-[#C43C11] transition-colors"
+            >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        <a className="v2-nav-cta" href="/#contact">
-          Start a project ↗
-        </a>
+        {/* Right CTA + Mobile Hamburger */}
+        <div className="flex items-center gap-3">
+          <Link
+            href="/#contact"
+            className="hidden sm:inline-flex items-center gap-1.5 h-[42px] px-5 rounded-full bg-[#181713] text-[#FAF7F2] text-[13px] font-semibold tracking-wide hover:bg-[#C43C11] transition-all duration-200 shadow-sm transform hover:-translate-y-0.5"
+          >
+            <span>Start a project</span>
+            <span className="text-xs">↗</span>
+          </Link>
 
-        <button
-          ref={menuBtnRef}
-          className="v2-menu-btn"
-          type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          aria-controls={menuId}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          {/* Mobile hamburger button */}
+          <button
+            ref={menuBtnRef}
+            type="button"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls={menuId}
+            onClick={() => setOpen((v) => !v)}
+            className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${
+              !scrolled && isHome
+                ? 'bg-[#FAF6F0] border border-[rgba(24,23,19,0.12)] shadow-sm text-[#181713]'
+                : 'bg-[rgba(24,23,19,0.06)] hover:bg-[rgba(24,23,19,0.12)] text-[#181713]'
+            }`}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
-      {open ? (
-        <nav
-          ref={mobileNavRef}
-          id={menuId}
-          className="v2-mobile-nav"
-          aria-label="Mobile"
-        >
-          {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} onClick={() => setOpen(false)}>
-              {link.name}
-            </Link>
-          ))}
-          <a
-            className="v2-mobile-cta"
-            href="/#contact"
-            onClick={() => setOpen(false)}
+      {/* Mobile Drawer */}
+      {open && (
+        <div className="md:hidden fixed inset-0 top-[64px] z-40 bg-[#FAF6F0]/98 backdrop-blur-xl border-t border-[rgba(24,23,19,0.1)] animate-in fade-in slide-in-from-top-4 duration-200">
+          <nav
+            ref={mobileNavRef}
+            id={menuId}
+            aria-label="Mobile"
+            className="flex flex-col px-6 py-8 space-y-4 text-[18px] font-serif"
           >
-            Start a project ↗
-          </a>
-        </nav>
-      ) : null}
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="py-2.5 border-b border-[rgba(24,23,19,0.08)] text-[#181713] hover:text-[#C43C11] transition-colors flex items-center justify-between"
+              >
+                <span>{link.name}</span>
+                <span className="text-xs font-mono text-[#6B675F]">→</span>
+              </Link>
+            ))}
+            <div className="pt-4">
+              <Link
+                href="/#contact"
+                onClick={() => setOpen(false)}
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-[#181713] text-[#FAF7F2] text-[15px] font-sans font-semibold tracking-wide hover:bg-[#C43C11] transition-colors shadow-sm"
+              >
+                <span>Start a project</span>
+                <span>↗</span>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
